@@ -4,9 +4,26 @@
 
   /* ---------- pixel sprites: 12x12 grids, one char per pixel ---------- */
   const COLORS = {
-    o: '#5b3a63', p: '#ffb3d9', h: '#ff7ab8', b: '#b5e2ff', y: '#fff2a8',
-    w: '#ffffff', m: '#bff5d8', l: '#d9c2ff', r: '#ff6f91', n: '#d9a066'
+    o: '#7a6481', p: '#f2cfe0', h: '#e5a3c4', b: '#cfe4f2', y: '#f7efc6',
+    w: '#fffdfb', m: '#cdeadb', l: '#ddd2ee', r: '#ee9aae', n: '#dcb98f'
   };
+  const PIGEON = [
+    '....kkkk........',
+    '...kggggk.......',
+    '.kkgggegk.......',
+    'kbbkgggggk......',
+    '.kkkngnnnkk.....',
+    '..kgnnnngggk....',
+    '..kggggggggggk..',
+    '.kggddgggddggggk',
+    '.kgwddddddddgggk',
+    '.kgwwdddddddggk.',
+    '..kgwwwwggggkk..',
+    '...kkggggggkk...',
+    '.....kkkkkk.....',
+    '......f..f......'
+  ];
+  const PIGEON_COLORS = { k: '#7a6481', g: '#d3d6df', d: '#a9aec2', w: '#f0f1f6', n: '#b9d6c8', e: '#e9a56b', b: '#dba08f', f: '#e8aebd' };
   const SPRITES = {
     smile: [
       '...oooooo...', '.ooyyyyyyoo.', 'oyyyyyyyyyyo', 'oyyoyyyyoyyo', 'oyyoyyyyoyyo', 'oyyyyyyyyyyo',
@@ -65,6 +82,19 @@
   let cascade = 0;
 
   $('#startIcon').innerHTML = sprite('star');
+
+  /* ---------- pigeon pet (bops when hovered) ---------- */
+  (() => {
+    let rects = '';
+    PIGEON.forEach((row, y) => [...row].forEach((c, x) => {
+      if (c !== '.') rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${PIGEON_COLORS[c]}"/>`;
+    }));
+    const b = document.createElement('button');
+    b.className = 'pigeon';
+    b.setAttribute('aria-label', 'A pigeon. Hover to make it bop.');
+    b.innerHTML = `<svg viewBox="0 0 16 14" aria-hidden="true">${rects}</svg>`;
+    document.body.appendChild(b);
+  })();
 
   /* ---------- build UI for every window ---------- */
   wins.forEach((win) => {
