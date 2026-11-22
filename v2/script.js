@@ -25,6 +25,10 @@
   const wamNum = document.getElementById('wamNum');
   const wamName = document.getElementById('wamName');
 
+  const wamBtn = document.querySelector('.wam-btn');
+  const wamMenu = document.getElementById('wamMenu');
+  const wamLinks = [...wamMenu.querySelectorAll('a')];
+
   let mode = null;
   let io = null;
   let ticking = false;
@@ -130,6 +134,10 @@
       lastSection = current;
       wamNum.textContent = String(sections.indexOf(current) + 1).padStart(2, '0');
       wamName.textContent = current.dataset.name;
+      wamLinks.forEach((a) => {
+        if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
     }
   }
 
@@ -244,6 +252,36 @@
       ], t).onfinish = () => { hopping = false; pigeon.classList.remove('hop'); };
     });
   }
+
+  /* ---------- section nav ---------- */
+  function setMenu(open, focusBtn) {
+    wamMenu.hidden = !open;
+    wamBtn.setAttribute('aria-expanded', String(open));
+    if (open) (wamMenu.querySelector('[aria-current]') || wamLinks[0]).focus();
+    else if (focusBtn) wamBtn.focus();
+  }
+  wamBtn.addEventListener('click', () => setMenu(wamMenu.hidden));
+  wamLinks.forEach((a) => a.addEventListener('click', (e) => {
+    const target = document.querySelector(a.hash);
+    if (!target) return;
+    e.preventDefault();
+    setMenu(false);
+    // jump (not smooth-scroll) so we don't flick through every chapter's pops on the way
+    window.scrollTo({ top: Math.round(target.getBoundingClientRect().top + window.scrollY), behavior: 'instant' });
+    history.replaceState(null, '', a.hash);
+    update();
+  }));
+  wamMenu.addEventListener('keydown', (e) => {
+    const i = wamLinks.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const n = wamLinks.length;
+      wamLinks[(i + (e.key === 'ArrowDown' ? 1 : n - 1)) % n].focus();
+    }
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !wamMenu.hidden) setMenu(false, true); });
+  document.addEventListener('click', (e) => { if (!wamMenu.hidden && !e.target.closest('.where-am-i')) setMenu(false); });
+  document.addEventListener('focusin', (e) => { if (!wamMenu.hidden && !e.target.closest('.where-am-i')) setMenu(false); });
 
   /* ---------- wire up ---------- */
   setMode();
