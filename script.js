@@ -355,6 +355,10 @@
   /* ---------- open the windows marked data-open ---------- */
   if (!isMobile()) wins.forEach((w) => { if (w.dataset.open === 'true') openWin(w.id, false); });
 
+  /* ---------- deep link: /#painting opens that window ---------- */
+  const hashWin = location.hash && document.getElementById(location.hash.slice(1));
+  if (hashWin && hashWin.classList.contains('win')) openWin(hashWin.id);
+
   /* ---------- font tester: add ?font=nunito (etc.) to the URL ---------- */
   (() => {
     const F = {
