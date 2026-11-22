@@ -96,17 +96,32 @@
 
   $('#startIcon').innerHTML = sprite('star');
 
-  /* ---------- pigeon pet (bops when hovered) ---------- */
+  /* ---------- pigeon pet: head-bob on hover, hop on click ---------- */
   (() => {
-    let rects = '';
-    PIGEON.forEach((row, y) => [...row].forEach((c, x) => {
-      if (c !== '.') rects += `<rect x="${x}" y="${y}" width="1" height="1" fill="${PIGEON_COLORS[c]}"/>`;
-    }));
     const b = document.createElement('button');
     b.className = 'pigeon';
-    b.setAttribute('aria-label', 'A pigeon. Hover to make it bop.');
-    b.innerHTML = `<svg viewBox="0 0 16 14" aria-hidden="true">${rects}</svg>`;
+    b.setAttribute('aria-label', 'A pigeon. Click to make it hop.');
+    b.innerHTML = '<span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-pigeon.png" alt="" draggable="false">';
     document.body.appendChild(b);
+    const bird = b.querySelector('.pg-bird'), shadow = b.querySelector('.pg-shadow');
+    let hopping = false;
+    b.addEventListener('click', () => {
+      if (hopping || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !bird.animate) return;
+      hopping = true; b.classList.add('hop');
+      const t = { duration: 650, easing: 'ease-in-out' };
+      bird.animate([
+        { transform: 'translateY(0) scale(1, 1)' },
+        { transform: 'translateY(2px) scale(1.08, .88)', offset: .15 },
+        { transform: 'translateY(-26px) rotate(-6deg) scale(.96, 1.05)', offset: .45 },
+        { transform: 'translateY(0) rotate(0) scale(1.06, .92)', offset: .8 },
+        { transform: 'translateY(0) scale(1, 1)' }
+      ], t);
+      shadow.animate([
+        { transform: 'scale(1)', opacity: .5 }, { transform: 'scale(1.1)', opacity: .55, offset: .15 },
+        { transform: 'scale(.55)', opacity: .22, offset: .45 }, { transform: 'scale(1.1)', opacity: .55, offset: .8 },
+        { transform: 'scale(1)', opacity: .5 }
+      ], t).onfinish = () => { hopping = false; b.classList.remove('hop'); };
+    });
   })();
 
   /* ---------- build UI for every window ---------- */
@@ -320,30 +335,43 @@
 
   /* ---------- clock ---------- */
   const clock = $('#clock');
+  // Fadila's time is always Sydney. Visitors in another time zone also see their own.
+  const fmt = (tz) => new Date().toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit', hour12: true, ...(tz ? { timeZone: tz } : {}) }).toLowerCase();
   const tick = () => {
-    clock.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const mine = fmt('Australia/Sydney'), yours = fmt();
+    clock.innerHTML = mine === yours
+      ? `<span title="Sydney time">${mine}</span>`
+      : `<span title="Fadila's time (Sydney)">my time <b>${mine}</b></span><span class="sep">·</span><span title="Your local time">your time <b>${yours}</b></span>`;
   };
   tick(); setInterval(tick, 15000);
 
-  /* ---------- sparkle cursor trail (skipped for reduced motion / touch) ---------- */
+  /* ---------- cursor trail: a thin pink ink line that fades (mouse only) ---------- */
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (false && !reduce && window.matchMedia('(pointer: fine)').matches) {
-    const glyphs = ['✿', '★', '♥', '✦'];
-    const hues = ['#ff7ab8', '#b5a0ff', '#6ec6ff', '#ffd84d', '#6fe3a8'];
-    let last = 0;
-    document.addEventListener('pointermove', (e) => {
-      const now = performance.now();
-      if (now - last < 70) return;
-      last = now;
-      const s = document.createElement('span');
-      s.className = 'sparkle';
-      s.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
-      s.style.left = e.clientX + 6 + 'px';
-      s.style.top = e.clientY + 6 + 'px';
-      s.style.color = hues[Math.floor(Math.random() * hues.length)];
-      document.body.appendChild(s);
-      setTimeout(() => s.remove(), 800);
-    });
+  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+    const cv = document.createElement('canvas');
+    cv.className = 'ink-trail'; cv.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(cv);
+    const ctx = cv.getContext('2d');
+    const size = () => { const d = devicePixelRatio || 1; cv.width = innerWidth * d; cv.height = innerHeight * d; ctx.setTransform(d, 0, 0, d, 0, 0); };
+    size(); addEventListener('resize', size);
+    const pts = []; const LIFE = 420; let running = false;
+    addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      pts.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+      if (!running) { running = true; requestAnimationFrame(draw); }
+    }, { passive: true });
+    function draw(now) {
+      while (pts.length && now - pts[0].t > LIFE) pts.shift();
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      for (let i = 1; i < pts.length; i++) {
+        const k = 1 - (now - pts[i].t) / LIFE;
+        ctx.strokeStyle = `rgba(232, 150, 190, ${k * 0.85})`;
+        ctx.lineWidth = 1 + k * 3;
+        ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
+      }
+      if (pts.length) requestAnimationFrame(draw); else { running = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+    }
   }
 
   /* ---------- open the windows marked data-open ---------- */

@@ -497,3 +497,35 @@ h3.sub { font-size: 12px; letter-spacing: .04em; }
 .talk-card .kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
 .talk-card .kicker:not(:first-child) { margin-top: 22px; }
 .talk-card .zoom-x { top: 10px; right: 10px; }
+
+/* ---------- two clocks ---------- */
+#clock { display: inline-flex; gap: 8px; align-items: baseline; white-space: nowrap; }
+#clock b { font-weight: 500; color: var(--ink); }
+#clock > span:not(.sep) { color: var(--muted); }
+#clock > span:only-child { color: var(--ink); }
+#clock .sep { color: var(--muted); }
+
+/* ---------- real pigeon ---------- */
+.pigeon { right: 18px; bottom: calc(var(--taskbar-h) + 6px); width: 64px; height: 74px; display: block; }
+.pigeon svg { display: none; }
+.pg-bird { position: absolute; left: 0; bottom: 4px; width: 64px; height: auto; transform-origin: 40% 100%; pointer-events: none; user-select: none; }
+.pg-shadow { position: absolute; left: 14px; right: 8px; bottom: 0; height: 8px; border-radius: 50%; background: radial-gradient(closest-side, rgba(38,35,43,.55), transparent); opacity: .5; }
+.pigeon:hover .pg-bird, .pigeon:focus-visible .pg-bird { animation: peck .9s ease-in-out 1; }
+.pigeon.hop .pg-bird { animation: none; }
+.pigeon:hover svg, .pigeon:focus-visible svg, .pigeon:active svg { animation: none; }
+@keyframes peck {
+  0%, 100% { transform: none; }
+  18% { transform: translateX(-3px) rotate(-5deg); }
+  32% { transform: none; }
+  52% { transform: translateX(-3px) rotate(-5deg); }
+  66% { transform: none; }
+}
+@media (max-width: 720px) { .pigeon { width: 52px; height: 60px; } .pg-bird { width: 52px; } }
+
+/* ---------- custom cursor + ink trail ---------- */
+@media (pointer: fine) {
+  html, body, .titlebar, .titlebar:active, .win.dragging .titlebar { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2222%22%20height%3D%2226%22%20viewBox%3D%220%200%2022%2026%22%3E%3Cpath%20d%3D%22M2%202%20L2%2020%20L6.5%2015.8%20L9.6%2023%20L12.8%2021.6%20L9.8%2014.6%20L16%2014.6%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%2326232b%22%20stroke-width%3D%221.6%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") 2 2, default; }
+  a, button, [role="button"], .icon, .task, .talk, .pcard, .shot, .canvas .ph, .pigeon, .zoom { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2226%22%20viewBox%3D%220%200%2024%2026%22%3E%3Cpath%20d%3D%22M8%2013%20V4.2%20a1.7%201.7%200%200%201%203.4%200%20V11%20V9.6%20a1.7%201.7%200%200%201%203.4%200%20V11.4%20a1.7%201.7%200%200%201%203.4%200%20V12.6%20a1.6%201.6%200%200%201%203.2%200%20V17%20c0%204.2-2.8%207-6.8%207%20h-2%20c-2.6%200-4.2-1.2-5.6-3.4%20L3%2015.4%20a1.7%201.7%200%200%201%202.6-2.2%20Z%22%20fill%3D%22%23f6cfe1%22%20stroke%3D%22%2326232b%22%20stroke-width%3D%221.5%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") 9 2, pointer; }
+  input, textarea { cursor: text; }
+}
+.ink-trail { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99998; }
