@@ -28,7 +28,7 @@
     <div class="stage">
       <div class="hello-text">
         <h1 id="hello-title" class="hello-title">Hi, I'm Fadila!</h1>
-        <div class="paper bio drop" style="--d:900ms; --r:-1deg">
+        <div class="paper bio drop taped" style="--d:900ms; --r:-1deg; --tr:3deg">
           <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who loves to create: in code, in photos, in bread and in paint.</p>
         </div>
         <ul class="tags" aria-label="Things I love">
@@ -51,6 +51,9 @@
 
       <svg class="star drop" style="--x:63%; --y:15%; --r:12deg; --d:1300ms" aria-hidden="true"><use href="#star"/></svg>
       <svg class="star drop sm" style="--x:44%; --y:78%; --r:-10deg; --d:1380ms" aria-hidden="true"><use href="#star"/></svg>
+      <div class="clutter scrap drop" style="--x:7%; --y:48%; --w:156px; --r:-7deg; --d:820ms" aria-hidden="true"><div class="scrap-in"><span class="kicker">Note to self</span>Make something just because it makes you happy.</div></div>
+      <img class="clutter sticker-obj drop" src="images/obj-tamagotchi-pink.png" alt="" width="360" height="316" style="--x:57%; --y:86%; --w:118px; --r:11deg; --d:700ms">
+      <img class="clutter sticker-obj drop" src="images/obj-matcha-latte.png" alt="" width="126" height="165" style="--x:94%; --y:85%; --w:62px; --r:0deg; --d:860ms">
       <p class="scroll-hint drop" style="--d:1500ms" aria-hidden="true">Scroll ↓</p>
     </div>
   </section>
@@ -65,7 +68,7 @@
       </header>
 
       <ol class="roles">
-        <li class="paper role pop" data-step="1" style="--x:22%; --y:55%; --r:-3deg">
+        <li class="paper role pop taped" data-step="1" style="--x:22%; --y:55%; --r:-3deg; --tr:-5deg">
           <p class="date">2022 – now</p>
           <h3>Senior Software Engineer</h3>
           <p class="muted">Atlassian · Sydney, NSW</p>
@@ -76,7 +79,7 @@
             <li>Conference speaker on experimentation and product engineering</li>
           </ul>
         </li>
-        <li class="paper role pop" data-step="2" style="--x:51%; --y:63%; --r:2.5deg">
+        <li class="paper role pop taped" data-step="2" style="--x:51%; --y:63%; --r:2.5deg; --tr:4deg; --tx:30%">
           <p class="date">2019 – 2022</p>
           <h3>Senior Software Engineer</h3>
           <p class="muted">NAB (HICAPS), formerly InLoop (LanternPay) · Sydney, NSW</p>
@@ -88,7 +91,7 @@
             <li>Stayed on through the NAB acquisition and merger with HICAPS</li>
           </ul>
         </li>
-        <li class="paper role pop" data-step="3" style="--x:79%; --y:42%; --r:-2deg">
+        <li class="paper role pop taped" data-step="3" style="--x:79%; --y:42%; --r:-2deg; --tr:-3deg; --tx:70%">
           <p class="date">2018</p>
           <h3>Internships</h3>
           <p class="muted">IT, consulting and business analysis</p>
@@ -96,7 +99,9 @@
       </ol>
       <a class="chip link pop" data-step="3" style="--x:82%; --y:62%; --r:3deg" href="https://www.linkedin.com/in/fadila-fidina" target="_blank" rel="noopener">★ Full story on LinkedIn ↗</a>
       <img class="sticker-obj pop" data-step="1" src="../images/obj-bag.png" alt="" width="240" height="217" loading="lazy" style="--x:88%; --y:16%; --w:110px; --r:10deg">
-      <svg class="star pop" data-step="2" style="--x:40%; --y:24%; --r:8deg" aria-hidden="true"><use href="#star"/></svg>
+      <svg class="star pop" data-step="2" style="--x:63%; --y:17%; --r:8deg" aria-hidden="true"><use href="#star"/></svg>
+      <div class="clutter scrap pop" data-step="1" style="--x:46%; --y:20%; --w:150px; --r:4deg" aria-hidden="true"><div class="scrap-in"><span class="kicker">Note to self</span>Small steps still count.</div></div>
+      <div class="clutter badge pop" data-step="2" style="--x:91%; --y:80%; --r:7deg" aria-hidden="true"><span class="badge-top"><b>Hello</b><span>my name is</span></span><span class="badge-name">Fadila</span><span class="badge-role">Software engineer</span></div>
     </div>
   </section>
 
@@ -112,7 +117,7 @@
 
       <div class="deck">
         <article class="talk pop" data-step="1" style="--r:-2deg">
-          <div class="paper talk-card">
+          <div class="paper talk-card taped">
             <p class="kicker">Talk 01 / 05</p>
             <h3><button class="talk-open" type="button" aria-haspopup="dialog">When “just validate the form” becomes a product engineering problem</button></h3>
             <p>A payment-flow case study: how a request for strict address validation turned into address autocomplete, backed by success metrics and guardrails.</p>
@@ -125,7 +130,7 @@
         </article>
 
         <article class="talk pop" data-step="2" style="--r:2.5deg">
-          <div class="paper talk-card">
+          <div class="paper talk-card taped">
             <p class="kicker">Talk 02 / 05</p>
             <h3><button class="talk-open" type="button" aria-haspopup="dialog">From milliseconds to trials started: connecting page load times to business impact</button></h3>
             <p>How a 50% cut in load times on key pages led to 6% more trials started, and how to prove it.</p>
@@ -138,7 +143,7 @@
         </article>
 
         <article class="talk pop" data-step="3" style="--r:-1.5deg">
-          <div class="paper talk-card">
+          <div class="paper talk-card taped">
             <p class="kicker">Talk 03 / 05</p>
             <h3><button class="talk-open" type="button" aria-haspopup="dialog">Change is only good when measured: building confidence through experimentation</button></h3>
             <p>The experimentation lifecycle from an engineer's seat: hypothesis, instrumentation, data and learning from the results.</p>
@@ -156,7 +161,7 @@
         </article>
 
         <article class="talk pop" data-step="4" style="--r:2deg">
-          <div class="paper talk-card">
+          <div class="paper talk-card taped">
             <p class="kicker">Talk 04 / 05</p>
             <h3><button class="talk-open" type="button" aria-haspopup="dialog">The how matters: shipping changes in small, measured steps</button></h3>
             <p>Asking the product questions that matter, to steer the experience towards what benefits users.</p>
@@ -169,7 +174,7 @@
         </article>
 
         <article class="talk pop" data-step="5" style="--r:-2.5deg">
-          <div class="paper talk-card">
+          <div class="paper talk-card taped">
             <p class="kicker">Talk 05 / 05</p>
             <h3><button class="talk-open" type="button" aria-haspopup="dialog">Building a culture of experimentation in a team that did not experiment</button></h3>
             <p>The roadbumps one team hit when adopting experimentation, tackled as people and process problems.</p>
@@ -182,10 +187,13 @@
         </article>
       </div>
 
-      <ul class="stats pop" data-step="1" style="--x:13%; --y:90%; --r:-3deg" aria-label="Speaking in numbers">
+      <ul class="stats pop" data-step="1" style="--x:17%; --y:86%; --r:-3deg" aria-label="Speaking in numbers">
         <li class="chip"><b>5</b> talks</li><li class="chip"><b>7</b> events</li><li class="chip"><b>3</b> upcoming</li>
       </ul>
       <a class="chip link pop" data-step="1" style="--x:86%; --y:86%; --r:3deg" href="https://sessionize.com/fadila/" target="_blank" rel="noopener">★ Speaker profile ↗</a>
+      <div class="clutter ticket pop" data-step="1" style="--x:86%; --y:71%; --r:-5deg" aria-hidden="true"><div class="ticket-in"><div class="ticket-main"><span class="kicker">Admit one · speaker</span><b>React Summit US</b><span class="kicker">Nov 2026</span></div><div class="ticket-stub"><span>Talk 01</span></div></div></div>
+      <div class="clutter scrap pop" data-step="1" style="--x:10%; --y:57%; --w:128px; --r:-5deg" aria-hidden="true"><div class="scrap-in"><span class="kicker">Note to self</span>Drink some water.</div></div>
+      <img class="clutter sticker-obj pop" data-step="1" src="images/obj-hojicha.png" alt="" width="99" height="129" loading="lazy" style="--x:7%; --y:74%; --w:62px; --r:0deg">
       <img class="sticker-obj pop" data-step="1" src="../images/obj-mic.png" alt="" width="50" height="240" loading="lazy" style="--x:90%; --y:24%; --w:40px; --r:-16deg">
     </div>
   </section>
@@ -201,16 +209,17 @@
       </header>
       <ul class="prints" aria-label="Street photos (select to enlarge)">
         <li class="pop" data-step="1" style="--sx:-150px; --sy:90px;  --r:-10deg"><button class="print zoomable" type="button"><img src="../images/photo-1.jpg" alt="Pedestrian crossing a sunlit city street lined with tall buildings" width="461" height="259" loading="lazy" decoding="async"></button></li>
-        <li class="pop" data-step="1" style="--sx:30px;   --sy:-30px; --r:7deg"><button class="print zoomable" type="button"><img src="../images/photo-2.jpg" alt="Sulphur-crested cockatoo on a power line against a deep blue sky" width="346" height="461" loading="lazy" decoding="async"></button></li>
+        <li class="pop taped" data-step="1" style="--tr:-6deg; --sx:30px;   --sy:-30px; --r:7deg"><button class="print zoomable" type="button"><img src="../images/photo-2.jpg" alt="Sulphur-crested cockatoo on a power line against a deep blue sky" width="346" height="461" loading="lazy" decoding="async"></button></li>
         <li class="pop" data-step="1" style="--sx:170px;  --sy:60px;  --r:-6deg"><button class="print zoomable" type="button"><img src="../images/photo-3.jpg" alt="Rainbow lorikeet in a bottlebrush tree against a blue sky" width="345" height="461" loading="lazy" decoding="async"></button></li>
         <li class="pop" data-step="2" style="--sx:-300px; --sy:10px;  --r:8deg"><button class="print zoomable" type="button"><img src="../images/photo-4.jpg" alt="Two rainbow lorikeets on a railing above the harbour" width="461" height="308" loading="lazy" decoding="async"></button></li>
         <li class="pop" data-step="2" style="--sx:-50px;  --sy:25px;  --r:-4deg"><button class="print zoomable" type="button"><img src="../images/photo-5.jpg" alt="Pelican on a post in front of the Anzac Bridge at dusk" width="500" height="500" loading="lazy" decoding="async"></button></li>
-        <li class="pop" data-step="2" style="--sx:190px;  --sy:-20px; --r:11deg"><button class="print zoomable" type="button"><img src="../images/photo-6.jpg" alt="Ferry stairwell looking out at choppy water" width="464" height="500" loading="lazy" decoding="async"></button></li>
-        <li class="pop" data-step="3" style="--sx:-210px; --sy:-50px; --r:5deg"><button class="print zoomable" type="button"><img src="../images/photo-7.jpg" alt="Ferry deck at golden hour with the Opera House in the distance" width="500" height="281" loading="lazy" decoding="async"></button></li>
+        <li class="pop taped" data-step="2" style="--tr:5deg; --sx:190px;  --sy:-20px; --r:11deg"><button class="print zoomable" type="button"><img src="../images/photo-6.jpg" alt="Ferry stairwell looking out at choppy water" width="464" height="500" loading="lazy" decoding="async"></button></li>
+        <li class="pop taped" data-step="3" style="--tr:-4deg; --sx:-210px; --sy:-50px; --r:5deg"><button class="print zoomable" type="button"><img src="../images/photo-7.jpg" alt="Ferry deck at golden hour with the Opera House in the distance" width="500" height="281" loading="lazy" decoding="async"></button></li>
         <li class="pop" data-step="3" style="--sx:90px;   --sy:-50px; --r:-9deg"><button class="print zoomable" type="button"><img src="../images/photo-8.jpg" alt="Green and yellow ferry docked at Circular Quay with the Opera House behind" width="397" height="500" loading="lazy" decoding="async"></button></li>
         <li class="pop" data-step="3" style="--sx:160px;  --sy:-80px; --r:6deg"><button class="print zoomable" type="button"><img src="../images/photo-9.jpg" alt="Two children silhouetted against the setting sun by the harbour" width="375" height="500" loading="lazy" decoding="async"></button></li>
       </ul>
       <img class="sticker-obj pop" data-step="1" src="../images/obj-camera.png" alt="" width="227" height="222" loading="lazy" style="--x:12%; --y:78%; --w:120px; --r:-9deg">
+      <div class="clutter scrap pop" data-step="1" style="--x:88%; --y:15%; --w:150px; --r:5deg" aria-hidden="true"><div class="scrap-in"><span class="kicker">Note to self</span>Go outside and look at the sky.</div></div>
       <p class="chip note pop" data-step="4" style="--x:86%; --y:84%; --r:-3deg">Click a print to zoom</p>
     </div>
   </section>
@@ -237,7 +246,9 @@
       </ul>
       <img class="sticker-obj croissant pop" data-step="1" src="../images/obj-croissant.png" alt="" width="240" height="173" loading="lazy" style="--x:87%; --y:22%; --w:170px; --r:-12deg">
       <p class="chip note pop" data-step="1" style="--x:84%; --y:36%; --r:4deg">Fresh out of the oven</p>
-      <svg class="star pop" data-step="2" style="--x:12%; --y:76%; --r:-8deg" aria-hidden="true"><use href="#star"/></svg>
+      <div class="clutter receipt pop" data-step="1" style="--x:11%; --y:67%; --r:-4deg" aria-hidden="true"><div class="receipt-in"><b>matchadou</b><span class="rule"></span><span>1 × salt bread</span><span>1 × iced matcha</span><span class="rule"></span><span>Bread takes time.<br>So do you.</span></div></div>
+      <img class="clutter sticker-obj pop" data-step="1" src="images/obj-salt-bread.png" alt="" width="131" height="132" loading="lazy" style="--x:20%; --y:88%; --w:78px; --r:-14deg">
+      <img class="clutter sticker-obj pop" data-step="2" src="images/obj-matcha-float.png" alt="" width="257" height="360" loading="lazy" style="--x:91%; --y:72%; --w:112px; --r:4deg">
     </div>
   </section>
 
@@ -251,10 +262,10 @@
         <p class="lede">Watercolours and sketches.</p>
       </header>
       <div class="book">
-        <figure class="page pop" data-step="1" style="--r:-2deg"><img src="../images/paint-bridge.jpg" alt="Watercolour sketches of the Sydney Harbour Bridge in a sketchbook" width="500" height="500" loading="lazy" decoding="async"></figure>
-        <figure class="page pop" data-step="2" style="--r:1.5deg"><img src="../images/paint-shopfront.jpg" alt="Framed watercolour of a brick shopfront with a blue door and potted plants" width="500" height="500" loading="lazy" decoding="async"></figure>
-        <figure class="page pop" data-step="3" style="--r:-1deg"><img src="../images/paint-cafe.jpg" alt="Watercolour of a café front with a striped awning and flower boxes" width="400" height="500" loading="lazy" decoding="async"></figure>
-        <figure class="page pop" data-step="4" style="--r:2deg"><img src="../images/paint-balcony.jpg" alt="Watercolour of a building covered in red flowers with two café chairs out front" width="500" height="500" loading="lazy" decoding="async"></figure>
+        <figure class="page pop taped" data-step="1" style="--r:-2deg; --tr:-4deg"><img src="../images/paint-bridge.jpg" alt="Watercolour sketches of the Sydney Harbour Bridge in a sketchbook" width="500" height="500" loading="lazy" decoding="async"></figure>
+        <figure class="page pop taped" data-step="2" style="--r:1.5deg; --tr:5deg; --tx:28%"><img src="../images/paint-shopfront.jpg" alt="Framed watercolour of a brick shopfront with a blue door and potted plants" width="500" height="500" loading="lazy" decoding="async"></figure>
+        <figure class="page pop taped" data-step="3" style="--r:-1deg; --tr:-3deg; --tx:72%"><img src="../images/paint-cafe.jpg" alt="Watercolour of a café front with a striped awning and flower boxes" width="400" height="500" loading="lazy" decoding="async"></figure>
+        <figure class="page pop taped" data-step="4" style="--r:2deg; --tr:3deg"><img src="../images/paint-balcony.jpg" alt="Watercolour of a building covered in red flowers with two café chairs out front" width="500" height="500" loading="lazy" decoding="async"></figure>
       </div>
       <img class="sticker-obj pop" data-step="1" src="../images/obj-palette.png" alt="" width="240" height="181" loading="lazy" style="--x:84%; --y:76%; --w:170px; --r:8deg">
       <svg class="star pop" data-step="3" style="--x:80%; --y:22%; --r:14deg" aria-hidden="true"><use href="#star"/></svg>
@@ -270,10 +281,12 @@
         <h2 id="projects-title">Side projects</h2>
       </header>
       <ul class="pcards">
-        <li class="pop" data-step="1" style="--x:25%; --y:56%; --r:-3deg"><a class="paper pcard" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">Walk through the photos</span></a></li>
-        <li class="pop" data-step="2" style="--x:50%; --y:50%; --r:2deg"><a class="paper pcard" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-photostrip.jpg" alt="Screenshot of fotostrip" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">fotostrip ↗</span><span class="ptag">A fun little photo booth</span></a></li>
-        <li class="pop" data-step="3" style="--x:75%; --y:58%; --r:-2deg"><a class="paper pcard" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-drift.jpg" alt="Screenshot of drift" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">drift ↗</span><span class="ptag">Send a moment across the water</span></a></li>
+        <li class="pop" data-step="1" style="--x:25%; --y:56%; --r:-3deg"><a class="paper pcard taped" style="--tr:-5deg" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">Walk through the photos</span></a></li>
+        <li class="pop" data-step="2" style="--x:50%; --y:50%; --r:2deg"><a class="paper pcard taped" style="--tr:4deg; --tx:30%" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-photostrip.jpg" alt="Screenshot of fotostrip" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">fotostrip ↗</span><span class="ptag">A fun little photo booth</span></a></li>
+        <li class="pop" data-step="3" style="--x:75%; --y:58%; --r:-2deg"><a class="paper pcard taped" style="--tr:-3deg; --tx:68%" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-drift.jpg" alt="Screenshot of drift" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">drift ↗</span><span class="ptag">Send a moment across the water</span></a></li>
       </ul>
+      <img class="clutter sticker-obj pop" data-step="1" src="images/obj-tamagotchi-blue.png" alt="" width="360" height="307" loading="lazy" style="--x:7%; --y:85%; --w:118px; --r:-9deg">
+      <div class="clutter graph pop" data-step="3" style="--x:89%; --y:83%; --r:-4deg" aria-hidden="true"><div class="graph-in">Click a card to visit ↗</div></div>
       <img class="sticker-obj pop" data-step="1" src="../images/obj-typewriter.png" alt="" width="219" height="240" loading="lazy" style="--x:88%; --y:20%; --w:120px; --r:6deg">
     </div>
   </section>
@@ -283,7 +296,7 @@
     <div class="stage">
       <p class="bgword" aria-hidden="true">say hi!</p>
       <div class="mail">
-        <div class="paper letter pop" data-step="2">
+        <div class="paper letter pop taped" data-step="2" style="--tr:-4deg">
           <p class="kicker">08 / Say hi</p>
           <h2 id="hi-title">Say hi!</h2>
           <p>Want to work together, order a cake, or just chat?</p>
@@ -296,6 +309,15 @@
           </ul>
         </div>
         <img class="envelope pop" data-step="1" src="../images/obj-envelope.png" alt="" width="240" height="182" loading="lazy">
+        <div class="clutter stamp pop" data-step="1" style="--x:58.5%; --y:71%; --r:7deg" aria-hidden="true"><img src="../images/photo-7.jpg" alt="" width="500" height="281" loading="lazy"></div>
+        <svg class="clutter postmark pop" data-step="1" style="--x:53.5%; --y:69%; --r:-12deg" viewBox="0 0 120 80" aria-hidden="true">
+          <defs><path id="pmArc" d="M18,40 a22,22 0 1,1 44,0 a22,22 0 1,1 -44,0"/></defs>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="#26232b" stroke-width="1.2"/>
+          <circle cx="40" cy="40" r="15" fill="none" stroke="#26232b" stroke-width="1"/>
+          <text font-family="DM Mono, monospace" font-size="8.2" fill="#26232b" letter-spacing="1.2"><textPath href="#pmArc">SYDNEY · NSW · SYDNEY · NSW ·</textPath></text>
+          <text x="40" y="43.5" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="11" fill="#26232b">✿</text>
+          <path d="M74 28 q6 -5 12 0 t12 0 t12 0 M74 40 q6 -5 12 0 t12 0 t12 0 M74 52 q6 -5 12 0 t12 0 t12 0" fill="none" stroke="#26232b" stroke-width="1.1"/>
+        </svg>
       </div>
       <div class="pigeon-spot pop" data-step="1">
         <button class="pigeon" type="button" aria-label="A pigeon. Click to make it hop.">
