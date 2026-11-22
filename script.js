@@ -501,7 +501,7 @@
     if (open) openWin(open.id); else openWin('about');
   });
 
-  /* ---------- weather in Sydney (Open-Meteo, no API key) ---------- */
+  /* ---------- weather where the visitor is (GeoJS + Open-Meteo, no API keys) ---------- */
   (() => {
     const el = $('#weather'); if (!el) return;
     const icon = (code, day) =>
@@ -513,20 +513,30 @@
     const label = (code) =>
       code === 0 ? 'clear' : code <= 2 ? 'partly cloudy' : code === 3 ? 'cloudy' : code === 45 || code === 48 ? 'foggy' :
       code >= 95 ? 'stormy' : (code >= 71 && code <= 77) ? 'snowy' : 'rainy';
+    const SYDNEY = { lat: -33.87, lon: 151.21, city: 'Sydney' };
     const show = (w) => {
       el.innerHTML = `<span class="wx-icon" aria-hidden="true">${icon(w.code, w.day)}</span><b>${Math.round(w.temp)}°</b>`;
-      el.title = `Sydney: ${Math.round(w.temp)}°C, ${label(w.code)}`;
+      el.title = `${w.city}: ${Math.round(w.temp)}°C, ${label(w.code)}`;
       el.setAttribute('aria-label', el.title);
       el.hidden = false;
     };
-    try { const c = JSON.parse(sessionStorage.getItem('wx') || 'null'); if (c && Date.now() - c.t < 15 * 60e3) return show(c); } catch (_) {}
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.87&longitude=151.21&current=temperature_2m,weather_code,is_day&timezone=Australia%2FSydney')
+    try { const c = JSON.parse(sessionStorage.getItem('wx2') || 'null'); if (c && Date.now() - c.t < 15 * 60e3) return show(c); } catch (_) {}
+    // rough location from the visitor's IP (GeoJS, no key); Sydney if that fails
+    fetch('https://get.geojs.io/v1/ip/geo.json')
       .then((r) => r.json())
-      .then((d) => {
-        const w = { temp: d.current.temperature_2m, code: d.current.weather_code, day: d.current.is_day === 1, t: Date.now() };
-        show(w);
-        try { sessionStorage.setItem('wx', JSON.stringify(w)); } catch (_) {}
+      .then((g) => {
+        const lat = parseFloat(g.latitude), lon = parseFloat(g.longitude);
+        return isFinite(lat) && isFinite(lon) ? { lat, lon, city: g.city || g.region || g.country || 'Here' } : SYDNEY;
       })
+      .catch(() => SYDNEY)
+      .then((loc) =>
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&current=temperature_2m,weather_code,is_day&timezone=auto`)
+          .then((r) => r.json())
+          .then((d) => {
+            const w = { city: loc.city, temp: d.current.temperature_2m, code: d.current.weather_code, day: d.current.is_day === 1, t: Date.now() };
+            show(w);
+            try { sessionStorage.setItem('wx2', JSON.stringify(w)); } catch (_) {}
+          }))
       .catch(() => {}); // no weather, no fuss
   })();
 })();
