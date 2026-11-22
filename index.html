@@ -7,15 +7,13 @@
   <meta name="description" content="Fadila Fidina's portfolio: experience, photography, baking and painting.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <!-- ============ DESKTOP ============ -->
 <main class="desktop" id="desktop">
-
-  <div class="clouds" aria-hidden="true"><i></i><i></i><i></i></div>
 
   <!-- Desktop icons are generated from the windows below (see script.js) -->
   <nav class="icons" id="icons" aria-label="Desktop"></nav>
@@ -24,7 +22,7 @@
   <section class="win" id="about" data-title="hello.txt" data-icon="smile" data-x="260" data-y="40" data-w="420" data-open="true">
     <div class="win-body">
       <h1 class="big">hi, i'm Fadila! <span class="blink">✿</span></h1>
-      <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who photographs, bakes bread and paints.</p>
+      <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who loves to create: in code, in photos, in bread and in paint.</p>
       <p>Click the icons on the left to poke around. Everything is draggable!</p>
       <div class="stickers" aria-hidden="true">
         <span class="sticker s1">★ photography</span>
@@ -42,22 +40,69 @@
       <h2>Work &amp; Experience</h2>
       <ol class="timeline">
         <li>
-          <span class="date">now</span>
-          <h3>Software Engineer</h3>
+          <span class="date">2022 – now</span>
+          <h3>Senior Software Engineer</h3>
           <p class="where">Atlassian · Sydney, NSW</p>
           <ul>
+            <li>Frontend engineering with a focus on delivering customer impact through experimentation</li>
             <li>Finalist, Software Engineer of the Year (Women in Digital, 2024)</li>
-            <!-- TODO: add exact title, dates and bullet points from LinkedIn -->
+            <li>Conference speaker on experimentation and product engineering</li>
           </ul>
         </li>
         <li>
-          <span class="date">2016</span>
-          <h3>ASIC IT</h3>
-          <p class="where">Sydney, NSW</p>
-          <ul><li>IT Service Excellence Award, Nov 2016: voicemail-to-email initiative, rolled out across all states</li></ul>
+          <span class="date">2019 – 2022</span>
+          <h3>Senior Software Engineer</h3>
+          <p class="where">NAB (HICAPS), formerly InLoop (LanternPay) · Sydney, NSW</p>
+          <ul>
+            <li>Started as a junior business analyst, moved into engineering within six months</li>
+            <li>Promoted to senior engineer about a year and a half later</li>
+            <li>Taught myself React and JavaScript by diving into the front-end codebase</li>
+            <li>Stayed on through the NAB acquisition and merger with HICAPS</li>
+          </ul>
+        </li>
+        <li>
+          <span class="date">2018</span>
+          <h3>Internships</h3>
+          <p class="where">IT, consulting and business analysis</p>
         </li>
       </ol>
       <p><a class="btn" href="https://www.linkedin.com/in/fadila-fidina" target="_blank" rel="noopener">★ full story on LinkedIn</a></p>
+    </div>
+  </section>
+
+  <section class="win" id="speaking" data-title="speaking.exe" data-icon="mic" data-x="200" data-y="70" data-w="520">
+    <div class="win-body">
+      <h2>Speaking</h2>
+      <p>I give talks about frontend engineering, product engineering and experimentation.</p>
+      <div class="stats"><span><b>5</b> talks</span><span><b>7</b> events</span><span><b>AU</b> so far</span></div>
+      <h3 class="sub">my talks + where they've been</h3>
+      <ul class="talk-list">
+        <li class="talk c3">
+          <h3>When just validate the form becomes a product engineering problem</h3>
+          <p>A case study from a payment flow where a request for strict address validation turned into bigger product questions. The answer moved from blocking users to address autocomplete, backed by success metrics, guardrails and customer risk.</p>
+          <ul class="where-list"><li><strong>React Summit US</strong> · Nov 2026 · <a href="https://gitnation.com/contents/when-just-validate-the-form-becomes-a-product-engineering-problem" target="_blank" rel="noopener">▶ watch</a></li></ul>
+        </li>
+        <li class="talk c1">
+          <h3>Change is only good when measured: building confidence through experimentation</h3>
+          <p>The experimentation lifecycle from an engineer's seat: forming a hypothesis, adding instrumentation, gathering data and learning from the results.</p>
+          <ul class="where-list"><li><strong>SlashNEW</strong> · Newcastle · May 2026</li><li class="accepted"><strong>React Day Berlin 2026</strong> · upcoming</li><li class="accepted"><strong>DDD Perth 2026</strong> · accepted ★</li><li><strong>apidays Melbourne</strong> · Melbourne · 2026</li><li><strong>Programmable 2026</strong> · Sydney · Mar 2026</li><li><strong>Analysis, Design &amp; Architecture Conf</strong> · Melbourne · Nov 2025</li></ul>
+        </li>
+        <li class="talk c6">
+          <h3>The how matters: shipping changes in small, measured steps</h3>
+          
+          <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Feb 2026</li></ul>
+        </li>
+        <li class="talk c4">
+          <h3>Building a culture of experimentation in a team that did not experiment</h3>
+          <p>The obstacles one team hit when adopting experimentation, and how they tackled them as people and process problems.</p>
+          <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Apr 2025</li></ul>
+        </li>
+        <li class="talk c4">
+          <h3>From milliseconds to trials started: connecting page load times to business impact</h3>
+          <ul class="where-list"><li class="accepted"><strong>React Summit Asia 2027</strong> · upcoming</li></ul>
+        </li>
+      </ul>
+      <p><a class="btn" href="https://sessionize.com/fadila/" target="_blank" rel="noopener">★ speaker profile</a></p>
     </div>
   </section>
 
@@ -65,48 +110,36 @@
   <section class="win" id="photography" data-title="photos.exe" data-icon="camera" data-x="180" data-y="60" data-w="540">
     <div class="win-body">
       <h2>Photography</h2>
-      <p>Shot on Fujifilm around Sydney. <a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">@diladialed ↗</a></p>
+      <p>Street photography. <a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">@diladialed ↗</a></p>
       <div class="gallery">
-        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c1" role="img" aria-label="city street, Nov 21, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/914890282_18159745708519752_4879980334484633290_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=-iqE8K79mcUQ7kNvwEwvAnz&_nc_oc=Ado0jdBYfxngeTkUfMwd8vGTJ6o0Wh5lhQpe2J3fNzCUv7SYB8KXjNlirCs2zcv95GU&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRtVKFzuLIZLFk-YpQCj_2Mpp-MIivdTTLjuS_juYg03w&oe=6B0804B8" alt="city street" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Nov 21, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c2" role="img" aria-label="birds, Nov 20, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/914874784_18159564676519752_6006598415056228910_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=oqTbPiL277oQ7kNvwGAWY9M&_nc_oc=AdqsePu2NCwVszk2vt1Yh_rrvYL7uocLgPnCnzdElcX43ogAjIlVYOjG2hQUEqDTKOA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQSQbdYTHEV8N3-1lu0JU_SRTMpDglv5glbdVks9CSBmKg&oe=6B07E820" alt="birds" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Nov 20, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3" role="img" aria-label="lorikeet, Nov 20, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/915670571_18159562765519752_8877076703664145392_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=eSSBFot9s8QQ7kNvwGAlAY7&_nc_oc=Adq3ur9nTSub4wfaj1MzPqBNtWC2H26IzaTk1XoNc0K3nvkeff29Mz-hZ0aeZtUtcs0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQR1X_Uw7tG2VKpon9_KKahl3p0c0oGoRXUXwmlgFPb7uQ&oe=6B07E5A6" alt="lorikeet" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Nov 20, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:2deg"><div class="shot c4" role="img" aria-label="photo, Nov 15, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/909503175_18158112370519752_8858614460865581157_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=1dzNtqmHMX4Q7kNvwHRAmCd&_nc_oc=AdptjeA4Ww0I_qs20U6G-qcF01Zog8NOjZBErM7HWrYQ17exhYL09VHtxPHzCh47PZ8&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRTFvAmuYA7I9BeWTuIK-R0T4SCGG1yFgkroeFKTVPRgQ&oe=6B07FC8A" alt="photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Nov 15, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c5" role="img" aria-label="waterbirds, Nov 6, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/888138788_18155736076519752_7478847882412302470_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=HqMxK9peyXAQ7kNvwF_-To9&_nc_oc=AdrSf4j003o1NGC5HEml1oAN8I5WAfxB3KRhG9rjxVxd6EPkdc5VKSZicAwJv4VIi-g&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQR0ZQ9eoNLyNb_AC1VMYip5pIxk-QbUKRZjsm-g-Bt4fQ&oe=6B07FFF9" alt="waterbirds" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Nov 6, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:1deg"><div class="shot c6" role="img" aria-label="pool, Oct 30, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/868176429_18153811573519752_6268369979727529725_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=Wrw6q8VpVQIQ7kNvwHhG6sW&_nc_oc=Adp0pOKverMED7XFn9cc4eE3L8UklOzfy1-uITLjifNeWcuqGmWMUsBACL08TIre1SA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQTDi5f7s8SIpZ2DhDrxS64IQ9PbdC-1X9yJqyvC0KckSA&oe=6B07FEE8" alt="pool" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Oct 30, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:-2.5deg"><div class="shot c1" role="img" aria-label="harbour bridge, Oct 23, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/858088626_18150936454519752_400651028523764981_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=ZuZ3zifu8FQQ7kNvwEWe36d&_nc_oc=Adpx2L9FtpesvwK5mGipp7QdQPcsCyKOJPTPsSqEHz1-UE956O0nmaRk6oKJVnoTeIY&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRSB89GR3WTOr1AggdqAKnWFsIEuMWKPvlrp6Ro1yqxWA&oe=6B07F18F" alt="harbour bridge" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Oct 23, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:2deg"><div class="shot c2" role="img" aria-label="harbour bridge, Oct 23, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/858088476_18150936922519752_4958897101117109432_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=lgO_bJ8iFe8Q7kNvwEegNR_&_nc_oc=AdpPh4FL2UYygEY8MbdHwECIi_r77qie-Ad9vfPKhy2nJLVE_axXTu4k1GwwvmF0RMQ&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQQtyP6EPbJpVmSig3kLPqatDCMWHY0NRYpyjd0rderU-w&oe=6B07D2BA" alt="harbour bridge" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Oct 23, 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3" role="img" aria-label="photo, Nov 17, 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/909503180_18158734183519752_4346044468370919886_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=6vvmKJ_sxkkQ7kNvwFxAdFM&_nc_oc=AdptF5v5H3Q5dJ4b0PRMlOLTj09pV4iAZd1b6tSQt_BJZurYqLa0ltq5QH6PdCryhWA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQT2IloXgIlo2pJrDNB1rmZ0WPMHBTuAw9fQDmrERrmq8Q&oe=6B080564" alt="photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Nov 17, 2026</figcaption></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c1" role="img" aria-label="city street"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/914890282_18159745708519752_4879980334484633290_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=-iqE8K79mcUQ7kNvwEwvAnz&_nc_oc=Ado0jdBYfxngeTkUfMwd8vGTJ6o0Wh5lhQpe2J3fNzCUv7SYB8KXjNlirCs2zcv95GU&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRtVKFzuLIZLFk-YpQCj_2Mpp-MIivdTTLjuS_juYg03w&oe=6B0804B8" alt="city street" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c2" role="img" aria-label="birds"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/914874784_18159564676519752_6006598415056228910_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=oqTbPiL277oQ7kNvwGAWY9M&_nc_oc=AdqsePu2NCwVszk2vt1Yh_rrvYL7uocLgPnCnzdElcX43ogAjIlVYOjG2hQUEqDTKOA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQSQbdYTHEV8N3-1lu0JU_SRTMpDglv5glbdVks9CSBmKg&oe=6B07E820" alt="birds" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3" role="img" aria-label="lorikeet"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/915670571_18159562765519752_8877076703664145392_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=eSSBFot9s8QQ7kNvwGAlAY7&_nc_oc=Adq3ur9nTSub4wfaj1MzPqBNtWC2H26IzaTk1XoNc0K3nvkeff29Mz-hZ0aeZtUtcs0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQR1X_Uw7tG2VKpon9_KKahl3p0c0oGoRXUXwmlgFPb7uQ&oe=6B07E5A6" alt="lorikeet" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:2deg"><div class="shot c4" role="img" aria-label="photo"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/909503175_18158112370519752_8858614460865581157_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=1dzNtqmHMX4Q7kNvwHRAmCd&_nc_oc=AdptjeA4Ww0I_qs20U6G-qcF01Zog8NOjZBErM7HWrYQ17exhYL09VHtxPHzCh47PZ8&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRTFvAmuYA7I9BeWTuIK-R0T4SCGG1yFgkroeFKTVPRgQ&oe=6B07FC8A" alt="photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c5" role="img" aria-label="waterbirds"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/888138788_18155736076519752_7478847882412302470_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=HqMxK9peyXAQ7kNvwF_-To9&_nc_oc=AdrSf4j003o1NGC5HEml1oAN8I5WAfxB3KRhG9rjxVxd6EPkdc5VKSZicAwJv4VIi-g&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQR0ZQ9eoNLyNb_AC1VMYip5pIxk-QbUKRZjsm-g-Bt4fQ&oe=6B07FFF9" alt="waterbirds" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:1deg"><div class="shot c6" role="img" aria-label="pool"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/868176429_18153811573519752_6268369979727529725_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=Wrw6q8VpVQIQ7kNvwHhG6sW&_nc_oc=Adp0pOKverMED7XFn9cc4eE3L8UklOzfy1-uITLjifNeWcuqGmWMUsBACL08TIre1SA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQTDi5f7s8SIpZ2DhDrxS64IQ9PbdC-1X9yJqyvC0KckSA&oe=6B07FEE8" alt="pool" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-2.5deg"><div class="shot c1" role="img" aria-label="harbour bridge"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/858088626_18150936454519752_400651028523764981_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=ZuZ3zifu8FQQ7kNvwEWe36d&_nc_oc=Adpx2L9FtpesvwK5mGipp7QdQPcsCyKOJPTPsSqEHz1-UE956O0nmaRk6oKJVnoTeIY&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRSB89GR3WTOr1AggdqAKnWFsIEuMWKPvlrp6Ro1yqxWA&oe=6B07F18F" alt="harbour bridge" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:2deg"><div class="shot c2" role="img" aria-label="harbour bridge"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/858088476_18150936922519752_4958897101117109432_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=lgO_bJ8iFe8Q7kNvwEegNR_&_nc_oc=AdpPh4FL2UYygEY8MbdHwECIi_r77qie-Ad9vfPKhy2nJLVE_axXTu4k1GwwvmF0RMQ&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQQtyP6EPbJpVmSig3kLPqatDCMWHY0NRYpyjd0rderU-w&oe=6B07D2BA" alt="harbour bridge" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3" role="img" aria-label="photo"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/909503180_18158734183519752_4346044468370919886_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=100&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=6vvmKJ_sxkkQ7kNvwFxAdFM&_nc_oc=AdptF5v5H3Q5dJ4b0PRMlOLTj09pV4iAZd1b6tSQt_BJZurYqLa0ltq5QH6PdCryhWA&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=Y0RFbDzj7flejPgj2EsGBg&_nc_ss=79689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQT2IloXgIlo2pJrDNB1rmZ0WPMHBTuAw9fQDmrERrmq8Q&oe=6B080564" alt="photo" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
       </div>
     </div>
   </section>
 
   <!-- ============ WINDOW: BAKING ============ -->
-  <section class="win" id="baking" data-title="bakery.menu" data-icon="cupcake" data-x="240" data-y="110" data-w="480">
+  <section class="win" id="baking" data-title="bakery_diaries" data-icon="cupcake" data-x="240" data-y="110" data-w="480">
     <div class="win-body">
-      <h2>dila's bakery</h2>
+      <h2>Bakery diaries</h2>
       <p>a baking diary. bread is life. <a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">@matchadou ↗</a></p>
-      <div class="menu">
-        <h4>~ bread ~</h4>
-        <ul class="menu-list">
-          <li><span class="item">Kombini bread</span><span class="dots"></span><span class="price">2 hugs</span></li>
-          <li><span class="item">Pizza base</span><span class="dots"></span><span class="price">1 high five</span></li>
-        </ul>
-        <h4>~ pastry ~</h4>
-        <ul class="menu-list">
-          <li><span class="item">Croissant</span><span class="dots"></span><span class="price">3 smiles</span></li>
-          <li><span class="item">Kouign amann</span><span class="dots"></span><span class="price">4 smiles</span></li>
-        </ul>
-        <h4>~ today's special ~</h4>
-        <ul class="menu-list">
-          <li><span class="item">Matcha anything</span><span class="dots"></span><span class="price">ask nicely</span></li>
-        </ul>
-        <p class="menu-note">* prices payable in hugs, smiles and snacks</p>
-      </div>
       <div class="gallery">
-        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2" role="img" aria-label="home bake, Sep 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/806350551_18126893224872982_5903955743154826103_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=104&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=4lIG_W_yKbwQ7kNvwF36Ou_&_nc_oc=Adrrudhqs4F1GFyRgI-XAxK-e2pP8fWISrVzyjTQq6awFbb2BiW0ZVZo9SC3xakNVzY&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=tJwLD3LeljKefIS6IPltIA&_nc_ss=78689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRhzjwdcxPILCunRAI4x1mk9R2kOaFiiCcYrKKWfuUhNA&oe=6B07FBF4" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Sep 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5" role="img" aria-label="home bake, Jul 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/731442467_18119645914872982_3765374737338009031_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=102&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=r9wxYqNEVGgQ7kNvwE8-QWe&_nc_oc=AdoO_pHB0_rWz4cvNrkJqIlVP86tzGrhcBDXyAjn6Ql__h_UF31iGy1hBDTG0-CSgCM&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=tJwLD3LeljKefIS6IPltIA&_nc_ss=78689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRtxJvK-N6_wUf823MrPgZeL44gVGe91hbiJPuDKGllDQ&oe=6B07D8B2" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Jul 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1" role="img" aria-label="home bake, May 2026"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/684555117_18113144413872982_1492532750259185174_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=109&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=e5xWr7OA-mcQ7kNvwFtzdJ3&_nc_oc=Adp4qHHSSvIWyTqDlsgwZx8ZtvSzTry_XdQTTrFXoV5ii4KPCxE_Qp1Lplhn_7QUhhc&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=tJwLD3LeljKefIS6IPltIA&_nc_ss=78689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQS0YFIOieKUhfU8bylCM8lSO5EgcheM2QdxlqAP2aua3g&oe=6B07D716" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>May 2026</figcaption></figure>
-        <figure class="polaroid" style="--tilt:2deg"><div class="shot c3" role="img" aria-label="home bake, Jul 2025"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/524660270_18084797782872982_8403934471010192924_n.jpg?stp=dst-jpg_e35_s640x640_tt6&_nc_cat=108&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=Jts0xck-27UQ7kNvwExuopG&_nc_oc=Adqc6eREeWA67he67r_tgW8cIMIUavlb5Zv9aPOR91AHu7Mw_Z2Y64M9ReEnIEzsWR0&_nc_zt=23&_nc_ht=scontent.cdninstagram.com&_nc_gid=tJwLD3LeljKefIS6IPltIA&_nc_ss=78689&_nc_ct=RQosPBUKFQIAAAA&oh=00_AQRdlYvRJPxjDqhx5veZ4w10Wjs7AwqRhAL0x3aObOpeDg&oe=6B07E3CD" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div><figcaption>Jul 2025</figcaption></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/649219692_18095133095046290_8580284553943482822_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=105&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=g4D2fzRx3swQ7kNvwEqggLU&amp;_nc_oc=AdrPR27I0SMr0xR03H9KJ29suCPfMg-FffWV1tXVItjHNuRGAJaPj6H0MOfEaziC8i8&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQTrJMtp2U7Bdmwb47D4XIDJjmSF2awyIK-ZcLR7Z7aPKQ&amp;oe=6B083665" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/651140870_18057316961425996_7972581869105279309_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=GxiZEfQ2h7oQ7kNvwHy3Eeo&amp;_nc_oc=AdoCsCKc-MHUPfoJcAicDtWTzC12zWUMhH_mRMdLPl7RbAxEuxwNyAsaJWchowYYRSE&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQQOd971jPZ37W2HCIqp26X2AeGEkGLS8fBmH8SWTGjczw&amp;oe=6B0842E3" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/649500059_18057530894417457_8813026122355948163_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=110&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=afjzLETUiNQQ7kNvwHPAYD9&amp;_nc_oc=AdottD4R_Q8yLI0h-LcyxScr9ecmuGhu9gvuiApT0YFPWZ6_Bp4d80qvXn0hLcSxpr0&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQTpsu-gYTJ2zrUwdFU3EdcEirSWtEg8eCtmVx9c3FwKGw&amp;oe=6B082D33" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:2deg"><div class="shot c3" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.75761-15/504489881_18080060890872982_1252610939558645137_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=108&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=-CcsQVu49hEQ7kNvwEd0H2V&amp;_nc_oc=AdrVbirWAtj04eCAXtlrZf-SqigFHbkA9x_rDhwUx89OGs8s3NCBBe5ofIPef2JWvJw&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQS7Hw-bo_vP7cnslOdRQ0-WpbTpKzJFHA1AVqzB8F2A8A&amp;oe=6B084BA3" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c6" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.75761-15/504560403_18080061847872982_6835934950703625246_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=L4qgD4J5-R4Q7kNvwHKLnQf&amp;_nc_oc=Adqbai3yYQCMsezVAbgG8Ew9rL0UPtQypRFFE1TT5zwENkMLIxMnpvPpbBW-vsILy1o&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQT_V_r2lISbJ31tU1khRQxT7h7ScGCmCNKyE-afKvj62Q&amp;oe=6B084177" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:1deg"><div class="shot c4" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.75761-15/504384252_18080061520872982_7863065581560607820_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=109&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=c7VN64xg63AQ7kNvwFoWnXZ&amp;_nc_oc=AdqgQLlL5vXZUndCUWP3Nl9lbyoKEtmwgi2tDGc9YXa7W5p5D4-rNztLuRyV2k8DBcc&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQQj5_IrfQzmF0n_IFJEpqaMuZ6gL-uO7sUDxpkKs8JOCA&amp;oe=6B0859C3" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/806350551_18126893224872982_5903955743154826103_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=104&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=4lIG_W_yKbwQ7kNvwF36Ou_&amp;_nc_oc=Adrrudhqs4F1GFyRgI-XAxK-e2pP8fWISrVzyjTQq6awFbb2BiW0ZVZo9SC3xakNVzY&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQQStzk9U_NeFsIb_owlYBhrpL33WPxCFfXY5WxdbZsUbw&amp;oe=6B083434" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/731442467_18119645914872982_3765374737338009031_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=102&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=r9wxYqNEVGgQ7kNvwE8-QWe&amp;_nc_oc=AdoO_pHB0_rWz4cvNrkJqIlVP86tzGrhcBDXyAjn6Ql__h_UF31iGy1hBDTG0-CSgCM&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQSw4HVlhpnLivd3k8SFH04F4_Meflgo10FWm99xCHjOkw&amp;oe=6B084932" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1" role="img" aria-label="home bake"><img src="https://scontent.cdninstagram.com/v/t51.82787-15/684555117_18113144413872982_1492532750259185174_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=109&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=e5xWr7OA-mcQ7kNvwFtzdJ3&amp;_nc_oc=Adp4qHHSSvIWyTqDlsgwZx8ZtvSzTry_XdQTTrFXoV5ii4KPCxE_Qp1Lplhn_7QUhhc&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=g7tscx2ftij_iN78MwQHGA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQTfNLzDEyDSsdlM4ma7ecVj-3L6yvDhvxZtLsHc9impnw&amp;oe=6B084796" alt="home bake" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"></div></figure>
       </div>
     </div>
   </section>
@@ -126,14 +159,13 @@
   </section>
 
   <!-- ============ WINDOW: CONTACT ============ -->
-  <section class="win" id="projects" data-title="projects.exe" data-icon="floppy" data-x="280" data-y="100" data-w="460">
+  <section class="win" id="projects" data-title="projects.exe" data-icon="floppy" data-x="280" data-y="100" data-w="520">
     <div class="win-body">
       <h2>Side projects</h2>
-      <p>Small, fun things I build for myself.</p>
-      <ul class="proj-list">
-        <li class="proj c3"><strong>Gallery</strong><span>a walking photo gallery you wander through. line-themed and interactive.</span><a href="https://galler-bay.vercel.app/" target="_blank" rel="noopener">open ↗</a></li>
-        <li class="proj c1"><strong>Photostrip</strong><span>a photobooth app. strike a pose, get a strip.</span><a href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener">open ↗</a></li>
-        <li class="proj c6"><strong>Drift</strong><span>a messaging-in-a-bottle app. toss a note into the sea and see who finds it.</span><a href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener">open ↗</a></li>
+      <ul class="pgrid">
+        <li><a class="pcard c3" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" loading="lazy" onerror="this.remove()"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">walk through the photos</span></a></li>
+        <li><a class="pcard c1" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-photostrip.jpg" alt="Screenshot of fotostrip" loading="lazy" onerror="this.remove()"></span><span class="pname">fotostrip ↗</span><span class="ptag">a fun lil fotobooth</span></a></li>
+        <li><a class="pcard c6" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-drift.jpg" alt="Screenshot of drift" loading="lazy" onerror="this.remove()"></span><span class="pname">drift ↗</span><span class="ptag">send a moment across the water</span></a></li>
       </ul>
     </div>
   </section>
@@ -144,6 +176,7 @@
       <p>Want to work together, order a cake, or just chat?</p>
       <ul class="links">
         <li><a href="https://www.linkedin.com/in/fadila-fidina/" target="_blank" rel="noopener">★ LinkedIn</a></li>
+        <li><a href="https://sessionize.com/fadila/" target="_blank" rel="noopener">★ Sessionize · talks</a></li>
         <li><a href="https://github.com/fadilafidina" target="_blank" rel="noopener">★ GitHub</a></li>
         <li><a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">★ Instagram · photos @diladialed</a></li>
         <li><a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">★ Instagram · baking @matchadou</a></li>

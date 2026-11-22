@@ -25,6 +25,10 @@
   ];
   const PIGEON_COLORS = { k: '#7a6481', g: '#d3d6df', d: '#a9aec2', w: '#f0f1f6', n: '#b9d6c8', e: '#e9a56b', b: '#dba08f', f: '#e8aebd' };
   const SPRITES = {
+    mic: [
+      '...oooooo...','..opppppho..','..opwwpppo..','..opppppho..','..opppppho..','.oopppppooo.',
+      '.o.oooooo.o.','..o......o..','...oooooo...','.....oo.....','.....oo.....','...oooooo...'
+    ],
     floppy: [
       '.oooooooooo.','obbboooobbbo','obbboppobbbo','obbboppobbbo','obbbbbbbbbbo','obwwwwwwwwbo',
       'obwwwwwwwwbo','obwlllllllwo','obwwwwwwwwbo','obwwwwwwwwbo','oooooooooooo'
@@ -69,8 +73,13 @@
     });
     return rects;
   }
+  const OBJ = { briefcase: 'bag', camera: 'camera', cupcake: 'croissant', palette: 'palette',
+                heart: 'envelope', mic: 'mic', floppy: 'typewriter' };
+  const SMILE = '<svg class="pix obj" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.8 2.5 2.6 4 2.6s3-.8 4-2.6"/><path d="M9 9.5v.5M15 9.5v.5"/></svg>';
   const svg = (name, cls = 'pix') =>
-    `<svg class="${cls}" viewBox="0 0 12 12" aria-hidden="true">${sprite(name)}</svg>`;
+    OBJ[name] ? `<img class="${cls} obj" src="images/obj-${OBJ[name]}.png" alt="" aria-hidden="true" draggable="false">`
+    : name === 'smile' ? SMILE
+    : `<svg class="${cls}" viewBox="0 0 12 12" aria-hidden="true">${sprite(name)}</svg>`;
 
   /* ---------- state ---------- */
   const $ = (s, el = document) => el.querySelector(s);
@@ -152,8 +161,8 @@
     // window controls
     bar.querySelector('.closebtn').addEventListener('click', () => closeWin(id));
     bar.querySelector('.minbtn').addEventListener('click', () => minimise(id));
-    bar.querySelector('.maxbtn').addEventListener('click', () => win.classList.toggle('max'));
-    bar.addEventListener('dblclick', (e) => { if (!e.target.closest('.wbtn')) win.classList.toggle('max'); });
+    bar.querySelector('.maxbtn').addEventListener('click', () => toggleMax(win));
+    bar.addEventListener('dblclick', (e) => { if (!e.target.closest('.wbtn')) toggleMax(win); });
     win.addEventListener('pointerdown', () => focusWin(id));
 
     enableDrag(win, bar);
@@ -169,9 +178,24 @@
     const win = document.getElementById(id);
     win.style.zIndex = ++zTop;
   }
+  const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const EASE_OUT = 'cubic-bezier(.2,.9,.3,1.15)';
+  function stopAnim(win) { if (win._anim) { win._anim.cancel(); win._anim = null; } }
+  function flyTo(win, id, done) {
+    stopAnim(win);
+    if (reduceMotion() || typeof win.animate !== 'function') return done();
+    const w = win.getBoundingClientRect(), t = $('#task-' + id).getBoundingClientRect();
+    const dx = (t.left + t.width / 2) - (w.left + w.width / 2);
+    const dy = (t.top + t.height / 2) - (w.top + w.height / 2);
+    win._anim = win.animate(
+      [{ transform: 'none', opacity: 1 }, { transform: `translate(${dx}px, ${dy}px) scale(.08)`, opacity: 0 }],
+      { duration: 240, easing: 'cubic-bezier(.5,0,.9,.5)' });
+    win._anim.onfinish = () => { win._anim = null; done(); };
+  }
   function openWin(id) {
     const win = document.getElementById(id);
-    if (!win.classList.contains('open')) {
+    if (!win.classList.contains('open') || win._anim) {
+      stopAnim(win);
       win.classList.add('open');
       if (!win.dataset.placed && !isMobile()) {
         // gentle cascade so new windows don't stack exactly
@@ -180,39 +204,73 @@
         win.style.top = (parseInt(win.dataset.y, 10) + cascade * 24) + 'px';
         win.dataset.placed = '1';
       }
+      if (!reduceMotion() && typeof win.animate === 'function') {
+        win._anim = win.animate(
+          [{ transform: 'translateY(14px) scale(.9)', opacity: 0 }, { transform: 'none', opacity: 1 }],
+          { duration: 280, easing: EASE_OUT });
+        win._anim.onfinish = () => { win._anim = null; };
+      }
     }
     $('#task-' + id).hidden = false;
     focusWin(id);
   }
   function closeWin(id) {
     const win = document.getElementById(id);
-    win.classList.remove('open', 'focus', 'max');
+    stopAnim(win);
+    win.classList.remove('focus');
     $('#task-' + id).hidden = true;
+    const finish = () => { win.classList.remove('open', 'max'); };
+    if (reduceMotion() || typeof win.animate !== 'function') return finish();
+    win._anim = win.animate(
+      [{ transform: 'none', opacity: 1 }, { transform: 'scale(.9)', opacity: 0 }],
+      { duration: 160, easing: 'ease-in' });
+    win._anim.onfinish = () => { win._anim = null; finish(); };
   }
   function minimise(id) {
     const win = document.getElementById(id);
-    win.classList.remove('open', 'focus');
+    win.classList.remove('focus');
     $('#task-' + id).classList.remove('focus');
+    flyTo(win, id, () => win.classList.remove('open'));
+  }
+  function toggleMax(win) {
+    win.classList.toggle('max');
+    if (reduceMotion() || typeof win.animate !== 'function') return;
+    stopAnim(win);
+    win._anim = win.animate([{ transform: 'scale(.96)', opacity: .85 }, { transform: 'none', opacity: 1 }], { duration: 200, easing: EASE_OUT });
+    win._anim.onfinish = () => { win._anim = null; };
   }
 
   /* ---------- dragging (mouse + touch via pointer events) ---------- */
   function enableDrag(win, bar) {
-    let sx, sy, ox, oy, dragging = false;
+    let sx, sy, ox, oy, dx = 0, dy = 0, dragging = false, raf = 0;
+    const apply = () => { raf = 0; win.style.transform = `translate3d(${dx}px, ${dy}px, 0)`; };
     bar.addEventListener('pointerdown', (e) => {
       if (e.target.closest('.wbtn') || isMobile() || win.classList.contains('max')) return;
-      dragging = true;
+      stopAnim(win);
+      dragging = true; dx = 0; dy = 0;
       sx = e.clientX; sy = e.clientY;
       ox = win.offsetLeft; oy = win.offsetTop;
+      win.classList.add('dragging');
       bar.setPointerCapture(e.pointerId);
     });
     bar.addEventListener('pointermove', (e) => {
       if (!dragging) return;
       const maxX = desktop.clientWidth - 60;
       const maxY = desktop.clientHeight - 40;
-      win.style.left = Math.max(-win.offsetWidth + 80, Math.min(maxX, ox + e.clientX - sx)) + 'px';
-      win.style.top = Math.max(0, Math.min(maxY, oy + e.clientY - sy)) + 'px';
+      const nx = Math.max(-win.offsetWidth + 80, Math.min(maxX, ox + e.clientX - sx));
+      const ny = Math.max(0, Math.min(maxY, oy + e.clientY - sy));
+      dx = nx - ox; dy = ny - oy;
+      if (!raf) raf = requestAnimationFrame(apply);
     });
-    const stop = () => { dragging = false; };
+    const stop = () => {
+      if (!dragging) return;
+      dragging = false;
+      if (raf) { cancelAnimationFrame(raf); raf = 0; }
+      win.style.left = (ox + dx) + 'px';
+      win.style.top = (oy + dy) + 'px';
+      win.style.transform = '';
+      win.classList.remove('dragging');
+    };
     bar.addEventListener('pointerup', stop);
     bar.addEventListener('pointercancel', stop);
   }
@@ -244,7 +302,7 @@
 
   /* ---------- sparkle cursor trail (skipped for reduced motion / touch) ---------- */
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reduce && window.matchMedia('(pointer: fine)').matches) {
+  if (false && !reduce && window.matchMedia('(pointer: fine)').matches) {
     const glyphs = ['✿', '★', '♥', '✦'];
     const hues = ['#ff7ab8', '#b5a0ff', '#6ec6ff', '#ffd84d', '#6fe3a8'];
     let last = 0;
@@ -265,4 +323,53 @@
 
   /* ---------- open the windows marked data-open ---------- */
   if (!isMobile()) wins.forEach((w) => { if (w.dataset.open === 'true') openWin(w.id); });
+
+  /* ---------- font tester: add ?font=nunito (etc.) to the URL ---------- */
+  (() => {
+    const F = {
+      nunito: ['Nunito', 'Nunito:wght@400;600;700'],
+      quicksand: ['Quicksand', 'Quicksand:wght@400;600;700'],
+      dmsans: ['DM Sans', 'DM+Sans:wght@400;500;700'],
+      dmmono: ['DM Mono', 'DM+Mono:wght@400;500'],
+      spacemono: ['Space Mono', 'Space+Mono:wght@400;700'],
+      silkscreen: ['Silkscreen', 'Silkscreen:wght@400;700'],
+      pixelify: ['Pixelify Sans', 'Pixelify+Sans:wght@400;500;600']
+    };
+    const pick = F[new URLSearchParams(location.search).get('font')];
+    if (!pick) return;
+    const l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=' + pick[1] + '&display=swap';
+    document.head.appendChild(l);
+    const css = `'${pick[0]}', sans-serif`;
+    document.documentElement.style.setProperty('--font-pixel', css);
+    document.documentElement.style.setProperty('--font-body', css);
+  })();
+
+  /* ---------- click a photo to zoom ---------- */
+  (() => {
+    const box = document.createElement('div');
+    box.className = 'zoom'; box.hidden = true;
+    box.innerHTML = '<figure class="zoom-card"><button class="zoom-x" aria-label="Close">×</button><img alt=""><figcaption></figcaption></figure>';
+    document.body.appendChild(box);
+    const img = box.querySelector('img'), cap = box.querySelector('figcaption');
+    const close = () => { box.classList.remove('on'); setTimeout(() => { box.hidden = true; }, 180); };
+    const open = (src, alt, text) => {
+      img.src = src; img.alt = alt || ''; cap.textContent = text || '';
+      box.hidden = false; requestAnimationFrame(() => box.classList.add('on'));
+    };
+    const tiles = '.shot, .canvas .ph';
+    document.querySelectorAll(tiles).forEach(t => { t.tabIndex = 0; t.setAttribute('role', 'button'); });
+    const fire = t => {
+      const i = t.querySelector('img'); if (!i) return;
+      const f = t.closest('figure'), c = f && f.querySelector('figcaption');
+      open(i.currentSrc || i.src, i.alt, c ? c.innerText.replace(/\n/g, ' · ') : i.alt);
+    };
+    document.addEventListener('click', e => { const t = e.target.closest(tiles); if (t) fire(t); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !box.hidden) close();
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches(tiles)) { e.preventDefault(); fire(e.target); }
+    });
+    box.addEventListener('click', close);
+  })();
 })();
