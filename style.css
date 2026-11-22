@@ -510,7 +510,8 @@ h3.sub { font-size: 12px; letter-spacing: .04em; }
 .pigeon svg { display: none; }
 .pg-bird { position: absolute; left: 0; bottom: 4px; width: 64px; height: auto; transform-origin: 40% 100%; pointer-events: none; user-select: none; }
 .pg-shadow { position: absolute; left: 14px; right: 8px; bottom: 0; height: 8px; border-radius: 50%; background: radial-gradient(closest-side, rgba(38,35,43,.55), transparent); opacity: .5; }
-.pigeon:hover .pg-bird, .pigeon:focus-visible .pg-bird { animation: peck .9s ease-in-out 1; }
+.pg-bird { transition: transform .25s ease; }
+.pigeon:hover .pg-bird, .pigeon:focus-visible .pg-bird { transform: translateY(1px) scale(1.03, .96); }
 .pigeon.hop .pg-bird { animation: none; }
 .pigeon:hover svg, .pigeon:focus-visible svg, .pigeon:active svg { animation: none; }
 @keyframes peck {
@@ -529,3 +530,10 @@ h3.sub { font-size: 12px; letter-spacing: .04em; }
   input, textarea { cursor: text; }
 }
 .ink-trail { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 99998; }
+
+/* pigeon: speech bubble instead of the side-to-side wiggle */
+.pg-coo { position: absolute; right: 44px; bottom: 62px; padding: 3px 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 2px;
+  font-family: var(--mono); font-size: 12px; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .15s ease, transform .2s ease; pointer-events: none; }
+.pigeon:hover .pg-coo, .pigeon:focus-visible .pg-coo, .pigeon.hop .pg-coo { opacity: 1; transform: none; }
+.pg-coo { line-height: 1.4; bottom: 72px; right: 38px; }
+.pg-coo::after { content: ''; position: absolute; right: 6px; bottom: -5px; width: 8px; height: 8px; background: var(--paper); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }

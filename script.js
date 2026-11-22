@@ -101,7 +101,7 @@
     const b = document.createElement('button');
     b.className = 'pigeon';
     b.setAttribute('aria-label', 'A pigeon. Click to make it hop.');
-    b.innerHTML = '<span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-pigeon.png" alt="" draggable="false">';
+    b.innerHTML = '<span class="pg-coo" aria-hidden="true">coo?</span><span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-pigeon.png" alt="" draggable="false">';
     document.body.appendChild(b);
     const bird = b.querySelector('.pg-bird'), shadow = b.querySelector('.pg-shadow');
     let hopping = false;
@@ -345,7 +345,7 @@
   };
   tick(); setInterval(tick, 15000);
 
-  /* ---------- cursor trail: a thin pink ink line that fades (mouse only) ---------- */
+  /* ---------- cursor trail: breadcrumbs that drop from under the cursor (mouse only) ---------- */
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!reduce && window.matchMedia('(pointer: fine)').matches) {
     const cv = document.createElement('canvas');
@@ -354,23 +354,40 @@
     const ctx = cv.getContext('2d');
     const size = () => { const d = devicePixelRatio || 1; cv.width = innerWidth * d; cv.height = innerHeight * d; ctx.setTransform(d, 0, 0, d, 0, 0); };
     size(); addEventListener('resize', size);
-    const pts = []; const LIFE = 420; let running = false;
+    const TONES = ['#c8893f', '#d9a35a', '#b4722f', '#e8c48a', '#a8652a'];
+    const crumbs = []; let last = null, running = false, prev = 0;
+    const LIFE = 900;
+    const spawn = (x, y, now) => {
+      const n = 3 + Math.floor(Math.random() * 4), pts = [];
+      const r = 2.2 + Math.random() * 2.6;
+      for (let k = 0; k < n; k++) { const a = (k / n) * Math.PI * 2 + Math.random() * .6; const rr = r * (.6 + Math.random() * .6); pts.push([Math.cos(a) * rr, Math.sin(a) * rr]); }
+      crumbs.push({ x: x + (Math.random() * 8 - 4), y, vx: Math.random() * .6 - .3, vy: .2 + Math.random() * .6,
+        rot: Math.random() * 6, vr: Math.random() * .08 - .04, pts, c: TONES[Math.floor(Math.random() * TONES.length)], t: now });
+    };
     addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
-      pts.push({ x: e.clientX, y: e.clientY, t: performance.now() });
-      if (!running) { running = true; requestAnimationFrame(draw); }
+      // the arrow's tip is the hotspot, so drop crumbs from under its tail instead
+      const x = e.clientX + 7, y = e.clientY + 20, now = performance.now();
+      if (last) {
+        const d = Math.hypot(x - last.x, y - last.y);
+        if (d > 12) { spawn(x, y, now); if (d > 40 && Math.random() < .5) spawn(x, y, now); last = { x, y }; }
+      } else last = { x, y };
+      if (!running) { running = true; prev = now; requestAnimationFrame(draw); }
     }, { passive: true });
     function draw(now) {
-      while (pts.length && now - pts[0].t > LIFE) pts.shift();
+      const dt = Math.min(32, now - prev) / 16.7; prev = now;
       ctx.clearRect(0, 0, innerWidth, innerHeight);
-      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      for (let i = 1; i < pts.length; i++) {
-        const k = 1 - (now - pts[i].t) / LIFE;
-        ctx.strokeStyle = `rgba(232, 150, 190, ${k * 0.85})`;
-        ctx.lineWidth = 1 + k * 3;
-        ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
+      for (let i = crumbs.length - 1; i >= 0; i--) {
+        const c = crumbs[i], age = (now - c.t) / LIFE;
+        if (age >= 1) { crumbs.splice(i, 1); continue; }
+        c.vy += .12 * dt; c.x += c.vx * dt; c.y += c.vy * dt; c.rot += c.vr * dt;
+        ctx.save(); ctx.translate(c.x, c.y); ctx.rotate(c.rot);
+        ctx.globalAlpha = age < .7 ? 1 : 1 - (age - .7) / .3;
+        ctx.fillStyle = c.c; ctx.beginPath();
+        c.pts.forEach(([px, py], k) => (k ? ctx.lineTo(px, py) : ctx.moveTo(px, py)));
+        ctx.closePath(); ctx.fill(); ctx.restore();
       }
-      if (pts.length) requestAnimationFrame(draw); else { running = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
+      if (crumbs.length) requestAnimationFrame(draw); else { running = false; ctx.clearRect(0, 0, innerWidth, innerHeight); }
     }
   }
 
