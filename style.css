@@ -612,3 +612,10 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline: 
   padding: 0 6px; margin-left: -6px;
   background: linear-gradient(transparent 50%, var(--accent) 50%, var(--accent) 86%, transparent 86%);
 }
+
+/* ---------- weather chip in the tray ---------- */
+.tray { display: inline-flex; align-items: center; gap: 10px; }
+#weather { display: inline-flex; align-items: center; gap: 5px; padding-right: 10px; border-right: 1px solid var(--line); white-space: nowrap; }
+#weather[hidden] { display: none; }
+#weather b { font-weight: 500; color: var(--ink); }
+.wx-icon { font-size: 20px; line-height: 1; margin: -4px 0; }

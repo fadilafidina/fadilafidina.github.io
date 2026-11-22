@@ -500,4 +500,34 @@
     const open = wins.filter((w) => w.classList.contains('open')).sort((a, b) => (+b.style.zIndex || 0) - (+a.style.zIndex || 0))[0];
     if (open) openWin(open.id); else openWin('about');
   });
+
+  /* ---------- weather in Sydney (Open-Meteo, no API key) ---------- */
+  (() => {
+    const el = $('#weather'); if (!el) return;
+    const icon = (code, day) =>
+      code === 0 ? (day ? '☀' : '☾') :
+      code <= 2 ? (day ? '⛅' : '☁') :
+      code === 3 || code === 45 || code === 48 ? '☁' :
+      code >= 95 ? '⛈' :
+      (code >= 71 && code <= 77) || code === 85 || code === 86 ? '❄' : '☂';
+    const label = (code) =>
+      code === 0 ? 'clear' : code <= 2 ? 'partly cloudy' : code === 3 ? 'cloudy' : code === 45 || code === 48 ? 'foggy' :
+      code >= 95 ? 'stormy' : (code >= 71 && code <= 77) ? 'snowy' : 'rainy';
+    const show = (w) => {
+      el.innerHTML = `<span class="wx-icon" aria-hidden="true">${icon(w.code, w.day)}</span><b>${Math.round(w.temp)}°</b>`;
+      el.title = `Sydney: ${Math.round(w.temp)}°C, ${label(w.code)}`;
+      el.setAttribute('aria-label', el.title);
+      el.hidden = false;
+    };
+    try { const c = JSON.parse(sessionStorage.getItem('wx') || 'null'); if (c && Date.now() - c.t < 15 * 60e3) return show(c); } catch (_) {}
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=-33.87&longitude=151.21&current=temperature_2m,weather_code,is_day&timezone=Australia%2FSydney')
+      .then((r) => r.json())
+      .then((d) => {
+        const w = { temp: d.current.temperature_2m, code: d.current.weather_code, day: d.current.is_day === 1, t: Date.now() };
+        show(w);
+        try { sessionStorage.setItem('wx', JSON.stringify(w)); } catch (_) {}
+      })
+      .catch(() => {}); // no weather, no fuss
+  })();
 })();
+
