@@ -597,3 +597,11 @@ h3.sub, .talk-card .kicker, .sticky-kicker { text-transform: none; letter-spacin
 .skip-link { position: fixed; left: 8px; top: -60px; z-index: 100000; padding: 8px 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); font-family: var(--mono); font-size: 13px; text-decoration: none; }
 .skip-link:focus { top: 8px; background: var(--accent); }
 a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+/* ---------- seagull (replaces the stock pigeon) ---------- */
+.pigeon { width: 84px; height: 76px; }
+.pg-bird { width: 84px; transform-origin: 35% 100%; }
+.pg-shadow { left: 16px; right: auto; width: 46px; }
+.pg-coo { right: 46px; bottom: 74px; }
+@media (max-width: 720px) { .pigeon { width: 66px; height: 60px; } .pg-bird { width: 66px; } .pg-shadow { left: 12px; width: 36px; } }
+.pg-coo { white-space: nowrap; }

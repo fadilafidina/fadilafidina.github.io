@@ -96,12 +96,12 @@
 
   $('#startIcon').innerHTML = sprite('star');
 
-  /* ---------- pigeon pet: head-bob on hover, hop on click ---------- */
+  /* ---------- pet seagull (Fadila's own photo): crouch on hover, hop on click ---------- */
   (() => {
     const b = document.createElement('button');
     b.className = 'pigeon';
-    b.setAttribute('aria-label', 'A pigeon. Click to make it hop.');
-    b.innerHTML = '<span class="pg-coo" aria-hidden="true">Coo?</span><span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-pigeon.png" alt="" draggable="false">';
+    b.setAttribute('aria-label', 'A seagull. Click to make it hop.');
+    b.innerHTML = '<span class="pg-coo" aria-hidden="true">Can we be friends?</span><span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-gull.png" alt="" draggable="false">';
     document.body.appendChild(b);
     const bird = b.querySelector('.pg-bird'), shadow = b.querySelector('.pg-shadow');
     let hopping = false;
@@ -354,10 +354,6 @@
 
   /* ---------- open the windows marked data-open ---------- */
   if (!isMobile()) wins.forEach((w) => { if (w.dataset.open === 'true') openWin(w.id, false); });
-
-  /* ---------- deep link: /#painting opens that window ---------- */
-  const hashWin = location.hash && document.getElementById(location.hash.slice(1));
-  if (hashWin && hashWin.classList.contains('win')) openWin(hashWin.id);
 
   /* ---------- font tester: add ?font=nunito (etc.) to the URL ---------- */
   (() => {
