@@ -136,10 +136,10 @@
   // nothing on the desk may sit on a heading or its intro text: measure where each
   // artefact ends up and, if it would touch the heading, nudge it down or right
   function avoidHeads() {
-    root.classList.add('probing');
     try { chapters.forEach((c) => {
       const head = c.ch.querySelector('.ch-head');
       if (!head) return;
+      c.ch.classList.add('probing');                 // freeze just this chapter while measuring
       const items = [...c.ch.querySelectorAll('[data-step], .talk .chip')]
         .filter((el) => !el.closest('.ch-head, .scrapbook') && !el.matches('.talk'));
       const saved = items.map((el) => el.getAttribute('class'));
@@ -154,9 +154,10 @@
         else el.style.setProperty('--nx', `${Math.round(right)}px`);
       });
       items.forEach((el, i) => el.setAttribute('class', saved[i]));
+      c.ch.offsetHeight;
+      c.ch.classList.remove('probing');
     }); } finally {
-    root.offsetHeight; // apply the restored state before transitions come back
-    root.classList.remove('probing'); }
+    chapters.forEach((c) => c.ch.classList.remove('probing')); }
   }
 
   function progress(c, y) {
@@ -538,9 +539,8 @@
     const items = [...hello.querySelectorAll('.burst')];
     // where each thing starts: right behind the middle of the name circle
     const aim = () => {
-      const popped = hello.classList.contains('popped');
-      root.classList.add('probing');                 // measure without transitions
-      hello.classList.remove('popped');
+      if (hello.classList.contains('popped')) return;   // never disturb it mid-pop
+      hello.classList.add('probing');                  // measure without transitions
       const b = badge.getBoundingClientRect();
       const cx = b.left + b.width / 2, cy = b.top + b.height / 2;
       items.forEach((el, i) => {
@@ -553,12 +553,12 @@
         el.style.setProperty('--fx', `${Math.round(cx - (r.left + r.width / 2))}px`);
         el.style.setProperty('--fy', `${Math.round(cy - (r.top + r.height / 2))}px`);
       });
-      if (popped) hello.classList.add('popped');
-      root.offsetHeight;
-      root.classList.remove('probing');
+      hello.offsetHeight;
+      hello.classList.remove('probing');
     };
     const pop = () => {
       if (hello.classList.contains('popped')) return;
+      aim();                                            // fresh start points, then go
       hello.classList.add('popped');
     };
     aim();

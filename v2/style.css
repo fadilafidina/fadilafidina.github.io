@@ -637,7 +637,7 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
   translate: calc(var(--nx, 0px) + var(--dx, 0px)) calc(var(--ny, 0px) + var(--dy, 0px) + var(--lift, 0px));
 }
 /* measuring final positions: no transitions for one frame */
-.probing *, .probing *::before, .probing *::after { transition: none !important; animation: none !important; }
+.probing, .probing *, .probing *::before, .probing *::after { transition: none !important; animation: none !important; }
 
 /* ---------- seagull perched on the receipt printer ---------- */
 .till-slot .gull { position: absolute; left: 22px; bottom: 100%; margin-bottom: -6px; width: 84px; height: 76px; }
@@ -804,38 +804,35 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
    everything pops out from behind it (desktop story)
    ========================================================== */
 .name-badge {
-  display: grid; place-content: center; justify-items: center; gap: 4px;
-  width: min(300px, 70vw); aspect-ratio: 1; margin: 0 auto; border-radius: 50%;
-  background: var(--paper); border: 1.5px dashed rgba(38, 35, 43, .55);
-  box-shadow: 0 0 0 8px var(--paper), 0 0 0 9px rgba(38, 35, 43, .14), 6px 10px 0 9px rgba(38, 35, 43, .06);
+  /* a strip of pink washi tape with torn ends */
+  display: inline-flex; align-items: baseline; justify-content: center;
+  padding: 16px 38px 14px; margin: 0 auto; rotate: -2deg;
+  background: color-mix(in srgb, var(--pink) 92%, transparent);
+  background-image: repeating-linear-gradient(90deg, transparent 0 14px, rgba(255, 255, 255, .38) 14px 19px);
+  border-block: 1px solid rgba(38, 35, 43, .16);
+  clip-path: polygon(0 0, 2.4% 12%, 0 25%, 2.4% 38%, 0 50%, 2.4% 62%, 0 75%, 2.4% 88%, 0 100%, 100% 100%, 97.6% 88%, 100% 75%, 97.6% 62%, 100% 50%, 97.6% 38%, 100% 25%, 97.6% 12%, 100% 0);
+  filter: drop-shadow(3px 4px 0 rgba(38, 35, 43, .08));
   position: relative; z-index: 3; outline: none; cursor: inherit;
   transition: transform .45s var(--pop);
 }
-.name-badge:hover, .name-badge:focus-visible { transform: rotate(-4deg) scale(1.04); }
-.name-badge:focus-visible { box-shadow: 0 0 0 8px var(--paper), 0 0 0 10px var(--ink); }
-.ch-hello .hello-title { display: grid; justify-items: center; gap: 2px; font-size: inherit; white-space: normal; line-height: 1; }
-.hello-title .first { font: 600 clamp(48px, 5vw, 66px)/1 var(--sans); letter-spacing: -.03em; }
-.hello-title .last {
-  font: 400 clamp(28px, 3vw, 40px)/1 'Silkscreen', var(--mono); letter-spacing: .04em; text-transform: uppercase;
-  padding: 2px 8px 4px; background: var(--pink); border-radius: 2px;
-}
-.badge-hint { margin-top: 10px; font: 400 11.5px/1 var(--mono); color: var(--muted); transition: opacity .3s ease; }
+.name-badge:hover, .name-badge:focus-visible { transform: rotate(3deg) scale(1.04); }
+.name-badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+.ch-hello .hello-title { display: flex; align-items: baseline; gap: clamp(12px, 1.2vw, 18px); font-size: inherit; white-space: nowrap; line-height: 1; }
+.hello-title .first { font: 600 clamp(36px, 4.2vw, 58px)/1 var(--sans); letter-spacing: -.03em; }
+.hello-title .last { font: 400 clamp(26px, 3vw, 42px)/1 'Silkscreen', var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+.badge-hint { margin: 14px 0 0; text-align: center; font: 400 11.5px/1 var(--mono); color: var(--muted); transition: opacity .3s ease; }
 .ch-hello.popped .badge-hint { opacity: 0; }
-.tags .chip { display: inline-block; text-decoration: none; color: var(--ink); }
 
 @media (min-width: 721px) and (min-height: 560px) {
   /* hold the landing on screen for a moment so the pop-out plays while you scroll */
-  .pinned .ch-hello { height: 150vh; overflow: clip; }   /* clip, not hidden, so the stage can stick */
+  .pinned .ch-hello { height: 200vh; overflow: clip; }   /* clip, not hidden, so the stage can stick */
   .pinned .ch-hello > .stage { position: sticky; top: 0; }
   .pinned .ch-hello .hello-text { top: 47%; width: auto; }
-  .pinned .ch-hello .bio { position: absolute; left: var(--x); top: var(--y); width: min(470px, 34vw); margin: 0; }
-  .pinned .ch-hello .tags { position: absolute; inset: 0; margin: 0; padding: 0; display: block; pointer-events: none; }
-  .pinned .ch-hello .tags li { position: absolute; left: var(--x); top: var(--y); }
 
   /* tucked behind the name… */
   .pinned .ch-hello .burst {
     opacity: 0; pointer-events: none; z-index: 1;
-    transform: translate(calc(-50% + var(--fx, 0px)), calc(-50% + var(--fy, 0px))) rotate(0deg) scale(.2);
+    transform: translate(calc(-50% + var(--fx, 0px)), calc(-50% + var(--fy, 0px))) rotate(calc(var(--r, 0deg) - 40deg)) scale(.15);
     transition: opacity .2s ease, transform .35s ease;
   }
   /* …then they spring out one after another */
@@ -843,10 +840,13 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
     opacity: 1; pointer-events: auto;
     transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
     transition:
-      opacity .2s ease calc(var(--i, 0) * 55ms),
-      transform .8s cubic-bezier(.22, 1.5, .42, 1) calc(var(--i, 0) * 55ms),
+      opacity .12s ease calc(150ms + var(--i, 0) * 70ms),
+      transform 1s cubic-bezier(.18, 1.6, .4, 1) calc(150ms + var(--i, 0) * 70ms),
       translate .3s var(--pop), scale .25s var(--pop);
   }
-  .pinned .ch-hello.popped .tags .burst:hover, .pinned .ch-hello.popped .bio.burst:hover { scale: 1.05; }
+  /* the name gives a little squash as everything bursts out of it */
+  .pinned .ch-hello.popped .name-badge { animation: badge-burst .6s cubic-bezier(.3, 1.6, .5, 1); }
 }
 html:not(.pinned) .badge-hint { display: none; }   /* nothing to hover on a phone */
+
+@keyframes badge-burst { 0% { scale: 1; } 25% { scale: .9; } 55% { scale: 1.1; } 100% { scale: 1; } }
