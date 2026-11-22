@@ -7,7 +7,8 @@
    ========================================================== */
 
 :root {
-  --bg: #efede9;
+  --bg: #f7f4ec;                 /* cream desk paper */
+  --grid: rgba(120, 108, 84, .12);
   --ink: #26232b;
   --muted: #7d7884;
   --paper: #ffffff;
@@ -25,7 +26,14 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);
+  /* grid paper, like a page from a notebook */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: -1px -1px;
+  background-attachment: fixed;   /* the desk stays put; everything else scrolls over it */
   color: var(--ink);
   font: 400 16px/1.55 var(--sans);
   -webkit-font-smoothing: antialiased;
@@ -587,3 +595,207 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
 }
 .till-sparkles { position: absolute; inset: 0; pointer-events: none; }
 .till-sparkles .sparkle { z-index: 3; }
+
+/* ==========================================================
+   DESK: artefacts burst out from under the middle, hop on hover,
+   and can be dragged around (desktop story only)
+   ========================================================== */
+/* before its step: tucked under the middle of the stage (--fx/--fy set in script.js) */
+.pinned [data-step] {
+  transform: translate(calc(-50% + var(--fx, 0px)), calc(-50% + var(--fy, 0px))) rotate(0deg) scale(.3);
+  transition: opacity .2s ease, transform .3s ease, translate .3s var(--pop), scale .25s var(--pop);
+}
+/* its step arrives: springs out to its spot, one after another */
+.pinned [data-step].in {
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
+  transition:
+    opacity .2s ease calc(var(--i, 0) * 55ms),
+    transform .75s cubic-bezier(.22, 1.5, .42, 1) calc(var(--i, 0) * 55ms),
+    translate .3s var(--pop), scale .25s var(--pop);
+}
+
+.pinned .drag {
+  cursor: grab; touch-action: none; user-select: none; -webkit-user-drag: none;
+}
+.pinned .sticker-obj.in, .pinned .sparkle { pointer-events: auto; }
+.pinned .drag.in:hover, .pinned .sparkle.drag:hover, .pinned .obj.drag:hover { --lift: -7px; scale: 1.05; }
+.pinned .drag.dragging { cursor: grabbing; scale: 1.08; transition: none !important; filter: drop-shadow(8px 12px 10px rgba(38, 35, 43, .18)); }
+.pinned .sparkle.drag { transition: translate .3s var(--pop), scale .25s var(--pop); }
+.pinned .obj.drag { transition: transform .2s ease, translate .3s var(--pop), scale .25s var(--pop); }
+.pinned .obj.drag:hover { transform: translate(-50%, -50%) rotate(var(--r)); }
+
+/* hover a section's heading and everything on the desk gives a little jump */
+@keyframes hop {
+  0%, 100% { translate: calc(var(--nx, 0px) + var(--dx, 0px)) calc(var(--ny, 0px) + var(--dy, 0px)); }
+  40% { translate: calc(var(--nx, 0px) + var(--dx, 0px)) calc(var(--ny, 0px) + var(--dy, 0px) - 18px); }
+}
+.pinned .stage:has(> .ch-head:hover) .drag.in { animation: hop .5s var(--pop) calc(var(--i, 0) * 40ms); }
+
+/* where an artefact sits = its spot + a nudge off the heading (--nx/--ny, script.js)
+   + wherever you've dragged it (--dx/--dy) + a little lift on hover */
+.pinned :is([data-step], .talk .chip, .drag) {
+  translate: calc(var(--nx, 0px) + var(--dx, 0px)) calc(var(--ny, 0px) + var(--dy, 0px) + var(--lift, 0px));
+}
+/* measuring final positions: no transitions for one frame */
+.probing *, .probing *::before, .probing *::after { transition: none !important; animation: none !important; }
+
+/* ---------- seagull perched on the receipt printer ---------- */
+.till-slot .gull { position: absolute; left: 22px; bottom: 100%; margin-bottom: -6px; width: 84px; height: 76px; }
+.till-slot .gull .pg-bird { width: 84px; transform-origin: 35% 100%; }
+.till-slot .gull .pg-shadow { left: 16px; right: auto; width: 46px; }
+.till-slot .gull .pg-coo { left: 40px; bottom: 76px; }
+.till-slot .gull .pg-coo::after { left: 10px; right: auto; }
+
+/* ==========================================================
+   ART: a spiral-bound sketchbook. It lands closed, the cover
+   opens, then each step turns a page. Paintings on both sides.
+   (script.js builds the leaves from the plain list of figures)
+   ========================================================== */
+.scrapbook .leaf { display: contents; }
+.scrapbook .cover-face, .scrapbook .rings { display: none; }
+
+.pinned .book.scrapbook {
+  --pw: min(320px, calc((100vh - 260px) * .78));
+  position: absolute; left: 57%; top: 58%; width: calc(var(--pw) * 2); height: calc(var(--pw) * 1.25);
+  aspect-ratio: auto; display: block; max-width: none; perspective: 2400px;
+  transform: translate(-50%, -50%) translateX(calc(var(--pw) * -.5));   /* closed: the cover sits in the middle */
+  transition: transform .85s var(--settle), opacity .3s ease;
+}
+.pinned .ch-paint:is(:not([data-at]), [data-at="0"]) .scrapbook {
+  opacity: 0; transform: translate(-50%, -50%) translateX(calc(var(--pw) * -.5)) translateY(50px) rotate(-8deg) scale(.35);
+}
+.pinned .ch-paint:not([data-at="0"], [data-at="1"], :not([data-at])) .scrapbook { transform: translate(-50%, -50%); }
+/* the back board, peeking out round the pages */
+.pinned .scrapbook::after {
+  content: ''; position: absolute; z-index: 0; left: 50%; right: -8px; top: -8px; bottom: -8px;
+  background: #b88d5f url(images/cover-kraft.jpg) center / cover;
+  border-radius: 2px 6px 6px 2px; box-shadow: 0 0 0 1px rgba(38, 35, 43, .5), var(--shadow);
+}
+.pinned .scrapbook .rings {
+  display: block; position: absolute; z-index: 90; left: 50%; top: 3%; bottom: 3%; width: 20px; transform: translateX(-50%);
+  background: radial-gradient(ellipse 5px 4px, transparent 2.4px, #2b2a2e 3px, #6d6b72 4px, #2b2a2e 4.6px, transparent 5.2px) 0 0 / 20px 19px repeat-y;
+  pointer-events: none;
+}
+
+/* a leaf turns on the spine; its back becomes the left-hand page */
+.pinned .scrapbook .leaf[data-step]:is(*, .in) {
+  display: block; position: absolute; inset: 0 auto auto 50%; width: 50%; height: 100%; margin: 0;
+  opacity: 1; z-index: var(--z); pointer-events: auto;
+  transform-origin: 0 50%; transform-style: preserve-3d; transform: rotateY(0deg);
+  transition: transform 1s cubic-bezier(.45, .05, .2, 1);
+}
+.pinned .scrapbook .leaf[data-step].past:is(*, .in) { transform: rotateY(-179deg); z-index: var(--zf); }
+.pinned .scrapbook :is(.leaf-front, .leaf-back) {
+  display: block; position: absolute; inset: 0; margin: 0; aspect-ratio: auto; box-shadow: none; border-radius: 0;
+  transform-origin: 50% 50%;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden;
+}
+.pinned .scrapbook .leaf-back { transform: rotateY(180deg); }
+
+/* cover: real kraft board with a label */
+.pinned .scrapbook .cover-face {
+  display: grid; place-content: center;
+  background: #b88d5f url(images/cover-kraft.jpg) center / cover;
+  border-radius: 1px 6px 6px 1px; box-shadow: inset 0 0 0 1px rgba(38, 35, 43, .5), inset -10px 0 18px -12px rgba(0, 0, 0, .35);
+}
+.sb-label {
+  padding: 16px 24px 13px; text-align: center; background: #fbf9f4; border: 1px solid var(--ink); border-radius: 3px;
+  rotate: -2deg; box-shadow: 3px 3px 0 rgba(38, 35, 43, .12);
+}
+.sb-label b { display: block; font: 600 30px/1 var(--sans); letter-spacing: -.02em; }
+.sb-label span { display: block; margin-top: 8px; font: 400 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.sb-washi {
+  position: absolute; width: 92px; height: 22px; background: color-mix(in srgb, var(--pink) 85%, transparent);
+  border-block: 1px solid rgba(38, 35, 43, .15);
+  background-image: repeating-linear-gradient(90deg, transparent 0 10px, rgba(255, 255, 255, .45) 10px 14px);
+}
+.cover-face .sb-washi { top: 18px; right: -18px; rotate: 34deg; }
+.sb-star { position: absolute; left: 22px; bottom: 26px; width: 26px; height: 26px; rotate: -10deg; }
+
+/* painting pages: thick watercolour paper with the photo pasted in */
+.pinned .scrapbook .page:is(.leaf-front, .leaf-back) {
+  padding: 16px; border: 0;
+  background: #fbf8f1 radial-gradient(circle at 30% 20%, rgba(255, 255, 255, .7), transparent 60%);
+  box-shadow: inset 0 0 0 1px rgba(38, 35, 43, .35);
+}
+.pinned .scrapbook .page img { width: 100%; height: 100%; object-fit: cover; box-shadow: 2px 2px 0 rgba(38, 35, 43, .1); }
+/* the gutter shadow by the rings */
+.pinned .scrapbook .page.leaf-front::after, .pinned .scrapbook .page.leaf-back::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(38, 35, 43, .16), transparent 14%);
+}
+.pinned .scrapbook .page.leaf-back::after { background: linear-gradient(270deg, rgba(38, 35, 43, .16), transparent 14%); }
+.pinned .scrapbook .page::before { display: none; }
+
+/* ==========================================================
+   PROJECTS: each one opens on a laptop or phone and loads
+   ========================================================== */
+.device-modal { width: auto; max-width: calc(100vw - 24px); max-height: none; overflow: visible; }
+.device-modal::backdrop { background: rgba(38, 35, 43, .4); }
+.device-wrap { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.device-modal[open] .device-wrap { animation: devicein .6s var(--pop); }
+@keyframes devicein { from { opacity: 0; transform: translateY(70px) scale(.6) rotate(-4deg); } }
+.device-actions { display: flex; gap: 10px; align-items: center; }
+.device-actions .modal-close { position: static; }
+.device-open { background: var(--paper); }
+
+.device .screen { position: relative; background: #1d1c21; box-shadow: 0 30px 60px -30px rgba(20, 18, 24, .6); }
+.device .screen-in { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper); }
+.device .viewport { position: absolute; left: 0; right: 0; bottom: 0; top: 0; overflow: hidden; }
+.device iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
+.browser-bar, .status-bar { display: none; }
+
+/* laptop */
+.device.laptop { --sw: min(900px, 84vw, calc((100vh - 150px) * 1.45)); display: flex; flex-direction: column; align-items: center; }
+.laptop .screen { width: var(--sw); aspect-ratio: 16 / 10; padding: 16px 16px 20px; border-radius: 16px 16px 4px 4px; }
+.laptop .screen-in { border-radius: 4px; }
+.laptop .browser-bar {
+  display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px;
+  background: #ece9e3; border-bottom: 1px solid rgba(38, 35, 43, .15);
+}
+.laptop .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #e86f6f; }
+.laptop .browser-bar i:nth-child(2) { background: #e8c26f; }
+.laptop .browser-bar i:nth-child(3) { background: #7fc07a; }
+.laptop .browser-bar .url { flex: 1; margin: 0 60px 0 14px; padding: 3px 10px; border-radius: 6px; background: var(--paper); font: 400 11px/1.2 var(--mono); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.laptop .viewport { top: 28px; }
+.laptop .base {
+  position: relative; width: calc(var(--sw) * 1.16); height: 16px; margin-top: -1px;
+  background: linear-gradient(#e2e0e5, #b4b2b9); border-radius: 2px 2px 16px 16px; box-shadow: 0 18px 30px -18px rgba(20, 18, 24, .6);
+}
+.laptop .base::before { content: ''; position: absolute; left: 50%; top: 0; width: 16%; height: 6px; transform: translateX(-50%); background: #a5a3aa; border-radius: 0 0 8px 8px; }
+
+/* phone */
+.device.phone { --sh: min(700px, calc(100vh - 130px)); }
+.phone .screen { height: var(--sh); aspect-ratio: 9 / 19.5; padding: 11px; border-radius: calc(var(--sh) * .085); }
+.phone .screen-in { border-radius: calc(var(--sh) * .068); }
+.phone .base { display: none; }
+.phone .status-bar {
+  display: flex; position: absolute; z-index: 3; top: 0; left: 0; right: 0; height: 40px; padding: 0 26px;
+  align-items: center; justify-content: space-between; font: 600 13px/1 var(--sans); color: var(--ink);
+  background: linear-gradient(var(--paper) 60%, transparent); pointer-events: none;
+}
+.phone .island { position: absolute; left: 50%; top: 10px; width: 32%; height: 24px; transform: translateX(-50%); border-radius: 14px; background: #1d1c21; }
+.phone .viewport { top: 0; }
+
+/* the little loading screen */
+.device .loader {
+  position: absolute; z-index: 2; inset: 0; display: grid; place-content: center; justify-items: center; gap: 10px;
+  background-color: var(--bg);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+  transition: opacity .45s ease, visibility .45s;
+}
+.device .loader-name { margin: 0; font: 600 22px/1.1 var(--sans); }
+.device .loader-bar { width: 160px; height: 10px; border: 1px solid var(--ink); border-radius: 6px; overflow: hidden; background: var(--paper); }
+.device .loader-bar i { display: block; height: 100%; width: 0; background: var(--pink); border-right: 1px solid var(--ink); }
+.device.loading .loader-bar i { animation: load 2.4s cubic-bezier(.2, .7, .3, 1) forwards; }
+@keyframes load { to { width: 88%; } }
+.device.loaded .loader-bar i { width: 100%; transition: width .25s ease; }
+.device.loaded .loader { opacity: 0; visibility: hidden; transition-delay: .25s; }
+
+/* ---------- big custom cursor, same as the desktop version ---------- */
+@media (pointer: fine) {
+  html, body { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2238%22%20viewBox%3D%220%200%2022%2026%22%3E%3Cpath%20d%3D%22M2%202%20L2%2020%20L6.5%2015.8%20L9.6%2023%20L12.8%2021.6%20L9.8%2014.6%20L16%2014.6%20Z%22%20fill%3D%22%23fff%22%20stroke%3D%22%2326232b%22%20stroke-width%3D%221.4%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") 3 3, default; }
+  a, button, [role="button"], summary, label, .zoomable, .pcard, .pigeon, .pinned .drag, .pinned .drag.dragging { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2235%22%20viewBox%3D%220%200%2024%2026%22%3E%3Cpath%20d%3D%22M8%2013%20V4.2%20a1.7%201.7%200%200%201%203.4%200%20V11%20V9.6%20a1.7%201.7%200%200%201%203.4%200%20V11.4%20a1.7%201.7%200%200%201%203.4%200%20V12.6%20a1.6%201.6%200%200%201%203.2%200%20V17%20c0%204.2-2.8%207-6.8%207%20h-2%20c-2.6%200-4.2-1.2-5.6-3.4%20L3%2015.4%20a1.7%201.7%200%200%201%202.6-2.2%20Z%22%20fill%3D%22%23f6cfe1%22%20stroke%3D%22%2326232b%22%20stroke-width%3D%221.3%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") 12 3, pointer; }
+  input, textarea { cursor: text; }
+}
