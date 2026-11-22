@@ -192,18 +192,43 @@
       { duration: 240, easing: 'cubic-bezier(.5,0,.9,.5)' });
     win._anim.onfinish = () => { win._anim = null; done(); };
   }
+
+  /* ---------- place a newly opened window in the emptiest spot ---------- */
+  function placeInEmptySpace(win) {
+    const D = desktop.getBoundingClientRect();
+    const ic = iconsEl.getBoundingClientRect();
+    const pad = 12, step = 24;
+    const w = win.offsetWidth;
+    const h = Math.min(win.offsetHeight, D.height - pad * 2);
+    const minX = Math.round(ic.right - D.left) + pad;
+    const maxX = Math.max(minX, D.width - w - pad);
+    const maxY = Math.max(pad, D.height - h - pad);
+    const others = wins.filter((o) => o !== win && o.classList.contains('open') && !o.classList.contains('max'))
+      .map((o) => { const r = o.getBoundingClientRect(); return { x: r.left - D.left, y: r.top - D.top, w: r.width, h: r.height }; });
+    const overlap = (x, y) => others.reduce((sum, o) => {
+      const ox = Math.max(0, Math.min(x + w, o.x + o.w) - Math.max(x, o.x));
+      const oy = Math.max(0, Math.min(y + h, o.y + o.h) - Math.max(y, o.y));
+      return sum + ox * oy;
+    }, 0);
+    let best = { x: minX, y: pad, s: Infinity };
+    for (let y = pad; y <= maxY; y += step) {
+      for (let x = minX; x <= maxX; x += step) {
+        // least overlap wins; ties go to the spot nearest the top-left
+        const s = overlap(x, y) * 1000 + y + x * 0.5;
+        if (s < best.s) best = { x, y, s };
+      }
+    }
+    win.style.left = best.x + 'px';
+    win.style.top = best.y + 'px';
+  }
+
   function openWin(id) {
     const win = document.getElementById(id);
     if (!win.classList.contains('open') || win._anim) {
       stopAnim(win);
+      const wasClosed = !win.classList.contains('open');
       win.classList.add('open');
-      if (!win.dataset.placed && !isMobile()) {
-        // gentle cascade so new windows don't stack exactly
-        cascade = (cascade + 1) % 5;
-        win.style.left = Math.min(parseInt(win.dataset.x, 10) + cascade * 24, Math.max(8, window.innerWidth - win.offsetWidth - 8)) + 'px';
-        win.style.top = (parseInt(win.dataset.y, 10) + cascade * 24) + 'px';
-        win.dataset.placed = '1';
-      }
+      if (wasClosed && !isMobile() && !win.classList.contains('max')) placeInEmptySpace(win);
       if (!reduceMotion() && typeof win.animate === 'function') {
         win._anim = win.animate(
           [{ transform: 'translateY(14px) scale(.9)', opacity: 0 }, { transform: 'none', opacity: 1 }],
@@ -363,7 +388,7 @@
     const fire = t => {
       const i = t.querySelector('img'); if (!i) return;
       const f = t.closest('figure'), c = f && f.querySelector('figcaption');
-      open(i.currentSrc || i.src, i.alt, c ? c.innerText.replace(/\n/g, ' · ') : i.alt);
+      open(i.currentSrc || i.src, i.alt, c ? c.innerText.replace(/\n/g, ' · ') : '');
     };
     document.addEventListener('click', e => { const t = e.target.closest(tiles); if (t) fire(t); });
     document.addEventListener('keydown', e => {
@@ -371,5 +396,33 @@
       if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches(tiles)) { e.preventDefault(); fire(e.target); }
     });
     box.addEventListener('click', close);
+  })();
+
+  /* ---------- click a talk for the full abstract ---------- */
+  (() => {
+    const box = document.createElement('div');
+    box.className = 'zoom talk-pop'; box.hidden = true;
+    box.innerHTML = '<article class="zoom-card talk-card" role="dialog" aria-modal="true"><button class="zoom-x" aria-label="Close">×</button><div class="talk-body"></div></article>';
+    document.body.appendChild(box);
+    const body = box.querySelector('.talk-body');
+    let last = null;
+    const close = () => { box.classList.remove('on'); setTimeout(() => { box.hidden = true; }, 180); if (last) last.focus(); };
+    const open = (t) => {
+      last = t;
+      body.innerHTML = '<p class="kicker">talk</p>' + t.querySelector('h3').outerHTML +
+        t.querySelector('.abstract').innerHTML +
+        '<p class="kicker">presented at</p>' + t.querySelector('.where-list').outerHTML;
+      box.hidden = false; requestAnimationFrame(() => box.classList.add('on'));
+      box.querySelector('.zoom-x').focus();
+    };
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a')) return;
+      const t = e.target.closest('.talk'); if (t) open(t);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !box.hidden) close();
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('.talk')) { e.preventDefault(); open(e.target); }
+    });
+    box.addEventListener('click', (e) => { if (e.target === box || e.target.closest('.zoom-x')) close(); });
   })();
 })();

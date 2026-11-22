@@ -7,7 +7,7 @@
   <meta name="description" content="Fadila Fidina's portfolio: experience, photography, baking and painting.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -74,32 +74,43 @@
     <div class="win-body">
       <h2>Speaking</h2>
       <p>I give talks about frontend engineering, product engineering and experimentation.</p>
-      <div class="stats"><span><b>5</b> talks</span><span><b>7</b> events</span><span><b>AU</b> so far</span></div>
+      <div class="stats"><span><b>5</b> talks</span><span><b>7</b> events</span><span><b>3</b> upcoming</span></div>
       <h3 class="sub">my talks + where they've been</h3>
       <ul class="talk-list">
-        <li class="talk c3">
-          <h3>When just validate the form becomes a product engineering problem</h3>
-          <p>A case study from a payment flow where a request for strict address validation turned into bigger product questions. The answer moved from blocking users to address autocomplete, backed by success metrics, guardrails and customer risk.</p>
+        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
+          <h3>When “just validate the form” becomes a product engineering problem</h3>
+          <p>A payment-flow case study: how a request for strict address validation turned into address autocomplete, backed by success metrics and guardrails.</p>
           <ul class="where-list"><li><strong>React Summit US</strong> · Nov 2026 · <a href="https://gitnation.com/contents/when-just-validate-the-form-becomes-a-product-engineering-problem" target="_blank" rel="noopener">▶ watch</a></li></ul>
+          <span class="more">read abstract →</span>
+          <div class="abstract" hidden><p>Building software is cheap. Building the wrong thing is expensive.</p><p>Too often, teams ship features based on assumptions: a requirement arrives, implementation begins, and success is treated as “it shipped.”</p><p>But in critical user flows, a simple frontend change can introduce real customer risk.</p><p>In this talk, we'll explore a case study from a payment flow, where a request to add strict address validation forced us to ask bigger product engineering questions: what are we really building, what impact are we looking for, and how do we release without harming the funnel?</p><p>We’ll unpack how those questions changed the solution from blocking users to address autocomplete, helped us negotiate requirements with product and design, and shaped how we measured success, guardrails, and customer risk.</p></div>
         </li>
-        <li class="talk c1">
-          <h3>Change is only good when measured: building confidence through experimentation</h3>
-          <p>The experimentation lifecycle from an engineer's seat: forming a hypothesis, adding instrumentation, gathering data and learning from the results.</p>
-          <ul class="where-list"><li><strong>SlashNEW</strong> · Newcastle · May 2026</li><li class="accepted"><strong>React Day Berlin 2026</strong> · upcoming</li><li class="accepted"><strong>DDD Perth 2026</strong> · accepted ★</li><li><strong>apidays Melbourne</strong> · Melbourne · 2026</li><li><strong>Programmable 2026</strong> · Sydney · Mar 2026</li><li><strong>Analysis, Design &amp; Architecture Conf</strong> · Melbourne · Nov 2025</li></ul>
-        </li>
-        <li class="talk c6">
-          <h3>The how matters: shipping changes in small, measured steps</h3>
-          
-          <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Feb 2026</li></ul>
-        </li>
-        <li class="talk c4">
-          <h3>Building a culture of experimentation in a team that did not experiment</h3>
-          <p>The obstacles one team hit when adopting experimentation, and how they tackled them as people and process problems.</p>
-          <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Apr 2025</li></ul>
-        </li>
-        <li class="talk c4">
+        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
           <h3>From milliseconds to trials started: connecting page load times to business impact</h3>
-          <ul class="where-list"><li class="accepted"><strong>React Summit Asia 2027</strong> · upcoming</li></ul>
+          <p>How a 50% cut in load times on key pages led to 6% more trials started, and how to prove it.</p>
+          <ul class="where-list"><li class="accepted"><strong>React Summit Asia 2027</strong> · Singapore · Apr 2027 · <a href="https://gitnation.com/contents/from-milliseconds-to-trials-started-connecting-page-load-times-to-business-impact" target="_blank" rel="noopener">talk page ↗</a></li></ul>
+          <span class="more">read abstract →</span>
+          <div class="abstract" hidden><p>“Your page loads are so slow.”</p><p>Not an unfamiliar phrase for frontend engineers to hear. But how do we prioritise performance and tech debt when there are always features waiting to be built?</p><p>A performance improvement becomes a business win when you can connect the engineering change to a measurable outcome.</p><p>In this talk, we'll walk through how we proved that a 50% reduction in load times across our key pages led to 6% more trials started, from identifying the funnels with the highest potential return through implementation, instrumentation, data analysis, and the challenges we faced along the way.</p></div>
+        </li>
+        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
+          <h3>Change is only good when measured: building confidence through experimentation</h3>
+          <p>The experimentation lifecycle from an engineer's seat: hypothesis, instrumentation, data and learning from the results.</p>
+          <ul class="where-list"><li><strong>SlashNEW</strong> · Newcastle · May 2026</li><li class="accepted"><strong>React Day Berlin 2026</strong> · upcoming</li><li class="accepted"><strong>DDD Perth 2026</strong> · accepted ★</li><li><strong>apidays Melbourne</strong> · Melbourne · 2026</li><li><strong>Programmable 2026</strong> · Sydney · Mar 2026</li><li><strong>Analysis, Design &amp; Architecture Conf</strong> · Melbourne · Nov 2025</li></ul>
+          <span class="more">read abstract →</span>
+          <div class="abstract" hidden><p>Shipping a new feature is easy. Knowing if it actually improved anything? That's the hard part.</p><p>Many teams ship features based on intuition rather than evidence. This makes it impossible to understand user behaviour or build confidence in product decisions.</p><p>Experimentation is the only reliable way for engineering teams to uncover the true impact of the features they ship.</p><p>In this talk, I’ll walk through the experimentation lifecycle from an engineering perspective - forming a hypothesis, adding instrumentation, gathering data, and learning from the results - showing how teams can embed this process into their feature release practices at scale.</p></div>
+        </li>
+        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
+          <h3>The how matters: shipping changes in small, measured steps</h3>
+          <p>Asking the product questions that matter, to steer the experience towards what benefits users.</p>
+          <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Feb 2026</li></ul>
+          <span class="more">read abstract →</span>
+          <div class="abstract" hidden><p>Asking the product questions that matter, to steer the experience towards what benefits users.</p></div>
+        </li>
+        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
+          <h3>Building a culture of experimentation in a team that did not experiment</h3>
+          <p>The roadbumps one team hit when adopting experimentation, tackled as people and process problems.</p>
+          <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Apr 2025</li></ul>
+          <span class="more">read abstract →</span>
+          <div class="abstract" hidden><p>This talk unpacks the different roadbumps our team faced when upskilling with experimentation practices, alongside ways we tackled each problem.</p><p>We addressed them as people and process problems to adopt the culture of experimentation in our releases.</p></div>
         </li>
       </ul>
       <p><a class="btn" href="https://sessionize.com/fadila/" target="_blank" rel="noopener">★ speaker profile</a></p>
@@ -150,10 +161,10 @@
       <h2>Painting</h2>
       <p>Watercolours and sketches.</p>
       <div class="canvas-grid">
-        <figure class="canvas"><div class="ph c3"><b>painting 1</b><img src="https://scontent.cdninstagram.com/v/t51.82787-15/893412000_18339801754259608_45450226470172868_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=101&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=3A_Fid_jqEoQ7kNvwHvvSYK&amp;_nc_oc=Ado-CnlV-8-r6xr2uZSMOx10td30-y28UglzIOXg51uLVFpoMLdSTMwB5eXa_NYfcYg&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=_igUAaykUCQczkZIqTzDXA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQSxJv9qOyQJz_D5_Hnc_qBKikcXPcImguyv9xlGkH5dyA&amp;oe=6B07D999" referrerpolicy="no-referrer" alt="Harbour Bridge, watercolour sketch" loading="lazy" onerror="this.remove()"></div><figcaption><strong>Harbour Bridge</strong><br>watercolour sketch</figcaption></figure>
-        <figure class="canvas"><div class="ph c6"><b>painting 2</b><img src="https://scontent.cdninstagram.com/v/t51.82787-15/838614341_18335031907259608_7818275008814046905_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=100&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=VFJRJ993rDYQ7kNvwGZv8C-&amp;_nc_oc=Adrff3kPL77vBy8y7AuXzsBbz9o8KKprMTPKySgQrkIVDQiLTocaOYk7_xh01n5FK4I&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=_igUAaykUCQczkZIqTzDXA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQSXwpvn8SmMaQGmd7-paWeg87J6glvMH5XiGB3q889Zdw&amp;oe=6B07EB3D" referrerpolicy="no-referrer" alt="Misty mountains, watercolour" loading="lazy" onerror="this.remove()"></div><figcaption><strong>Misty mountains</strong><br>watercolour</figcaption></figure>
-        <figure class="canvas"><div class="ph c4"><b>painting 3</b><img src="https://scontent.cdninstagram.com/v/t51.75761-15/499085029_18271691455259608_4881570914386705642_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=106&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=h1uqzQtI5TYQ7kNvwFWF2fk&amp;_nc_oc=AdrMmfXSzdhI045BSCbA3xDcFavvlvMsUNz18NeqJasSAh4QxgWi_xqBdju-TfjMGDM&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=_igUAaykUCQczkZIqTzDXA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQT0wLOvlWqQSRuSmfLxphPQHYMliexdMbR2_vFwOl9J2w&amp;oe=6B07F4E2" referrerpolicy="no-referrer" alt="Cafe front, watercolour" loading="lazy" onerror="this.remove()"></div><figcaption><strong>Cafe front</strong><br>watercolour</figcaption></figure>
-        <figure class="canvas"><div class="ph c1"><b>painting 4</b><img src="https://scontent.cdninstagram.com/v/t51.82787-15/662602698_18059524568444439_796063947003427147_n.jpg?stp=dst-jpg_e35_s640x640_tt6&amp;_nc_cat=102&amp;ccb=7-5&amp;_nc_sid=18de74&amp;efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&amp;_nc_ohc=qo2gzKBPxLcQ7kNvwE8l9sv&amp;_nc_oc=AdrzDB3bYU33mbgJhfsrPnXr9RzhHcR1p2AoRvtnw7qpYe_-hP5_yxheWpqgZ6q0NwA&amp;_nc_zt=23&amp;_nc_ht=scontent.cdninstagram.com&amp;_nc_gid=_igUAaykUCQczkZIqTzDXA&amp;_nc_ss=79689&amp;_nc_ct=RQosPBUKFQIAAAA&amp;oh=00_AQRTyB5RRKoqVv6Fr3vXF6NG0powStIfuV5plsjTNu2L6A&amp;oe=6B080138" referrerpolicy="no-referrer" alt="Flower balcony, watercolour" loading="lazy" onerror="this.remove()"></div><figcaption><strong>Flower balcony</strong><br>watercolour</figcaption></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-bridge.jpg" alt="Harbour Bridge sketches" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-shopfront.jpg" alt="Framed shopfront sketch" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-cafe.jpg" alt="Cafe front watercolour" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-balcony.jpg" alt="Flower balcony watercolour" loading="lazy"></div></figure>
       </div>
     </div>
   </section>
