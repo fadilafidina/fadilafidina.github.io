@@ -7,7 +7,7 @@
   <meta name="description" content="Fadila Fidina's portfolio as a scroll story: experience, speaking, photography, baking, painting and side projects.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Silkscreen&display=swap" rel="stylesheet">
   <link rel="icon" href="../favicon.ico?v=2" sizes="any">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -38,34 +38,38 @@
   <!-- ============ 1. HELLO ============ -->
   <section class="ch ch-hello" id="hello" data-name="Hello" aria-labelledby="hello-title">
     <div class="stage">
+      <!-- the landing: just the name; everything else pops out from behind it -->
       <div class="hello-text">
-        <h1 id="hello-title" class="hello-title"><span class="hl">Hi, I'm Fadila!</span></h1>
-        <div class="paper bio drop taped" style="--d:900ms; --r:-1deg; --tr:3deg">
-          <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who loves to create: in code, in photos, in bread and in paint.</p>
+        <div class="name-badge" tabindex="0">
+          <h1 id="hello-title" class="hello-title"><span class="first">Fadila</span> <span class="last">Fidina</span></h1>
+          <span class="badge-hint" aria-hidden="true">hover or scroll ✿</span>
         </div>
-        <ul class="tags" aria-label="Things I love">
-          <li class="chip drop" style="--d:1050ms; --r:-4deg">★ Photography</li>
-          <li class="chip drop" style="--d:1120ms; --r:3deg">♥ Baking</li>
-          <li class="chip drop" style="--d:1190ms; --r:-2deg">✿ Painting</li>
-          <li class="chip drop" style="--d:1260ms; --r:4deg">☻ Always making</li>
-        </ul>
       </div>
 
+      <div class="paper bio burst taped" style="--x:50%; --y:85%; --r:-1deg; --tr:3deg">
+        <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who loves to create: in code, in photos, in bread and in paint.</p>
+      </div>
+      <ul class="tags" aria-label="Things I love">
+        <li class="burst" style="--x:34%; --y:27%; --r:-4deg"><a class="chip" href="#photos">★ Photography</a></li>
+        <li class="burst" style="--x:67%; --y:25%; --r:3deg"><a class="chip" href="#bakery">♥ Baking</a></li>
+        <li class="burst" style="--x:33%; --y:67%; --r:-2deg"><a class="chip" href="#paint">✿ Art</a></li>
+        <li class="burst" style="--x:68%; --y:69%; --r:4deg"><a class="chip" href="#projects">☻ Always making</a></li>
+      </ul>
+
       <nav class="objs" aria-label="Jump to a chapter">
-        <a class="obj drop" href="#experience" style="--x:9%; --y:21%; --w:140px; --r:-8deg; --d:150ms" aria-label="Experience"><img src="../images/obj-bag.png" alt="" width="240" height="217"></a>
-        <a class="obj drop" href="#speaking" style="--x:29%; --y:15%; --w:34px; --r:14deg; --d:250ms" aria-label="Speaking"><img src="../images/obj-mic.png" alt="" width="50" height="240"></a>
-        <a class="obj drop" href="#photos" style="--x:83%; --y:24%; --w:150px; --r:9deg; --d:350ms" aria-label="Photos"><img src="../images/obj-camera.png" alt="" width="227" height="222"></a>
-        <a class="obj drop" href="#bakery" style="--x:88%; --y:60%; --w:160px; --r:-6deg; --d:450ms" aria-label="Bakery diaries"><img src="../images/obj-croissant.png" alt="" width="240" height="173"></a>
-        <a class="obj drop" href="#paint" style="--x:12%; --y:70%; --w:160px; --r:7deg; --d:550ms" aria-label="Painting"><img src="../images/obj-palette.png" alt="" width="240" height="181"></a>
-        <a class="obj drop" href="#projects" style="--x:73%; --y:84%; --w:120px; --r:-4deg; --d:650ms" aria-label="Projects"><img src="../images/obj-typewriter.png" alt="" width="219" height="240"></a>
-        <a class="obj drop" href="#say-hi" style="--x:29%; --y:86%; --w:130px; --r:9deg; --d:750ms" aria-label="Say hi"><img src="../images/obj-envelope.png" alt="" width="240" height="182"></a>
+        <a class="obj burst" href="#experience" style="--x:10%; --y:22%; --w:140px; --r:-8deg" aria-label="Experience"><img src="../images/obj-bag.png" alt="" width="240" height="217"></a>
+        <a class="obj burst" href="#speaking" style="--x:24%; --y:12%; --w:34px; --r:14deg" aria-label="Speaking"><img src="../images/obj-mic.png" alt="" width="50" height="240"></a>
+        <a class="obj burst" href="#photos" style="--x:85%; --y:22%; --w:150px; --r:9deg" aria-label="Photos"><img src="../images/obj-camera.png" alt="" width="227" height="222"></a>
+        <a class="obj burst" href="#bakery" style="--x:89%; --y:58%; --w:160px; --r:-6deg" aria-label="Bakery diaries"><img src="../images/obj-croissant.png" alt="" width="240" height="173"></a>
+        <a class="obj burst" href="#paint" style="--x:12%; --y:72%; --w:160px; --r:7deg" aria-label="Art"><img src="../images/obj-palette.png" alt="" width="240" height="181"></a>
+        <a class="obj burst" href="#projects" style="--x:77%; --y:86%; --w:120px; --r:-4deg" aria-label="Projects"><img src="../images/obj-typewriter.png" alt="" width="219" height="240"></a>
+        <a class="obj burst" href="#say-hi" style="--x:24%; --y:88%; --w:130px; --r:9deg" aria-label="Say hi"><img src="../images/obj-envelope.png" alt="" width="240" height="182"></a>
       </nav>
 
-      <svg class="star drop" style="--x:63%; --y:15%; --r:12deg; --d:1300ms" aria-hidden="true"><use href="#star"/></svg>
-      <svg class="star drop sm" style="--x:44%; --y:78%; --r:-10deg; --d:1380ms" aria-hidden="true"><use href="#star"/></svg>
-      <div class="clutter scrap drop" style="--x:7%; --y:48%; --w:156px; --r:-7deg; --d:820ms" aria-hidden="true"><div class="scrap-in"><span class="kicker">Note to self</span>Make something just because it makes you happy.</div></div>
-      <img class="clutter sticker-obj drop" src="images/obj-matcha-latte.png" alt="" width="126" height="165" style="--x:94%; --y:85%; --w:62px; --r:0deg; --d:860ms">
-      <p class="scroll-hint drop" style="--d:1500ms" aria-hidden="true">Scroll ↓</p>
+      <svg class="star burst" style="--x:60%; --y:12%; --r:12deg" aria-hidden="true"><use href="#star"/></svg>
+      <svg class="star burst sm" style="--x:41%; --y:78%; --r:-10deg" aria-hidden="true"><use href="#star"/></svg>
+      <div class="clutter scrap burst" style="--x:8%; --y:47%; --w:156px; --r:-7deg" aria-hidden="true"><div class="scrap-in"><span class="kicker">Note to self</span>Make something just because it makes you happy.</div></div>
+      <img class="clutter sticker-obj burst" src="images/obj-matcha-latte.png" alt="" width="126" height="165" style="--x:93%; --y:84%; --w:62px; --r:0deg">
     </div>
   </section>
 
@@ -293,9 +297,9 @@
         <h2 id="projects-title"><span class="hl">Side projects</span></h2>
       </header>
       <ul class="pcards">
-        <li class="pop" data-step="1" style="--x:25%; --y:56%; --r:-3deg"><a class="paper pcard taped" data-device="laptop" style="--tr:-5deg" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">Walk through the photos</span></a></li>
-        <li class="pop" data-step="2" style="--x:50%; --y:50%; --r:2deg"><a class="paper pcard taped" data-device="phone" style="--tr:4deg; --tx:30%" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-photostrip.jpg" alt="Screenshot of fotostrip" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">fotostrip ↗</span><span class="ptag">A fun little photo booth</span></a></li>
-        <li class="pop" data-step="3" style="--x:75%; --y:58%; --r:-2deg"><a class="paper pcard taped" data-device="phone" style="--tr:-3deg; --tx:68%" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-drift.jpg" alt="Screenshot of drift" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">drift ↗</span><span class="ptag">Send a moment across the water</span></a></li>
+        <li class="pop" data-step="1" style="--x:25%; --y:56%; --r:-3deg"><a class="paper pcard taped" style="--tr:-5deg" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">Walk through the photos</span></a></li>
+        <li class="pop" data-step="2" style="--x:50%; --y:50%; --r:2deg"><a class="paper pcard taped" style="--tr:4deg; --tx:30%" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-photostrip.jpg" alt="Screenshot of fotostrip" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">fotostrip ↗</span><span class="ptag">A fun little photo booth</span></a></li>
+        <li class="pop" data-step="3" style="--x:75%; --y:58%; --r:-2deg"><a class="paper pcard taped" style="--tr:-3deg; --tx:68%" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-drift.jpg" alt="Screenshot of drift" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">drift ↗</span><span class="ptag">Send a moment across the water</span></a></li>
       </ul>
       <div class="clutter graph pop" data-step="3" style="--x:89%; --y:83%; --r:-4deg" aria-hidden="true"><div class="graph-in">Click a card to try it out ✿</div></div>
       <img class="sticker-obj pop" data-step="1" src="../images/obj-typewriter.png" alt="" width="219" height="240" loading="lazy" style="--x:88%; --y:20%; --w:120px; --r:6deg">
@@ -401,16 +405,16 @@
 <!-- side project on a device -->
 <dialog class="modal device-modal" id="deviceModal" aria-labelledby="deviceTitle">
   <div class="device-wrap">
-    <div class="device laptop">
+    <div class="device imac">
+      <img class="imac-img" src="images/imac-g3.png" alt="" width="960" height="867">
       <div class="screen"><div class="screen-in">
-        <div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span class="url"></span></div>
-        <div class="status-bar" aria-hidden="true"><span class="sb-time"></span><span class="island"></span><span>●●● ▮</span></div>
+        <div class="browser-bar" aria-hidden="true"><i></i><span class="url"></span></div>
         <div class="viewport"></div>
         <div class="loader"><p class="kicker">loading</p><p class="loader-name" id="deviceTitle"></p><span class="loader-bar"><i></i></span></div>
       </div></div>
-      <div class="base" aria-hidden="true"></div>
     </div>
     <div class="device-actions"><a class="chip link device-open" target="_blank" rel="noopener">Open in a new tab ↗</a><button class="modal-close" type="button" aria-label="Close">×</button></div>
+    <a class="device-credit" href="https://commons.wikimedia.org/wiki/File:IMac_G3_Bondi_Blue.png" target="_blank" rel="noopener">iMac photo: True Tech Talk Time, CC BY-SA 4.0</a>
   </div>
 </dialog>
 

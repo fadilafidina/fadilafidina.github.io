@@ -489,28 +489,22 @@
     const device = modal.querySelector('.device');
     const viewport = modal.querySelector('.viewport');
     const openLink = modal.querySelector('.device-open');
-    const NATIVE = { laptop: 1280, phone: 390 };   // the width each site thinks it has
+    const NATIVE = 1100;   // the width each site thinks it has, like an old CRT
     let frame = null, timer = 0;
-    const clock = () => {
-      modal.querySelector('.sb-time').textContent = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Sydney', hour: 'numeric', minute: '2-digit', hour12: false }).format(new Date());
-    };
     const fit = () => {
       if (!frame) return;
-      const kind = device.classList.contains('phone') ? 'phone' : 'laptop';
-      const k = viewport.clientWidth / NATIVE[kind];
-      frame.style.width = `${NATIVE[kind]}px`;
+      const k = viewport.clientWidth / NATIVE;
+      frame.style.width = `${NATIVE}px`;
       frame.style.height = `${Math.ceil(viewport.clientHeight / k)}px`;
       frame.style.transform = `scale(${k})`;
     };
     function open(card) {
-      const kind = card.dataset.device === 'phone' ? 'phone' : 'laptop';
       const url = card.href;
       const name = card.querySelector('.pname').textContent.replace('↗', '').trim();
-      device.className = `device ${kind} loading`;
+      device.className = 'device imac loading';
       modal.querySelector('.loader-name').textContent = name;
-      modal.querySelector('.url').textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+      modal.querySelector('.url').textContent = name;
       openLink.href = url;
-      clock();
       viewport.innerHTML = '';
       openDialog(modal, card);
       frame = document.createElement('iframe');
@@ -535,5 +529,48 @@
     });
     window.addEventListener('resize', fit);
     modal.addEventListener('close', () => { clearTimeout(timer); viewport.innerHTML = ''; frame = null; });
+  })();
+  // ---------- landing: everything pops out from behind the name ----------
+  (() => {
+    const hello = document.querySelector('.ch-hello');
+    const badge = hello && hello.querySelector('.name-badge');
+    if (!badge) return;
+    const items = [...hello.querySelectorAll('.burst')];
+    // where each thing starts: right behind the middle of the name circle
+    const aim = () => {
+      const popped = hello.classList.contains('popped');
+      root.classList.add('probing');                 // measure without transitions
+      hello.classList.remove('popped');
+      const b = badge.getBoundingClientRect();
+      const cx = b.left + b.width / 2, cy = b.top + b.height / 2;
+      items.forEach((el, i) => {
+        el.style.setProperty('--i', i);
+        el.style.setProperty('--fx', '0px');
+        el.style.setProperty('--fy', '0px');
+      });
+      items.forEach((el) => {
+        const r = el.getBoundingClientRect();        // its own spot (scale doesn't move the centre)
+        el.style.setProperty('--fx', `${Math.round(cx - (r.left + r.width / 2))}px`);
+        el.style.setProperty('--fy', `${Math.round(cy - (r.top + r.height / 2))}px`);
+      });
+      if (popped) hello.classList.add('popped');
+      root.offsetHeight;
+      root.classList.remove('probing');
+    };
+    const pop = () => {
+      if (hello.classList.contains('popped')) return;
+      hello.classList.add('popped');
+    };
+    aim();
+    window.addEventListener('resize', aim);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(aim);
+    badge.addEventListener('pointerenter', pop);
+    badge.addEventListener('focus', pop);
+    badge.addEventListener('click', pop);
+    window.addEventListener('wheel', pop, { passive: true, once: true });
+    window.addEventListener('touchmove', pop, { passive: true, once: true });
+    window.addEventListener('keydown', (e) => { if (['ArrowDown', 'PageDown', ' ', 'End'].includes(e.key)) pop(); });
+    window.addEventListener('scroll', () => { if (window.scrollY > 4) pop(); }, { passive: true });
+    if (window.scrollY > 4 || location.hash) pop();
   })();
 })();

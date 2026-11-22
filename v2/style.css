@@ -728,7 +728,7 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
 .pinned .scrapbook .page::before { display: none; }
 
 /* ==========================================================
-   PROJECTS: each one opens on a laptop or phone and loads
+   PROJECTS: each one opens on a Bondi-blue iMac G3 and loads
    ========================================================== */
 .device-modal { width: auto; max-width: calc(100vw - 24px); max-height: none; overflow: visible; }
 .device-modal::backdrop { background: rgba(38, 35, 43, .4); }
@@ -745,37 +745,36 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
 .device iframe { position: absolute; left: 0; top: 0; border: 0; transform-origin: 0 0; background: #fff; }
 .browser-bar, .status-bar { display: none; }
 
-/* laptop */
-.device.laptop { --sw: min(900px, 84vw, calc((100vh - 150px) * 1.45)); display: flex; flex-direction: column; align-items: center; }
-.laptop .screen { width: var(--sw); aspect-ratio: 16 / 10; padding: 16px 16px 20px; border-radius: 16px 16px 4px 4px; }
-.laptop .screen-in { border-radius: 4px; }
-.laptop .browser-bar {
-  display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px;
-  background: #ece9e3; border-bottom: 1px solid rgba(38, 35, 43, .15);
+/* a Bondi-blue iMac G3; the site loads on its CRT */
+.device.imac { --iw: min(760px, 86vw, calc((100vh - 140px) * 1.107)); position: relative; width: var(--iw); aspect-ratio: 960 / 867; }
+.imac-img { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; user-select: none; filter: drop-shadow(0 30px 40px rgba(20, 18, 24, .35)); }
+.device.imac .screen {
+  position: absolute; z-index: 2; left: 16.9%; top: 9.3%; width: 67%; height: 51.6%;
+  padding: 0; background: #000; border-radius: 1.4% / 2%; overflow: hidden; box-shadow: none;
 }
-.laptop .browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #e86f6f; }
-.laptop .browser-bar i:nth-child(2) { background: #e8c26f; }
-.laptop .browser-bar i:nth-child(3) { background: #7fc07a; }
-.laptop .browser-bar .url { flex: 1; margin: 0 60px 0 14px; padding: 3px 10px; border-radius: 6px; background: var(--paper); font: 400 11px/1.2 var(--mono); color: var(--muted); text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.laptop .viewport { top: 28px; }
-.laptop .base {
-  position: relative; width: calc(var(--sw) * 1.16); height: 16px; margin-top: -1px;
-  background: linear-gradient(#e2e0e5, #b4b2b9); border-radius: 2px 2px 16px 16px; box-shadow: 0 18px 30px -18px rgba(20, 18, 24, .6);
+.device.imac .screen-in { border-radius: inherit; }
+/* a little CRT: soft vignette and faint scanlines over the page */
+.device.imac .screen::after {
+  content: ''; position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit;
+  background:
+    radial-gradient(ellipse at center, transparent 62%, rgba(0, 0, 0, .28) 100%),
+    repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, .05) 2px 3px);
 }
-.laptop .base::before { content: ''; position: absolute; left: 50%; top: 0; width: 16%; height: 6px; transform: translateX(-50%); background: #a5a3aa; border-radius: 0 0 8px 8px; }
-
-/* phone */
-.device.phone { --sh: min(700px, calc(100vh - 130px)); }
-.phone .screen { height: var(--sh); aspect-ratio: 9 / 19.5; padding: 11px; border-radius: calc(var(--sh) * .085); }
-.phone .screen-in { border-radius: calc(var(--sh) * .068); }
-.phone .base { display: none; }
-.phone .status-bar {
-  display: flex; position: absolute; z-index: 3; top: 0; left: 0; right: 0; height: 40px; padding: 0 26px;
-  align-items: center; justify-content: space-between; font: 600 13px/1 var(--sans); color: var(--ink);
-  background: linear-gradient(var(--paper) 60%, transparent); pointer-events: none;
+/* Mac OS 9 style platinum title bar */
+.device.imac .browser-bar {
+  display: flex; align-items: center; gap: 8px; height: 22px; padding: 0 8px;
+  background: #dcdcdc repeating-linear-gradient(transparent 0 2px, rgba(0, 0, 0, .13) 2px 3px);
+  border-bottom: 1px solid #8d8d8d;
 }
-.phone .island { position: absolute; left: 50%; top: 10px; width: 32%; height: 24px; transform: translateX(-50%); border-radius: 14px; background: #1d1c21; }
-.phone .viewport { top: 0; }
+.device.imac .browser-bar i { width: 11px; height: 11px; border: 1px solid #555; background: #eee; box-shadow: inset 1px 1px 0 #fff; }
+.device.imac .browser-bar i:nth-child(n+2) { display: none; }
+.device.imac .browser-bar .url {
+  margin: 0 auto; padding: 0 10px; background: #dcdcdc;
+  font: 600 11px/22px 'Charcoal', 'Chicago', var(--sans); color: #222; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.device.imac .viewport { top: 22px; }
+.device-credit { font: 400 10.5px/1.3 var(--mono); color: rgba(255, 255, 255, .85); text-decoration: none; }
+.device-credit:hover { text-decoration: underline; }
 
 /* the little loading screen */
 .device .loader {
@@ -799,3 +798,55 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
   a, button, [role="button"], summary, label, .zoomable, .pcard, .pigeon, .pinned .drag, .pinned .drag.dragging { cursor: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2232%22%20height%3D%2235%22%20viewBox%3D%220%200%2024%2026%22%3E%3Cpath%20d%3D%22M8%2013%20V4.2%20a1.7%201.7%200%200%201%203.4%200%20V11%20V9.6%20a1.7%201.7%200%200%201%203.4%200%20V11.4%20a1.7%201.7%200%200%201%203.4%200%20V12.6%20a1.6%201.6%200%200%201%203.2%200%20V17%20c0%204.2-2.8%207-6.8%207%20h-2%20c-2.6%200-4.2-1.2-5.6-3.4%20L3%2015.4%20a1.7%201.7%200%200%201%202.6-2.2%20Z%22%20fill%3D%22%23f6cfe1%22%20stroke%3D%22%2326232b%22%20stroke-width%3D%221.3%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") 12 3, pointer; }
   input, textarea { cursor: text; }
 }
+
+/* ==========================================================
+   LANDING: just the name in a circle; hover it or scroll and
+   everything pops out from behind it (desktop story)
+   ========================================================== */
+.name-badge {
+  display: grid; place-content: center; justify-items: center; gap: 4px;
+  width: min(300px, 70vw); aspect-ratio: 1; margin: 0 auto; border-radius: 50%;
+  background: var(--paper); border: 1.5px dashed rgba(38, 35, 43, .55);
+  box-shadow: 0 0 0 8px var(--paper), 0 0 0 9px rgba(38, 35, 43, .14), 6px 10px 0 9px rgba(38, 35, 43, .06);
+  position: relative; z-index: 3; outline: none; cursor: inherit;
+  transition: transform .45s var(--pop);
+}
+.name-badge:hover, .name-badge:focus-visible { transform: rotate(-4deg) scale(1.04); }
+.name-badge:focus-visible { box-shadow: 0 0 0 8px var(--paper), 0 0 0 10px var(--ink); }
+.ch-hello .hello-title { display: grid; justify-items: center; gap: 2px; font-size: inherit; white-space: normal; line-height: 1; }
+.hello-title .first { font: 600 clamp(48px, 5vw, 66px)/1 var(--sans); letter-spacing: -.03em; }
+.hello-title .last {
+  font: 400 clamp(28px, 3vw, 40px)/1 'Silkscreen', var(--mono); letter-spacing: .04em; text-transform: uppercase;
+  padding: 2px 8px 4px; background: var(--pink); border-radius: 2px;
+}
+.badge-hint { margin-top: 10px; font: 400 11.5px/1 var(--mono); color: var(--muted); transition: opacity .3s ease; }
+.ch-hello.popped .badge-hint { opacity: 0; }
+.tags .chip { display: inline-block; text-decoration: none; color: var(--ink); }
+
+@media (min-width: 721px) and (min-height: 560px) {
+  /* hold the landing on screen for a moment so the pop-out plays while you scroll */
+  .pinned .ch-hello { height: 150vh; overflow: clip; }   /* clip, not hidden, so the stage can stick */
+  .pinned .ch-hello > .stage { position: sticky; top: 0; }
+  .pinned .ch-hello .hello-text { top: 47%; width: auto; }
+  .pinned .ch-hello .bio { position: absolute; left: var(--x); top: var(--y); width: min(470px, 34vw); margin: 0; }
+  .pinned .ch-hello .tags { position: absolute; inset: 0; margin: 0; padding: 0; display: block; pointer-events: none; }
+  .pinned .ch-hello .tags li { position: absolute; left: var(--x); top: var(--y); }
+
+  /* tucked behind the name… */
+  .pinned .ch-hello .burst {
+    opacity: 0; pointer-events: none; z-index: 1;
+    transform: translate(calc(-50% + var(--fx, 0px)), calc(-50% + var(--fy, 0px))) rotate(0deg) scale(.2);
+    transition: opacity .2s ease, transform .35s ease;
+  }
+  /* …then they spring out one after another */
+  .pinned .ch-hello.popped .burst {
+    opacity: 1; pointer-events: auto;
+    transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
+    transition:
+      opacity .2s ease calc(var(--i, 0) * 55ms),
+      transform .8s cubic-bezier(.22, 1.5, .42, 1) calc(var(--i, 0) * 55ms),
+      translate .3s var(--pop), scale .25s var(--pop);
+  }
+  .pinned .ch-hello.popped .tags .burst:hover, .pinned .ch-hello.popped .bio.burst:hover { scale: 1.05; }
+}
+html:not(.pinned) .badge-hint { display: none; }   /* nothing to hover on a phone */
