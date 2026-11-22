@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip-link" href="#desktop" id="skipLink">Skip to content</a>
 
 <!-- ============ DESKTOP ============ -->
 <main class="desktop" id="desktop">
@@ -27,7 +28,7 @@
       <button class="sticky-btn" id="stickyNew" aria-label="Another note" title="another note">+</button>
       <button class="sticky-btn" id="stickyClose" aria-label="Close note" title="close">×</button>
     </div>
-    <div class="sticky-body" aria-live="polite"><span class="sticky-kicker">note to self</span><p id="stickyText"></p></div>
+    <div class="sticky-body" aria-live="polite"><span class="sticky-kicker">Note to self</span><p id="stickyText"></p></div>
   </aside>
 
   <!-- ============ WINDOW: ABOUT ============ -->
@@ -37,10 +38,10 @@
       <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who loves to create: in code, in photos, in bread and in paint.</p>
       <p>Click the icons on the left to poke around. Everything is draggable!</p>
       <div class="stickers" aria-hidden="true">
-        <span class="sticker s1">★ photography</span>
-        <span class="sticker s2">♥ baking</span>
-        <span class="sticker s3">✿ painting</span>
-        <span class="sticker s4">☻ always making</span>
+        <span class="sticker s1">★ Photography</span>
+        <span class="sticker s2">♥ Baking</span>
+        <span class="sticker s3">✿ Painting</span>
+        <span class="sticker s4">☻ Always making</span>
       </div>
       <!-- EDIT ME: write 1–2 sentences about yourself above -->
     </div>
@@ -49,7 +50,7 @@
   <!-- ============ WINDOW: EXPERIENCE ============ -->
   <section class="win" id="experience" data-title="my_experience" data-icon="briefcase" data-x="120" data-y="90" data-w="500">
     <div class="win-body">
-      <h2>Work &amp; Experience</h2>
+      <h2>Work &amp; experience</h2>
       <ol class="timeline">
         <li>
           <span class="date">2022 – now</span>
@@ -80,7 +81,7 @@
           <p class="where">IT, consulting and business analysis</p>
         </li>
       </ol>
-      <p><a class="btn" href="https://www.linkedin.com/in/fadila-fidina" target="_blank" rel="noopener">★ full story on LinkedIn</a></p>
+      <p><a class="btn" href="https://www.linkedin.com/in/fadila-fidina" target="_blank" rel="noopener">Full story on LinkedIn ↗</a></p>
     </div>
   </section>
 
@@ -90,7 +91,7 @@
       <h2>Skills</h2>
       <p>Frontend and product engineer. I care about building the right thing, then proving it worked.</p>
 
-      <h3 class="sub">what I focus on</h3>
+      <h3 class="sub">What I focus on</h3>
       <ul class="focus-list">
         <li><b>Frontend engineering</b><span>Fast, accessible React and TypeScript apps in critical user flows</span></li>
         <li><b>Product engineering</b><span>Questioning requirements, shaping the solution with product and design</span></li>
@@ -101,18 +102,18 @@
         <li><b>Agentic workflows</b><span>Working with AI agents day to day, and knowing how to steer, review and own what they produce</span></li>
       </ul>
 
-      <h3 class="sub">stack</h3>
+      <h3 class="sub">Stack</h3>
       <dl class="stack">
-        <dt>languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Java</span><span>Kotlin</span><span>C#</span></dd>
-        <dt>frontend</dt><dd><span>React</span><span>HTML</span><span>CSS</span></dd>
-        <dt>backend</dt><dd><span>Node.js</span><span>.NET / Microsoft stack</span><span>Microservices</span></dd>
-        <dt>testing</dt><dd><span>Jest</span><span>Cypress</span><span>Playwright</span></dd>
-        <dt>cloud</dt><dd><span>AWS</span></dd>
+        <dt>Languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Java</span><span>Kotlin</span><span>C#</span></dd>
+        <dt>Frontend</dt><dd><span>React</span><span>HTML</span><span>CSS</span></dd>
+        <dt>Backend</dt><dd><span>Node.js</span><span>.NET / Microsoft stack</span><span>Microservices</span></dd>
+        <dt>Testing</dt><dd><span>Jest</span><span>Cypress</span><span>Playwright</span></dd>
+        <dt>Cloud</dt><dd><span>AWS</span></dd>
         <dt>AI</dt><dd><span>Claude Code</span><span>Codex</span><span>Agentic workflows</span></dd>
       </dl>
 
-      <h3 class="sub">see it in action</h3>
-      <p class="proof"><button class="btn" data-open-win="speaking">▶ talks</button> <button class="btn" data-open-win="projects">▶ side projects</button> <button class="btn" data-open-win="experience">▶ experience</button></p>
+      <h3 class="sub">See it in action</h3>
+      <p class="proof"><button class="btn" data-open-win="speaking">Talks</button> <button class="btn" data-open-win="projects">Side projects</button> <button class="btn" data-open-win="experience">Experience</button></p>
     </div>
   </section>
 
@@ -121,45 +122,45 @@
       <h2>Speaking</h2>
       <p>I give talks about frontend engineering, product engineering and experimentation.</p>
       <div class="stats"><span><b>5</b> talks</span><span><b>7</b> events</span><span><b>3</b> upcoming</span></div>
-      <h3 class="sub">my talks + where they've been</h3>
+      <h3 class="sub">My talks and where they've been</h3>
       <ul class="talk-list">
-        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
-          <h3>When “just validate the form” becomes a product engineering problem</h3>
+        <li class="talk">
+          <h3><button class="talk-open" aria-haspopup="dialog">When “just validate the form” becomes a product engineering problem</button></h3>
           <p>A payment-flow case study: how a request for strict address validation turned into address autocomplete, backed by success metrics and guardrails.</p>
-          <ul class="where-list"><li><strong>React Summit US</strong> · Nov 2026 · <a href="https://gitnation.com/contents/when-just-validate-the-form-becomes-a-product-engineering-problem" target="_blank" rel="noopener">▶ watch</a></li></ul>
-          <span class="more">read abstract →</span>
+          <ul class="where-list"><li><strong>React Summit US</strong> · Nov 2026 · <a href="https://gitnation.com/contents/when-just-validate-the-form-becomes-a-product-engineering-problem" target="_blank" rel="noopener">Watch ↗</a></li></ul>
+          <span class="more" aria-hidden="true">Read abstract →</span>
           <div class="abstract" hidden><p>Building software is cheap. Building the wrong thing is expensive.</p><p>Too often, teams ship features based on assumptions: a requirement arrives, implementation begins, and success is treated as “it shipped.”</p><p>But in critical user flows, a simple frontend change can introduce real customer risk.</p><p>In this talk, we'll explore a case study from a payment flow, where a request to add strict address validation forced us to ask bigger product engineering questions: what are we really building, what impact are we looking for, and how do we release without harming the funnel?</p><p>We’ll unpack how those questions changed the solution from blocking users to address autocomplete, helped us negotiate requirements with product and design, and shaped how we measured success, guardrails, and customer risk.</p></div>
         </li>
-        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
-          <h3>From milliseconds to trials started: connecting page load times to business impact</h3>
+        <li class="talk">
+          <h3><button class="talk-open" aria-haspopup="dialog">From milliseconds to trials started: connecting page load times to business impact</button></h3>
           <p>How a 50% cut in load times on key pages led to 6% more trials started, and how to prove it.</p>
-          <ul class="where-list"><li class="accepted"><strong>React Summit Asia 2027</strong> · Singapore · Apr 2027 · <a href="https://gitnation.com/contents/from-milliseconds-to-trials-started-connecting-page-load-times-to-business-impact" target="_blank" rel="noopener">talk page ↗</a></li></ul>
-          <span class="more">read abstract →</span>
+          <ul class="where-list"><li class="accepted"><strong>React Summit Asia 2027</strong> · Singapore · Apr 2027 · <a href="https://gitnation.com/contents/from-milliseconds-to-trials-started-connecting-page-load-times-to-business-impact" target="_blank" rel="noopener">Talk page ↗</a></li></ul>
+          <span class="more" aria-hidden="true">Read abstract →</span>
           <div class="abstract" hidden><p>“Your page loads are so slow.”</p><p>Not an unfamiliar phrase for frontend engineers to hear. But how do we prioritise performance and tech debt when there are always features waiting to be built?</p><p>A performance improvement becomes a business win when you can connect the engineering change to a measurable outcome.</p><p>In this talk, we'll walk through how we proved that a 50% reduction in load times across our key pages led to 6% more trials started, from identifying the funnels with the highest potential return through implementation, instrumentation, data analysis, and the challenges we faced along the way.</p></div>
         </li>
-        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
-          <h3>Change is only good when measured: building confidence through experimentation</h3>
+        <li class="talk">
+          <h3><button class="talk-open" aria-haspopup="dialog">Change is only good when measured: building confidence through experimentation</button></h3>
           <p>The experimentation lifecycle from an engineer's seat: hypothesis, instrumentation, data and learning from the results.</p>
-          <ul class="where-list"><li><strong>SlashNEW</strong> · Newcastle · May 2026</li><li class="accepted"><strong>React Day Berlin 2026</strong> · upcoming</li><li class="accepted"><strong>DDD Perth 2026</strong> · accepted ★</li><li><strong>apidays Melbourne</strong> · Melbourne · 2026</li><li><strong>Programmable 2026</strong> · Sydney · Mar 2026</li><li><strong>Analysis, Design &amp; Architecture Conf</strong> · Melbourne · Nov 2025</li></ul>
-          <span class="more">read abstract →</span>
+          <ul class="where-list"><li><strong>SlashNEW</strong> · Newcastle · May 2026</li><li class="accepted"><strong>React Day Berlin 2026</strong> · Upcoming</li><li class="accepted"><strong>DDD Perth 2026</strong> · Accepted</li><li><strong>apidays Melbourne</strong> · Melbourne · 2026</li><li><strong>Programmable 2026</strong> · Sydney · Mar 2026</li><li><strong>Analysis, Design &amp; Architecture Conf</strong> · Melbourne · Nov 2025</li></ul>
+          <span class="more" aria-hidden="true">Read abstract →</span>
           <div class="abstract" hidden><p>Shipping a new feature is easy. Knowing if it actually improved anything? That's the hard part.</p><p>Many teams ship features based on intuition rather than evidence. This makes it impossible to understand user behaviour or build confidence in product decisions.</p><p>Experimentation is the only reliable way for engineering teams to uncover the true impact of the features they ship.</p><p>In this talk, I’ll walk through the experimentation lifecycle from an engineering perspective - forming a hypothesis, adding instrumentation, gathering data, and learning from the results - showing how teams can embed this process into their feature release practices at scale.</p></div>
         </li>
-        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
-          <h3>The how matters: shipping changes in small, measured steps</h3>
+        <li class="talk">
+          <h3><button class="talk-open" aria-haspopup="dialog">The how matters: shipping changes in small, measured steps</button></h3>
           <p>Asking the product questions that matter, to steer the experience towards what benefits users.</p>
           <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Feb 2026</li></ul>
-          <span class="more">read abstract →</span>
+          <span class="more" aria-hidden="true">Read abstract →</span>
           <div class="abstract" hidden><p>Asking the product questions that matter, to steer the experience towards what benefits users.</p></div>
         </li>
-        <li class="talk" tabindex="0" role="button" aria-haspopup="dialog">
-          <h3>Building a culture of experimentation in a team that did not experiment</h3>
+        <li class="talk">
+          <h3><button class="talk-open" aria-haspopup="dialog">Building a culture of experimentation in a team that did not experiment</button></h3>
           <p>The roadbumps one team hit when adopting experimentation, tackled as people and process problems.</p>
           <ul class="where-list"><li><strong>Atlassian ANZ EngFest</strong> · Sydney · Apr 2025</li></ul>
-          <span class="more">read abstract →</span>
+          <span class="more" aria-hidden="true">Read abstract →</span>
           <div class="abstract" hidden><p>This talk unpacks the different roadbumps our team faced when upskilling with experimentation practices, alongside ways we tackled each problem.</p><p>We addressed them as people and process problems to adopt the culture of experimentation in our releases.</p></div>
         </li>
       </ul>
-      <p><a class="btn" href="https://sessionize.com/fadila/" target="_blank" rel="noopener">★ speaker profile</a></p>
+      <p><a class="btn" href="https://sessionize.com/fadila/" target="_blank" rel="noopener">Speaker profile ↗</a></p>
     </div>
   </section>
 
@@ -169,15 +170,15 @@
       <h2>Photography</h2>
       <p>Street photography. <a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">@diladialed ↗</a></p>
       <div class="gallery">
-        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c1" role="img" aria-label="city street"><img src="images/photo-1.jpg" alt="city street" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c2" role="img" aria-label="birds"><img src="images/photo-2.jpg" alt="birds" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3" role="img" aria-label="lorikeet"><img src="images/photo-3.jpg" alt="lorikeet" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:2deg"><div class="shot c4" role="img" aria-label="photo"><img src="images/photo-4.jpg" alt="photo" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c5" role="img" aria-label="waterbirds"><img src="images/photo-5.jpg" alt="waterbirds" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:1deg"><div class="shot c6" role="img" aria-label="pool"><img src="images/photo-6.jpg" alt="pool" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-2.5deg"><div class="shot c1" role="img" aria-label="harbour bridge"><img src="images/photo-7.jpg" alt="harbour bridge" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:2deg"><div class="shot c2" role="img" aria-label="harbour bridge"><img src="images/photo-8.jpg" alt="harbour bridge" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3" role="img" aria-label="photo"><img src="images/photo-9.jpg" alt="photo" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c1"><img src="images/photo-1.jpg" alt="Pedestrian crossing a sunlit city street lined with tall buildings" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c2"><img src="images/photo-2.jpg" alt="Sulphur-crested cockatoo on a power line against a deep blue sky" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3"><img src="images/photo-3.jpg" alt="Rainbow lorikeet in a bottlebrush tree against a blue sky" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:2deg"><div class="shot c4"><img src="images/photo-4.jpg" alt="Two rainbow lorikeets on a railing above the harbour" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c5"><img src="images/photo-5.jpg" alt="Pelican on a post in front of the Anzac Bridge at dusk" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:1deg"><div class="shot c6"><img src="images/photo-6.jpg" alt="Ferry stairwell looking out at choppy water" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-2.5deg"><div class="shot c1"><img src="images/photo-7.jpg" alt="Ferry deck at golden hour with the Opera House in the distance" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:2deg"><div class="shot c2"><img src="images/photo-8.jpg" alt="Green and yellow ferry docked at Circular Quay with the Opera House behind" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c3"><img src="images/photo-9.jpg" alt="Two children silhouetted against the setting sun by the harbour" loading="lazy"></div></figure>
       </div>
     </div>
   </section>
@@ -186,17 +187,17 @@
   <section class="win" id="baking" data-title="bakery_diaries" data-icon="cupcake" data-x="240" data-y="110" data-w="480">
     <div class="win-body">
       <h2>Bakery diaries</h2>
-      <p>a baking diary. bread is life. <a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">@matchadou ↗</a></p>
+      <p>A baking diary. Bread is life. <a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">@matchadou ↗</a></p>
       <div class="gallery">
-        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2" role="img" aria-label="home bake"><img src="images/bake-1.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5" role="img" aria-label="home bake"><img src="images/bake-2.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1" role="img" aria-label="home bake"><img src="images/bake-3.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:2deg"><div class="shot c3" role="img" aria-label="home bake"><img src="images/bake-4.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c6" role="img" aria-label="home bake"><img src="images/bake-5.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:1deg"><div class="shot c4" role="img" aria-label="home bake"><img src="images/bake-6.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2" role="img" aria-label="home bake"><img src="images/bake-7.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5" role="img" aria-label="home bake"><img src="images/bake-8.jpg" alt="home bake" loading="lazy"></div></figure>
-        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1" role="img" aria-label="home bake"><img src="images/bake-9.jpg" alt="home bake" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2"><img src="images/bake-1.jpg" alt="Matcha crepe cake topped with strawberries and mochi" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5"><img src="images/bake-2.jpg" alt="Golden swirled laminated pastries on a cooling rack" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1"><img src="images/bake-3.jpg" alt="Blueberry custard danishes on a cooling rack" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:2deg"><div class="shot c3"><img src="images/bake-4.jpg" alt="Sliced sesame-crusted milk bread" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-1.5deg"><div class="shot c6"><img src="images/bake-5.jpg" alt="Cheese cookies on a baking tray" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:1deg"><div class="shot c4"><img src="images/bake-6.jpg" alt="Homemade pepperoni pizza next to a second base with sauce" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-2deg"><div class="shot c2"><img src="images/bake-7.jpg" alt="Swirled bread rolls on a scalloped plate beside a cappuccino" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:1.5deg"><div class="shot c5"><img src="images/bake-8.jpg" alt="Two salt bread rolls with an iced matcha latte" loading="lazy"></div></figure>
+        <figure class="polaroid" style="--tilt:-1deg"><div class="shot c1"><img src="images/bake-9.jpg" alt="Salt bread rolls being served with iced matcha" loading="lazy"></div></figure>
       </div>
     </div>
   </section>
@@ -207,10 +208,10 @@
       <h2>Painting</h2>
       <p>Watercolours and sketches.</p>
       <div class="canvas-grid">
-        <figure class="canvas"><div class="ph"><img src="images/paint-bridge.jpg" alt="Harbour Bridge sketches" loading="lazy"></div></figure>
-        <figure class="canvas"><div class="ph"><img src="images/paint-shopfront.jpg" alt="Framed shopfront sketch" loading="lazy"></div></figure>
-        <figure class="canvas"><div class="ph"><img src="images/paint-cafe.jpg" alt="Cafe front watercolour" loading="lazy"></div></figure>
-        <figure class="canvas"><div class="ph"><img src="images/paint-balcony.jpg" alt="Flower balcony watercolour" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-bridge.jpg" alt="Watercolour sketches of the Sydney Harbour Bridge in a sketchbook" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-shopfront.jpg" alt="Framed watercolour of a brick shopfront with a blue door and potted plants" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-cafe.jpg" alt="Watercolour of a café front with a striped awning and flower boxes" loading="lazy"></div></figure>
+        <figure class="canvas"><div class="ph"><img src="images/paint-balcony.jpg" alt="Watercolour of a building covered in red flowers with two café chairs out front" loading="lazy"></div></figure>
       </div>
     </div>
   </section>
@@ -220,9 +221,9 @@
     <div class="win-body">
       <h2>Side projects</h2>
       <ul class="pgrid">
-        <li><a class="pcard c3" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" loading="lazy"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">walk through the photos</span></a></li>
-        <li><a class="pcard c1" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-photostrip.jpg" alt="Screenshot of fotostrip" loading="lazy"></span><span class="pname">fotostrip ↗</span><span class="ptag">a fun lil fotobooth</span></a></li>
-        <li><a class="pcard c6" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-drift.jpg" alt="Screenshot of drift" loading="lazy"></span><span class="pname">drift ↗</span><span class="ptag">send a moment across the water</span></a></li>
+        <li><a class="pcard c3" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" loading="lazy"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">Walk through the photos</span></a></li>
+        <li><a class="pcard c1" href="https://photostrip-kappa.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-photostrip.jpg" alt="Screenshot of fotostrip" loading="lazy"></span><span class="pname">fotostrip ↗</span><span class="ptag">A fun little photo booth</span></a></li>
+        <li><a class="pcard c6" href="https://drift-coral-iota.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="images/project-drift.jpg" alt="Screenshot of drift" loading="lazy"></span><span class="pname">drift ↗</span><span class="ptag">Send a moment across the water</span></a></li>
       </ul>
     </div>
   </section>
@@ -232,11 +233,11 @@
       <h2>Say hi!</h2>
       <p>Want to work together, order a cake, or just chat?</p>
       <ul class="links">
-        <li><a href="https://www.linkedin.com/in/fadila-fidina/" target="_blank" rel="noopener">★ LinkedIn</a></li>
-        <li><a href="https://sessionize.com/fadila/" target="_blank" rel="noopener">★ Sessionize · talks</a></li>
-        <li><a href="https://github.com/fadilafidina" target="_blank" rel="noopener">★ GitHub</a></li>
-        <li><a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">★ Instagram · photos @diladialed</a></li>
-        <li><a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">★ Instagram · baking @matchadou</a></li>
+        <li><a href="https://www.linkedin.com/in/fadila-fidina/" target="_blank" rel="noopener">LinkedIn</a></li>
+        <li><a href="https://sessionize.com/fadila/" target="_blank" rel="noopener">Sessionize · talks</a></li>
+        <li><a href="https://github.com/fadilafidina" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">Instagram · photos @diladialed</a></li>
+        <li><a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">Instagram · baking @matchadou</a></li>
         <!-- <li><a href="mailto:you@example.com">★ email</a></li> -->
         
       </ul>
@@ -254,7 +255,7 @@
 <!-- ============ TASKBAR ============ -->
 <footer class="taskbar">
   <button class="start-btn" id="startBtn" aria-expanded="false" aria-controls="startMenu">
-    <svg viewBox="0 0 12 12" class="pix" id="startIcon" aria-hidden="true"></svg> start
+    <svg viewBox="0 0 12 12" class="pix" id="startIcon" aria-hidden="true"></svg> Start
   </button>
   <div class="tasks" id="tasks"></div>
   <div class="tray"><span id="clock">12:00</span></div>

@@ -583,3 +583,17 @@ h3.sub { font-size: 12px; letter-spacing: .04em; }
 .proof { display: flex; flex-wrap: wrap; gap: 8px; }
 .proof .btn { font-family: var(--mono); font-size: 13px; cursor: pointer; }
 @media (max-width: 720px) { .focus-list li { grid-template-columns: 1fr; gap: 2px; } .stack { grid-template-columns: 1fr; gap: 4px; } .stack dt { padding-top: 6px; } }
+
+/* ---------- accessibility pass ---------- */
+:root { --muted: #6b6672; }
+.win:not(.focus) .titlebar { color: #5f5a66; }
+.sticky-kicker { color: #6e4a5c; }
+h3.sub, .talk-card .kicker, .sticky-kicker { text-transform: none; letter-spacing: 0; }
+.talk-open { all: unset; cursor: inherit; }
+.talk-open:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.talk:focus-within { background: var(--accent); }
+.win-body h1:focus, .win-body h2:focus { outline: none; }
+.win-body h1:focus-visible, .win-body h2:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+.skip-link { position: fixed; left: 8px; top: -60px; z-index: 100000; padding: 8px 12px; background: var(--paper); color: var(--ink); border: 1px solid var(--line); font-family: var(--mono); font-size: 13px; text-decoration: none; }
+.skip-link:focus { top: 8px; background: var(--accent); }
+a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }

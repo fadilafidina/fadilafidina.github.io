@@ -101,7 +101,7 @@
     const b = document.createElement('button');
     b.className = 'pigeon';
     b.setAttribute('aria-label', 'A pigeon. Click to make it hop.');
-    b.innerHTML = '<span class="pg-coo" aria-hidden="true">coo?</span><span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-pigeon.png" alt="" draggable="false">';
+    b.innerHTML = '<span class="pg-coo" aria-hidden="true">Coo?</span><span class="pg-shadow" aria-hidden="true"></span><img class="pg-bird" src="images/obj-pigeon.png" alt="" draggable="false">';
     document.body.appendChild(b);
     const bird = b.querySelector('.pg-bird'), shadow = b.querySelector('.pg-shadow');
     let hopping = false;
@@ -237,7 +237,7 @@
     win.style.top = best.y + 'px';
   }
 
-  function openWin(id) {
+  function openWin(id, moveFocus = true) {
     const win = document.getElementById(id);
     if (!win.classList.contains('open') || win._anim) {
       stopAnim(win);
@@ -253,12 +253,18 @@
     }
     $('#task-' + id).hidden = false;
     focusWin(id);
+    if (moveFocus) {
+      const h = win.querySelector('.win-body h1, .win-body h2');
+      if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }); }
+    }
   }
   function closeWin(id) {
     const win = document.getElementById(id);
     stopAnim(win);
     win.classList.remove('focus');
     $('#task-' + id).hidden = true;
+    // if focus was inside this window, hand it back to its desktop icon
+    if (win.contains(document.activeElement)) { const ic = document.querySelector(`.icon[data-target="${id}"]`); if (ic) ic.focus(); }
     const finish = () => { win.classList.remove('open', 'max'); };
     if (reduceMotion() || typeof win.animate !== 'function') return finish();
     win._anim = win.animate(
@@ -328,6 +334,7 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       toggleStart(false);
+      if ([...document.querySelectorAll('.zoom')].some((z) => !z.hidden)) return; // a pop-up handles its own Escape
       const focused = wins.find((w) => w.classList.contains('focus') && w.classList.contains('open'));
       if (focused) closeWin(focused.id);
     }
@@ -341,12 +348,12 @@
     const mine = fmt('Australia/Sydney'), yours = fmt();
     clock.innerHTML = mine === yours
       ? `<span title="Sydney time">${mine}</span>`
-      : `<span title="Fadila's time (Sydney)">my time <b>${mine}</b></span><span class="sep">·</span><span title="Your local time">your time <b>${yours}</b></span>`;
+      : `<span title="Fadila's time (Sydney)">My time <b>${mine}</b></span><span class="sep">·</span><span title="Your local time">Your time <b>${yours}</b></span>`;
   };
   tick(); setInterval(tick, 15000);
 
   /* ---------- open the windows marked data-open ---------- */
-  if (!isMobile()) wins.forEach((w) => { if (w.dataset.open === 'true') openWin(w.id); });
+  if (!isMobile()) wins.forEach((w) => { if (w.dataset.open === 'true') openWin(w.id, false); });
 
   /* ---------- font tester: add ?font=nunito (etc.) to the URL ---------- */
   (() => {
@@ -377,14 +384,23 @@
     box.innerHTML = '<figure class="zoom-card"><button class="zoom-x" aria-label="Close">×</button><img alt=""><figcaption></figcaption></figure>';
     document.body.appendChild(box);
     const img = box.querySelector('img'), cap = box.querySelector('figcaption');
-    const close = () => { box.classList.remove('on'); setTimeout(() => { box.hidden = true; }, 180); };
+    box.querySelector('.zoom-card').setAttribute('role', 'dialog');
+    box.querySelector('.zoom-card').setAttribute('aria-modal', 'true');
+    box.querySelector('.zoom-card').setAttribute('aria-label', 'Enlarged photo');
+    const close = () => { box.classList.remove('on'); setTimeout(() => { box.hidden = true; }, 180); if (lastTile) lastTile.focus(); };
     const open = (src, alt, text) => {
       img.src = src; img.alt = alt || ''; cap.textContent = text || '';
       box.hidden = false; requestAnimationFrame(() => box.classList.add('on'));
+      box.querySelector('.zoom-x').focus();
     };
     const tiles = '.shot, .canvas .ph';
-    document.querySelectorAll(tiles).forEach(t => { t.tabIndex = 0; t.setAttribute('role', 'button'); });
+    document.querySelectorAll(tiles).forEach(t => {
+      t.tabIndex = 0; t.setAttribute('role', 'button');
+      const i = t.querySelector('img'); if (i) t.setAttribute('aria-label', 'Enlarge: ' + i.alt);
+    });
+    let lastTile = null;
     const fire = t => {
+      lastTile = t;
       const i = t.querySelector('img'); if (!i) return;
       const f = t.closest('figure'), c = f && f.querySelector('figcaption');
       open(i.currentSrc || i.src, i.alt, c ? c.innerText.replace(/\n/g, ' · ') : '');
@@ -401,26 +417,25 @@
   (() => {
     const box = document.createElement('div');
     box.className = 'zoom talk-pop'; box.hidden = true;
-    box.innerHTML = '<article class="zoom-card talk-card" role="dialog" aria-modal="true"><button class="zoom-x" aria-label="Close">×</button><div class="talk-body"></div></article>';
+    box.innerHTML = '<article class="zoom-card talk-card" role="dialog" aria-modal="true" aria-labelledby="talkTitle"><button class="zoom-x" aria-label="Close">×</button><div class="talk-body"></div></article>';
     document.body.appendChild(box);
     const body = box.querySelector('.talk-body');
     let last = null;
     const close = () => { box.classList.remove('on'); setTimeout(() => { box.hidden = true; }, 180); if (last) last.focus(); };
     const open = (t) => {
-      last = t;
-      body.innerHTML = '<p class="kicker">talk</p>' + t.querySelector('h3').outerHTML +
+      last = t.querySelector('.talk-open') || t;
+      body.innerHTML = '<p class="kicker">Talk</p><h3 id="talkTitle">' + t.querySelector('h3').textContent + '</h3>' +
         t.querySelector('.abstract').innerHTML +
-        '<p class="kicker">presented at</p>' + t.querySelector('.where-list').outerHTML;
+        '<p class="kicker">Presented at</p>' + t.querySelector('.where-list').outerHTML;
       box.hidden = false; requestAnimationFrame(() => box.classList.add('on'));
       box.querySelector('.zoom-x').focus();
     };
     document.addEventListener('click', (e) => {
       if (e.target.closest('a')) return;
-      const t = e.target.closest('.talk'); if (t) open(t);
+      const t = e.target.closest('.talk'); if (t) open(t);   // whole card for mouse users; the title is the real button
     });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !box.hidden) close();
-      if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('.talk')) { e.preventDefault(); open(e.target); }
     });
     box.addEventListener('click', (e) => { if (e.target === box || e.target.closest('.zoom-x')) close(); });
   })();
@@ -429,21 +444,21 @@
   (() => {
     const note = $('#sticky'); if (!note) return;
     const NOTES = [
-      'you are doing better than you think.',
-      'small steps still count.',
-      'rest is productive too.',
-      'you don’t have to be perfect to be good.',
-      'it’s okay to start again.',
-      'be proud of how far you’ve come.',
-      'drink some water ✿',
-      'go outside and look at the sky.',
-      'make something just because it makes you happy.',
-      'bread takes time. so do you.',
-      'you are allowed to take up space.',
-      'one thing at a time.',
-      'today is a good day to be kind to yourself.',
-      'good things are coming.',
-      'you’ve got this.'
+      'You are doing better than you think.',
+      'Small steps still count.',
+      'Rest is productive too.',
+      'You don’t have to be perfect to be good.',
+      'It’s okay to start again.',
+      'Be proud of how far you’ve come.',
+      'Drink some water.',
+      'Go outside and look at the sky.',
+      'Make something just because it makes you happy.',
+      'Bread takes time. So do you.',
+      'You are allowed to take up space.',
+      'One thing at a time.',
+      'Today is a good day to be kind to yourself.',
+      'Good things are coming.',
+      'You’ve got this.'
     ];
     let last = -1;
     const pick = () => {
@@ -477,5 +492,12 @@
   /* ---------- buttons that open another window ---------- */
   document.addEventListener('click', (e) => {
     const b = e.target.closest('[data-open-win]'); if (b) openWin(b.dataset.openWin);
+  });
+
+  /* ---------- skip link: jump into the front-most open window ---------- */
+  $('#skipLink').addEventListener('click', (e) => {
+    e.preventDefault();
+    const open = wins.filter((w) => w.classList.contains('open')).sort((a, b) => (+b.style.zIndex || 0) - (+a.style.zIndex || 0))[0];
+    if (open) openWin(open.id); else openWin('about');
   });
 })();
