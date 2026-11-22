@@ -74,7 +74,7 @@
     return rects;
   }
   const OBJ = { briefcase: 'bag', camera: 'camera', cupcake: 'croissant', palette: 'palette',
-                heart: 'envelope', mic: 'mic', floppy: 'typewriter' };
+                heart: 'envelope', mic: 'mic', floppy: 'typewriter', keyboard: 'keyboard' };
   const SMILE = '<svg class="pix obj" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.8 2.5 2.6 4 2.6s3-.8 4-2.6"/><path d="M9 9.5v.5M15 9.5v.5"/></svg>';
   const svg = (name, cls = 'pix') =>
     OBJ[name] ? `<img class="${cls} obj" src="images/obj-${OBJ[name]}.png" alt="" aria-hidden="true" draggable="false">`
@@ -424,4 +424,58 @@
     });
     box.addEventListener('click', (e) => { if (e.target === box || e.target.closest('.zoom-x')) close(); });
   })();
+
+  /* ---------- sticky note: a random little bit of philosophy / hope ---------- */
+  (() => {
+    const note = $('#sticky'); if (!note) return;
+    const NOTES = [
+      'you are doing better than you think.',
+      'small steps still count.',
+      'rest is productive too.',
+      'you don’t have to be perfect to be good.',
+      'it’s okay to start again.',
+      'be proud of how far you’ve come.',
+      'drink some water ✿',
+      'go outside and look at the sky.',
+      'make something just because it makes you happy.',
+      'bread takes time. so do you.',
+      'you are allowed to take up space.',
+      'one thing at a time.',
+      'today is a good day to be kind to yourself.',
+      'good things are coming.',
+      'you’ve got this.'
+    ];
+    let last = -1;
+    const pick = () => {
+      let i; do { i = Math.floor(Math.random() * NOTES.length); } while (i === last && NOTES.length > 1);
+      last = i;
+      $('#stickyText').textContent = NOTES[i];
+    };
+    pick();
+    $('#stickyNew').addEventListener('click', () => {
+      pick();
+      if (!reduceMotion() && note.animate) note.animate([{ transform: 'scale(.96)' }, { transform: 'none' }], { duration: 220, easing: 'cubic-bezier(.3,1.5,.5,1)' });
+    });
+    $('#stickyClose').addEventListener('click', () => { note.hidden = true; });
+
+    // drag by the top strip, like the real thing
+    const bar = note.querySelector('.sticky-bar');
+    bar.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button') || isMobile()) return;
+      const r = note.getBoundingClientRect(), dx = e.clientX - r.left, dy = e.clientY - r.top;
+      bar.setPointerCapture(e.pointerId);
+      const move = (ev) => {
+        note.style.left = Math.max(0, Math.min(innerWidth - r.width, ev.clientX - dx)) + 'px';
+        note.style.top = Math.max(0, ev.clientY - dy) + 'px';
+        note.style.right = 'auto';
+      };
+      const up = () => { bar.removeEventListener('pointermove', move); bar.removeEventListener('pointerup', up); };
+      bar.addEventListener('pointermove', move); bar.addEventListener('pointerup', up);
+    });
+  })();
+
+  /* ---------- buttons that open another window ---------- */
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-open-win]'); if (b) openWin(b.dataset.openWin);
+  });
 })();

@@ -21,6 +21,15 @@
   <!-- Desktop icons are generated from the windows below (see script.js) -->
   <nav class="icons" id="icons" aria-label="Desktop"></nav>
 
+  <!-- Sticky note (Windows 7 style). Quote is picked at random in script.js -->
+  <aside class="sticky" id="sticky" aria-label="Sticky note">
+    <div class="sticky-bar">
+      <button class="sticky-btn" id="stickyNew" aria-label="Another note" title="another note">+</button>
+      <button class="sticky-btn" id="stickyClose" aria-label="Close note" title="close">×</button>
+    </div>
+    <div class="sticky-body" aria-live="polite"><span class="sticky-kicker">note to self</span><p id="stickyText"></p></div>
+  </aside>
+
   <!-- ============ WINDOW: ABOUT ============ -->
   <section class="win" id="about" data-title="hello.txt" data-icon="smile" data-x="260" data-y="40" data-w="420" data-open="true">
     <div class="win-body">
@@ -47,7 +56,8 @@
           <h3>Senior Software Engineer</h3>
           <p class="where">Atlassian · Sydney, NSW</p>
           <ul>
-            <li>Frontend engineering with a focus on delivering customer impact through experimentation</li>
+            <li>Worked in the commerce domain and now in experimentation, building features that grow sales and revenue</li>
+            <li>Frontend and product engineering, with a focus on delivering customer impact through experimentation</li>
             <li>Finalist, Software Engineer of the Year (Women in Digital, 2024)</li>
             <li>Conference speaker on experimentation and product engineering</li>
           </ul>
@@ -59,6 +69,7 @@
           <ul>
             <li>Started as a junior business analyst, moved into engineering within six months</li>
             <li>Promoted to senior engineer about a year and a half later</li>
+            <li>Built a web-based claiming application using domain-driven design and a service-oriented architecture: C# microservices on the Microsoft stack with databases, hosted on AWS</li>
             <li>Taught myself React and JavaScript by diving into the front-end codebase</li>
             <li>Stayed on through the NAB acquisition and merger with HICAPS</li>
           </ul>
@@ -70,6 +81,38 @@
         </li>
       </ol>
       <p><a class="btn" href="https://www.linkedin.com/in/fadila-fidina" target="_blank" rel="noopener">★ full story on LinkedIn</a></p>
+    </div>
+  </section>
+
+  <!-- ============ WINDOW: SKILLS ============ -->
+  <section class="win" id="skills" data-title="skills.exe" data-icon="keyboard" data-x="220" data-y="80" data-w="520">
+    <div class="win-body">
+      <h2>Skills</h2>
+      <p>Frontend and product engineer. I care about building the right thing, then proving it worked.</p>
+
+      <h3 class="sub">what I focus on</h3>
+      <ul class="focus-list">
+        <li><b>Frontend engineering</b><span>Fast, accessible React and TypeScript apps in critical user flows</span></li>
+        <li><b>Product engineering</b><span>Questioning requirements, shaping the solution with product and design</span></li>
+        <li><b>Experimentation</b><span>Hypotheses, instrumentation, A/B tests and safe rollouts</span></li>
+        <li><b>Opportunity sizing</b><span>Finding which funnels and changes are worth building for the business</span></li>
+        <li><b>Data &amp; post-launch analysis</b><span>Reading the results, measuring impact and deciding what's next</span></li>
+        <li><b>Architecture</b><span>Domain-driven design, service-oriented systems and thorough design and code reviews</span></li>
+        <li><b>Agentic workflows</b><span>Working with AI agents day to day, and knowing how to steer, review and own what they produce</span></li>
+      </ul>
+
+      <h3 class="sub">stack</h3>
+      <dl class="stack">
+        <dt>languages</dt><dd><span>TypeScript</span><span>JavaScript</span><span>Java</span><span>Kotlin</span><span>C#</span></dd>
+        <dt>frontend</dt><dd><span>React</span><span>HTML</span><span>CSS</span></dd>
+        <dt>backend</dt><dd><span>Node.js</span><span>.NET / Microsoft stack</span><span>Microservices</span></dd>
+        <dt>testing</dt><dd><span>Jest</span><span>Cypress</span><span>Playwright</span></dd>
+        <dt>cloud</dt><dd><span>AWS</span></dd>
+        <dt>AI</dt><dd><span>Claude Code</span><span>Codex</span><span>Agentic workflows</span></dd>
+      </dl>
+
+      <h3 class="sub">see it in action</h3>
+      <p class="proof"><button class="btn" data-open-win="speaking">▶ talks</button> <button class="btn" data-open-win="projects">▶ side projects</button> <button class="btn" data-open-win="experience">▶ experience</button></p>
     </div>
   </section>
 
