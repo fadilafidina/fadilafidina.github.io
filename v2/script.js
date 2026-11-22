@@ -6,6 +6,11 @@
   'use strict';
 
   const root = document.documentElement;
+  root.classList.add('js');
+  // the background word is a tape banner: repeat it so it runs edge to edge
+  document.querySelectorAll('.bgword').forEach((b) => {
+    b.textContent = Array(40).fill(b.textContent.trim()).join('  ✿  ');
+  });
   const mqPin = window.matchMedia('(min-width: 721px) and (min-height: 560px)');
   const mqStill = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -292,4 +297,67 @@
   window.addEventListener('load', () => { if (mode === 'pinned') { measure(); update(); } });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (mode === 'pinned') { measure(); update(); } });
   update();
+  // ---------- receipt footer ----------
+  (() => {
+    const till = document.querySelector('.till');
+    if (!till) return;
+    till.querySelectorAll('[data-count]').forEach((el) => {
+      const n = document.querySelectorAll(el.dataset.count).length;
+      if (n) el.textContent = n;
+    });
+    const time = document.getElementById('tillTime');
+    const fmt = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Sydney', day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false });
+    const stamp = () => { time.textContent = fmt.format(new Date()).toUpperCase().replace(',', ' ·'); };
+    // what this visit actually downloaded (cached files count as 0, so it can be tiny on a revisit)
+    const weightEl = document.getElementById('tillWeight');
+    const weigh = () => {
+      const entries = [...performance.getEntriesByType('navigation'), ...performance.getEntriesByType('resource')];
+      const bytes = entries.reduce((s, e) => s + (e.transferSize || e.encodedBodySize || 0), 0);
+      weightEl.textContent = bytes > 1e6 ? `${(bytes / 1048576).toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+    };
+    const print = () => { stamp(); weigh(); till.classList.add('printed'); };
+    if (!('IntersectionObserver' in window)) { print(); return; }
+    const seen = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { print(); seen.disconnect(); }
+    }, { threshold: 0.15 });
+    seen.observe(till);
+  })();
+  // ---------- whimsy: sprinkle a few twinkling sparkles round each section ----------
+  (() => {
+    const svgNS = 'http://www.w3.org/2000/svg';
+    let seed = 7;
+    const rnd = () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+    // keep to the edges and the top band so they never sit on the cards
+    const spot = () => {
+      const r = rnd();
+      if (r < .4) return [3 + rnd() * 14, 20 + rnd() * 70];      // left edge
+      if (r < .8) return [83 + rnd() * 14, 20 + rnd() * 70];     // right edge
+      return [30 + rnd() * 40, 4 + rnd() * 10];                  // top band
+    };
+    const sparkle = (x, y) => {
+      const s = document.createElementNS(svgNS, 'svg');
+      s.setAttribute('class', 'sparkle' + (rnd() < .35 ? ' pink' : ''));
+      s.setAttribute('aria-hidden', 'true');
+      s.style.cssText = `--x:${x.toFixed(1)}%;--y:${y.toFixed(1)}%;--s:${(16 + rnd() * 14).toFixed(0)}px;--r:${(rnd() * 40 - 20).toFixed(0)}deg;--tw:${(2.6 + rnd() * 2.4).toFixed(1)}s;--twd:${(-rnd() * 4).toFixed(1)}s`;
+      const u = document.createElementNS(svgNS, 'use');
+      u.setAttribute('href', '#star');
+      s.append(u);
+      return s;
+    };
+    document.querySelectorAll('.ch > .stage').forEach((stage) => {
+      for (let i = 0; i < 4; i++) stage.append(sparkle(...spot()));
+    });
+    const till = document.querySelector('.till');
+    if (till) {
+      const box = document.createElement('div');
+      box.className = 'till-sparkles';
+      // dotted round the receipt (px from the middle, % down)
+      [[-215, 22], [205, 14], [-235, 62], [228, 48], [-190, 88], [200, 82]].forEach(([dx, y]) => {
+        const s = sparkle(0, y);
+        s.style.setProperty('--x', `calc(50% + ${dx}px)`);
+        box.append(s);
+      });
+      till.append(box);
+    }
+  })();
 })();

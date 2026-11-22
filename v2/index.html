@@ -14,7 +14,7 @@
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <symbol id="star" viewBox="0 0 24 24"><path d="M12 1.5 C13 8.5 15.5 11 22.5 12 C15.5 13 13 15.5 12 22.5 C11 15.5 8.5 13 1.5 12 C8.5 11 11 8.5 12 1.5 Z" fill="#fff" stroke="#26232b" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+  <symbol id="star" viewBox="0 0 24 24"><path d="M12 1.5 C13 8.5 15.5 11 22.5 12 C15.5 13 13 15.5 12 22.5 C11 15.5 8.5 13 1.5 12 C8.5 11 11 8.5 12 1.5 Z" style="fill: var(--star-fill, #fff)" stroke="#26232b" stroke-width="1.2" stroke-linejoin="round"/></symbol>
 </svg>
 
 <a class="skip" href="#experience">Skip to the story</a>
@@ -39,7 +39,7 @@
   <section class="ch ch-hello" id="hello" data-name="Hello" aria-labelledby="hello-title">
     <div class="stage">
       <div class="hello-text">
-        <h1 id="hello-title" class="hello-title">Hi, I'm Fadila!</h1>
+        <h1 id="hello-title" class="hello-title"><span class="hl">Hi, I'm Fadila!</span></h1>
         <div class="paper bio drop taped" style="--d:900ms; --r:-1deg; --tr:3deg">
           <p>Welcome to my little corner of the internet. I'm a software engineer in Sydney who loves to create: in code, in photos, in bread and in paint.</p>
         </div>
@@ -75,7 +75,7 @@
       <p class="bgword" aria-hidden="true">work work</p>
       <header class="ch-head">
         <p class="kicker">02 / Experience</p>
-        <h2 id="exp-title">Work &amp; experience</h2>
+        <h2 id="exp-title"><span class="hl">Work &amp; experience</span></h2>
       </header>
 
       <ol class="roles">
@@ -122,7 +122,7 @@
       <p class="bgword" aria-hidden="true">on stage</p>
       <header class="ch-head">
         <p class="kicker">03 / Speaking</p>
-        <h2 id="talks-title">Speaking</h2>
+        <h2 id="talks-title"><span class="hl">Speaking</span></h2>
         <p class="lede">I give talks about frontend engineering, product engineering and experimentation.</p>
       </header>
 
@@ -215,7 +215,7 @@
       <p class="bgword" aria-hidden="true">street</p>
       <header class="ch-head">
         <p class="kicker">04 / Photos</p>
-        <h2 id="photos-title">Photography</h2>
+        <h2 id="photos-title"><span class="hl">Photography</span></h2>
         <p class="lede">Street photography. <a href="https://www.instagram.com/diladialed/" target="_blank" rel="noopener">@diladialed ↗</a></p>
       </header>
       <ul class="prints" aria-label="Street photos (select to enlarge)">
@@ -241,7 +241,7 @@
       <p class="bgword" aria-hidden="true">fresh bakes</p>
       <header class="ch-head">
         <p class="kicker">05 / Bakery diaries</p>
-        <h2 id="bakes-title">Bakery diaries</h2>
+        <h2 id="bakes-title"><span class="hl">Bakery diaries</span></h2>
         <p class="lede">A baking diary. Bread is life. <a href="https://www.instagram.com/matchadou/" target="_blank" rel="noopener">@matchadou ↗</a></p>
       </header>
       <ul class="bakes" aria-label="Home bakes (select to enlarge)">
@@ -269,7 +269,7 @@
       <p class="bgword" aria-hidden="true">paint</p>
       <header class="ch-head">
         <p class="kicker">06 / Paint</p>
-        <h2 id="paint-title">Painting</h2>
+        <h2 id="paint-title"><span class="hl">Painting</span></h2>
         <p class="lede">Watercolours and sketches.</p>
       </header>
       <div class="book">
@@ -289,7 +289,7 @@
       <p class="bgword" aria-hidden="true">side quests</p>
       <header class="ch-head">
         <p class="kicker">07 / Projects</p>
-        <h2 id="projects-title">Side projects</h2>
+        <h2 id="projects-title"><span class="hl">Side projects</span></h2>
       </header>
       <ul class="pcards">
         <li class="pop" data-step="1" style="--x:25%; --y:56%; --r:-3deg"><a class="paper pcard taped" style="--tr:-5deg" href="https://galler-bay.vercel.app/" target="_blank" rel="noopener"><span class="pshot"><img src="../images/project-gallery.jpg" alt="Screenshot of dila's lil gallery" width="800" height="600" loading="lazy" decoding="async"></span><span class="pname">dila's lil gallery ↗</span><span class="ptag">Walk through the photos</span></a></li>
@@ -308,7 +308,7 @@
       <div class="mail">
         <div class="paper letter pop taped" data-step="2" style="--tr:-4deg">
           <p class="kicker">08 / Say hi</p>
-          <h2 id="hi-title">Say hi!</h2>
+          <h2 id="hi-title"><span class="hl">Say hi!</span></h2>
           <p>Want to work together, order a cake, or just chat?</p>
           <ul class="links">
             <li><a href="https://www.linkedin.com/in/fadila-fidina/" target="_blank" rel="noopener">★ LinkedIn ↗</a></li>
@@ -342,6 +342,40 @@
   </section>
 
 </main>
+
+<!-- ============ RECEIPT FOOTER ============ -->
+<footer class="till" aria-label="Receipt">
+  <div class="till-slot" aria-hidden="true"></div>
+  <div class="till-paper">
+    <div class="till-receipt">
+      <p class="till-copy">* customer copy *</p>
+      <p class="till-head"><b>Fadila Fidina</b><span>Sydney, NSW</span><span id="tillTime">&nbsp;</span></p>
+      <span class="rule"></span>
+      <ul class="till-items">
+        <li><span>1 × software engineer</span></li>
+        <li><span><span data-count=".talk">5</span> × talks</span></li>
+        <li><span><span data-count="#photos .print">9</span> × photos</span></li>
+        <li><span><span data-count="#bakery .print">9</span> × home bakes</span></li>
+        <li><span><span data-count="#paint .page">4</span> × paintings</span></li>
+        <li><span><span data-count=".pcard">3</span> × side projects</span></li>
+        <li><span>∞ × iced matcha</span></li>
+      </ul>
+      <span class="rule"></span>
+      <ul class="till-items">
+        <li><span>page weight</span><span id="tillWeight">…</span></li>
+        <li><span>cookies</span><span>0</span></li>
+        <li><span>frameworks</span><span>0</span></li>
+        <li><span>pigeons fed</span><span>1</span></li>
+        <li><span>service</span><span class="till-stars">★★★★★</span></li>
+      </ul>
+      <span class="rule"></span>
+      <span class="till-stamp" aria-hidden="true">paid in smiles</span>
+      <p class="till-total"><span>TOTAL</span><a href="#say-hi">say hi ✿</a></p>
+      <span class="till-barcode" aria-hidden="true"></span>
+      <p class="till-thanks">thank you, come again ♡</p>
+    </div>
+  </div>
+</footer>
 
 <a class="back-link" href="/">← desktop version</a>
 
