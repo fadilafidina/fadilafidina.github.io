@@ -605,3 +605,10 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline: 
 .pg-coo { right: 46px; bottom: 74px; }
 @media (max-width: 720px) { .pigeon { width: 66px; height: 60px; } .pg-bird { width: 66px; } .pg-shadow { left: 12px; width: 36px; } }
 .pg-coo { white-space: nowrap; }
+
+/* ---------- heading highlighter (pink marker swipe) ---------- */
+.win-body > h2, .win-body > h1.big {
+  width: fit-content; max-width: 100%;
+  padding: 0 6px; margin-left: -6px;
+  background: linear-gradient(transparent 50%, var(--accent) 50%, var(--accent) 86%, transparent 86%);
+}
