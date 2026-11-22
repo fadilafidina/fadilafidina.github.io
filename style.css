@@ -618,4 +618,4 @@ a:focus-visible, button:focus-visible, [role="button"]:focus-visible { outline: 
 #weather { display: inline-flex; align-items: center; gap: 5px; padding-right: 10px; border-right: 1px solid var(--line); white-space: nowrap; }
 #weather[hidden] { display: none; }
 #weather b { font-weight: 500; color: var(--ink); }
-.wx-icon { font-size: 20px; line-height: 1; margin: -4px 0; }
+.wx-icon { font-size: 30px; line-height: 1; margin: -8px 0; font-family: system-ui, sans-serif; }
