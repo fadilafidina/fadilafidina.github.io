@@ -338,14 +338,22 @@ h3.sub { font-weight: 500; font-size: 15px; color: var(--hotpink); margin: 4px 0
   --accent: #f6cfe1;      /* the only colour: hover / focus / selected */
   --paper: #ffffff;
   --muted: #7d7884;
-  --desk: #efede9;        /* plain desktop */
+  --desk: #f7f4ec;        /* cream desk paper, same as v2 */
+  --grid: rgba(120, 108, 84, .12);
   --soft: #f6f4f1;
   --font-pixel: 'DM Sans', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
   --font-body: var(--font-pixel);
   --pink: var(--accent); --hotpink: var(--accent); --lilac: var(--soft); --blue: var(--soft); --mint: var(--soft); --butter: var(--accent); --cream: var(--paper);
 }
 body { background: var(--desk); font-size: 16px; line-height: 1.5; color: var(--ink); -webkit-font-smoothing: antialiased; }
-.desktop { background: var(--desk); }
+.desktop {   /* grid paper, same as v2 */
+  background-color: var(--desk);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-position: -1px -1px;
+}
 .clouds { display: none; }
 
 /* icons = the objects */

@@ -804,30 +804,30 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
    everything pops out from behind it (desktop story)
    ========================================================== */
 .name-badge {
-  /* a strip of pink washi tape with torn ends */
-  display: inline-flex; align-items: baseline; justify-content: center;
-  padding: 16px 38px 14px; margin: 0 auto; rotate: -2deg;
-  background: color-mix(in srgb, var(--pink) 92%, transparent);
-  background-image: repeating-linear-gradient(90deg, transparent 0 14px, rgba(255, 255, 255, .38) 14px 19px);
-  border-block: 1px solid rgba(38, 35, 43, .16);
-  clip-path: polygon(0 0, 2.4% 12%, 0 25%, 2.4% 38%, 0 50%, 2.4% 62%, 0 75%, 2.4% 88%, 0 100%, 100% 100%, 97.6% 88%, 100% 75%, 97.6% 62%, 100% 50%, 97.6% 38%, 100% 25%, 97.6% 12%, 100% 0);
-  filter: drop-shadow(3px 4px 0 rgba(38, 35, 43, .08));
+  /* just the name, big and plain on the grid paper */
+  display: inline-block; margin: 0 auto; padding: 6px 10px;
   position: relative; z-index: 3; outline: none; cursor: inherit;
   transition: transform .45s var(--pop);
 }
-.name-badge:hover, .name-badge:focus-visible { transform: rotate(3deg) scale(1.04); }
-.name-badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
-.ch-hello .hello-title { display: flex; align-items: baseline; gap: clamp(12px, 1.2vw, 18px); font-size: inherit; white-space: nowrap; line-height: 1; }
-.hello-title .first { font: 600 clamp(36px, 4.2vw, 58px)/1 var(--sans); letter-spacing: -.03em; }
-.hello-title .last { font: 400 clamp(26px, 3vw, 42px)/1 'Silkscreen', var(--mono); letter-spacing: .04em; text-transform: uppercase; }
+.name-badge:hover, .name-badge:focus-visible { transform: scale(1.03); }
+.name-badge:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; border-radius: var(--r-box); }
+.ch-hello .hello-title { font: 600 clamp(38px, 5vw, 76px)/1.05 var(--sans); letter-spacing: -.035em; white-space: nowrap; color: var(--ink); }
 .badge-hint { margin: 14px 0 0; text-align: center; font: 400 11.5px/1 var(--mono); color: var(--muted); transition: opacity .3s ease; }
 .ch-hello.popped .badge-hint { opacity: 0; }
 
 @media (min-width: 721px) and (min-height: 560px) {
   /* hold the landing on screen for a moment so the pop-out plays while you scroll */
-  .pinned .ch-hello { height: 200vh; overflow: clip; }   /* clip, not hidden, so the stage can stick */
+  .pinned .ch-hello { height: 240vh; overflow: clip; }   /* clip, not hidden, so the stage can stick */
   .pinned .ch-hello > .stage { position: sticky; top: 0; }
   .pinned .ch-hello .hello-text { top: 47%; width: auto; }
+
+  /* keep everything clustered around the greeting: pull each spot toward the
+     middle, more so on wide screens where % positions would drift far apart */
+  .ch-hello { --kx: .8; --ky: .86; }
+  .pinned .ch-hello .burst {
+    left: calc(50% + (var(--x) - 50%) * var(--kx));
+    top: calc(47% + (var(--y) - 47%) * var(--ky));
+  }
 
   /* tucked behind the name… */
   .pinned .ch-hello .burst {
@@ -839,14 +839,19 @@ a.chip:hover, a.chip:focus-visible { background: var(--pink); }
   .pinned .ch-hello.popped .burst {
     opacity: 1; pointer-events: auto;
     transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
+    /* quick and tight: the whole burst is done in ~1s so it finishes before you scroll on */
     transition:
-      opacity .12s ease calc(150ms + var(--i, 0) * 70ms),
-      transform 1s cubic-bezier(.18, 1.6, .4, 1) calc(150ms + var(--i, 0) * 70ms),
+      opacity .15s ease calc(var(--i, 0) * 38ms),
+      transform .62s cubic-bezier(.22, 1.32, .42, 1) calc(var(--i, 0) * 38ms),
       translate .3s var(--pop), scale .25s var(--pop);
   }
   /* the name gives a little squash as everything bursts out of it */
   .pinned .ch-hello.popped .name-badge { animation: badge-burst .6s cubic-bezier(.3, 1.6, .5, 1); }
 }
 html:not(.pinned) .badge-hint { display: none; }   /* nothing to hover on a phone */
+
+@media (min-width: 1280px) { .ch-hello { --kx: .66; } }
+@media (min-width: 1680px) { .ch-hello { --kx: .54; } }
+@media (min-height: 900px) { .ch-hello { --ky: .74; } }
 
 @keyframes badge-burst { 0% { scale: 1; } 25% { scale: .9; } 55% { scale: 1.1; } 100% { scale: 1; } }
